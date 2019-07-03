@@ -103,21 +103,21 @@
 <meta property="og:description" content="Graph Embedding 目前已经在深度学习很多领域取得很好的成绩。目前，Graph Embedding是推荐系统、计算广告领域最近非常流行的做法，是从word2vec等一路发展而来的Embedding技术的最新延伸，并且很多大厂已经用Graph Embedding 取得了很好的效果。 word2vec和由其衍生出的item2vec是embedding技术的基础性方法，但二者都是建立在“序列">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://pic2.zhimg.com/80/v2-aef010269ddfef8db052fa65479ba9dd_hd.jpg">
-<meta property="og:image" content="https://pic3.zhimg.com/80/v2-ad4da5b234e34bf4cf19aa1ea511d496_hd.jpg">
-<meta property="og:image" content="https://pic3.zhimg.com/80/v2-6c548cc39af4400988d04ed1104bb3c2_hd.jpg">
-<meta property="og:image" content="https://pic3.zhimg.com/80/v2-c659f8c1dd22e4e646f4e454813cf9a2_hd.jpg">
-<meta property="og:image" content="https://pic3.zhimg.com/80/v2-147bb9aa6cb646c83680e93bcf016c4e_hd.jpg">
-<meta property="og:image" content="https://pic2.zhimg.com/80/v2-20a6b345cfe45706b43db91a78ee5b69_hd.jpg">
-<meta property="og:image" content="https://pic2.zhimg.com/80/v2-61287731efe14d38a7084fa2f77ec3c1_hd.jpg">
+<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703140852.png">
+<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703140918.png">
+<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703140941.png">
+<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703141010.png">
+<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703141027.png">
+<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703141045.png">
 <meta property="og:image" content="https://www.zhihu.com/equation?tex=%5Comega_%7Bvx%7D">
 <meta property="og:image" content="https://www.zhihu.com/equation?tex=%5Calpha_%7Bpq%7D%28t%2Cx%29">
-<meta property="og:image" content="https://pic2.zhimg.com/80/v2-481056c49b3619ff679fe10ee38c24c1_hd.jpg">
-<meta property="og:image" content="https://pic1.zhimg.com/80/v2-d3b6b9ee7c3f3bbc1661ecf0bb678a18_hd.jpg">
-<meta property="og:image" content="https://pic2.zhimg.com/80/v2-740642a04298d289d19cd4225d062b5d_hd.jpg">
+<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703141100.png">
+<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703141119.png">
+<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703141141.png">
 <meta property="og:image" content="https://www.zhihu.com/equation?tex=e%5E%7Ba_j%7D">
 <meta property="og:image" content="https://www.zhihu.com/equation?tex=e%5E%7Ba_j%7D">
 <meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190702155817.png">
-<meta property="og:updated_time" content="2019-07-03T05:53:36.850Z">
+<meta property="og:updated_time" content="2019-07-03T06:11:51.266Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="经典Graph Embedding 方法">
 <meta name="twitter:description" content="Graph Embedding 目前已经在深度学习很多领域取得很好的成绩。目前，Graph Embedding是推荐系统、计算广告领域最近非常流行的做法，是从word2vec等一路发展而来的Embedding技术的最新延伸，并且很多大厂已经用Graph Embedding 取得了很好的效果。 word2vec和由其衍生出的item2vec是embedding技术的基础性方法，但二者都是建立在“序列">
@@ -408,7 +408,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-07-03 13:53:36" itemprop="dateModified" datetime="2019-07-03T13:53:36+08:00">2019-07-03</time>
+                <time title="Modified: 2019-07-03 14:11:51" itemprop="dateModified" datetime="2019-07-03T14:11:51+08:00">2019-07-03</time>
               </span>
             
           
@@ -478,13 +478,13 @@
 <center>
 图1 由用户行为序列生成的物品全局关系图 </center>
 
-<p><img src="https://pic3.zhimg.com/80/v2-ad4da5b234e34bf4cf19aa1ea511d496_hd.jpg" alt="v2-ad4da5b234e34bf4cf19aa1ea511d496_hd"></p>
+<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703140852.png" alt></p>
 <center>
 图2 由属性、实体、各类知识组成的知识图谱 </center>
 
 <p>在面对图结构的时候，传统的序列embedding方法就显得力不从心了。在这样的背景下，对图结构中间的节点进行表达的graph embedding成为了新的研究方向，并逐渐在深度学习推荐系统领域流行起来。</p>
 <h2 id="经典方法1-—DeepWalk"><a href="#经典方法1-—DeepWalk" class="headerlink" title="经典方法1 —DeepWalk"></a>经典方法1 —DeepWalk</h2><p>早期影响力较大的graph embedding是2014年的DeepWalk，其主要思想是在由节点组成的图上随机游走，产生大量节点序列，然后将这些序列作为训练样本进行word2vec，得到embedding</p>
-<p><img src="https://pic3.zhimg.com/80/v2-6c548cc39af4400988d04ed1104bb3c2_hd.jpg" alt="v2-6c548cc39af4400988d04ed1104bb3c2_hd"></p>
+<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703140918.png" alt></p>
 <p>如上图所示，整个DeepWalk可以分为四个过程：</p>
 <ol>
 <li>图a展示了原始的用户行为序列</li>
@@ -493,23 +493,23 @@
 <li>图d最终将这些物品序列输入word2vec模型，生成最终的物品Embedding向量。</li>
 </ol>
 <p>在整个算法流程中，核心是第三步，对随机游走的跳转概率进行明确定义，即到达节点$v_i$后，下一步遍历$v_i$的临接点$v_j$的概率。如果物品的相关图是有向有权图，那么从节点$v_i$跳转到节点$v_j$的概率定义如下：</p>
-<p><img src="https://pic3.zhimg.com/80/v2-c659f8c1dd22e4e646f4e454813cf9a2_hd.jpg" alt="v2-c659f8c1dd22e4e646f4e454813cf9a2_hd"></p>
+<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703140941.png" alt></p>
 <p>其中$N<em>+(v_i)$是节点$v_i$所有的出边集合，$M</em>{ij}$是节点$v_i$到节点$v_j$边的权重。</p>
 <p>如果物品相关图是无相无权重图，那么跳转概率将是上面公式的一个特例，即权重$M<em>{ij}$将为常数1，且$N</em>+(v_i)$应是节点$v_i$所有“边”的集合，而不是所有“出边”的集合。</p>
 <h2 id="DeepWalk的改进-—-Node2Vec"><a href="#DeepWalk的改进-—-Node2Vec" class="headerlink" title="DeepWalk的改进 — Node2Vec"></a>DeepWalk的改进 — Node2Vec</h2><p>2016年，斯坦福大学在DeepWalk的基础上更进一步，通过调整随机游走权重的方法使graph embedding的结果在网络的<strong>同质性（homophily）</strong>和<strong>结构性（structural equivalence）</strong>中进行权衡权衡。</p>
 <p>具体来讲，网络的“同质性”指的是距离相近节点的embedding应该尽量近似，如下图，节点u与其相连的节点s1、s2、s3、s4的embedding表达应该是接近的，这就是“同质性“的体现。</p>
 <p>“结构性”指的是结构上相似的节点的embedding应该尽量接近，图中节点u和节点s6都是各自局域网络的中心节点，结构上相似，其embedding的表达也应该近似，这是“结构性”的体现。</p>
-<p><img src="https://pic3.zhimg.com/80/v2-147bb9aa6cb646c83680e93bcf016c4e_hd.jpg" alt="v2-147bb9aa6cb646c83680e93bcf016c4e_hd"></p>
+<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703141010.png" alt></p>
 <p>为了让Graph Embedding的结果更能表达同质性，在<strong>游走过程</strong>中需要更倾向于DFS，因为DFS更喜欢走到跟当前节点有直接相连的节点上，从而被embedding表达；另一方面，为了抓住网络的结构性，需要随机游走更倾向于BFS，这样会使生成的样本序列包含网络整体信息。</p>
 <p>在node2vec算法中。主要是通过节点间的跳转概率控制BFS和DFS的倾向性。下图表示了<strong>从节点t跳转到节点v后</strong>，下一步从<strong>节点v</strong>跳转到周围各点的跳转概率。</p>
-<p><img src="https://pic2.zhimg.com/80/v2-20a6b345cfe45706b43db91a78ee5b69_hd.jpg" alt="v2-20a6b345cfe45706b43db91a78ee5b69_hd"></p>
+<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703141027.png" alt></p>
 <p>形式化来讲。从节点v跳到下一个节点x的概率为</p>
-<p><img src="https://pic2.zhimg.com/80/v2-61287731efe14d38a7084fa2f77ec3c1_hd.jpg" alt="v2-61287731efe14d38a7084fa2f77ec3c1_hd"></p>
+<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703141045.png" alt></p>
 <p>其中 <img src="https://www.zhihu.com/equation?tex=%5Comega_%7Bvx%7D" alt="[公式]"> 是边vx的权重， <img src="https://www.zhihu.com/equation?tex=%5Calpha_%7Bpq%7D%28t%2Cx%29" alt="[公式]"> 的定义如下</p>
-<p><img src="https://pic2.zhimg.com/80/v2-481056c49b3619ff679fe10ee38c24c1_hd.jpg" alt="v2-481056c49b3619ff679fe10ee38c24c1_hd"></p>
+<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703141100.png" alt></p>
 <p>其中$d_{tx}$指的是t到x节点的距离，参数p和q共同控制随机游走倾向性，参数p被称为返回参数（return parameter），p越小，随机游走回节点t的可能性越大，node2vec就更注重表达网络的结构性，参数q被称为进出参数（in-out parameter），q越小，则随机游走到远方节点的可能性越大，node2vec更注重表达网络的同治性，反之，当前节点更可能在附近节点游走。</p>
 <p>node2vec这种灵活表达同质性和结构性的特点也得到了实验的证实。图6的上图就是node2vec更注重同质性的体现，可以看到距离相近的节点颜色更为接近，而图6下图则是结构特点相近的节点的颜色更为接近。</p>
-<p><img src="https://pic1.zhimg.com/80/v2-d3b6b9ee7c3f3bbc1661ecf0bb678a18_hd.jpg" alt="v2-d3b6b9ee7c3f3bbc1661ecf0bb678a18_hd"></p>
+<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703141119.png" alt></p>
 <p><center>node2vec试验结果</center><br>node2vec所体现的网络的同质性和结构性在推荐系统中也是可以被很直观的解释的。<strong>同质性相同的物品很可能是同品类、同属性、或者经常被一同购买的物品</strong>，而<strong>结构性相同的物品则是各品类的爆款、各品类的最佳凑单商品等拥有类似趋势或者结构性属性的物品</strong>。毫无疑问，二者在推荐系统中都是非常重要的特征表达。由于node2vec的这种灵活性，以及发掘不同特征的能力，甚至可以把不同node2vec生成的embedding融合共同输入后续深度学习网络，以保留物品的不同特征信息。</p>
 <h2 id="Deepwalk的补充-—-EGES"><a href="#Deepwalk的补充-—-EGES" class="headerlink" title="Deepwalk的补充 — EGES"></a>Deepwalk的补充 — EGES</h2><p>2018年，阿里公布了其在淘宝应用的Embedding方法EGES（Enhanced Graph Embedding with Side Information），其基本思想是在DeepWalk生成的graph embedding基础上引入补充信息。</p>
 <p>如果单纯使用用户行为生成的物品相关图，固然可以生成物品的embedding，但是如果遇到新加入的物品，或者没有过多互动信息的长尾物品，推荐系统将出现严重的冷启动问题。<strong>为了使“冷启动”的商品获得“合理”的初始Embedding，阿里团队通过引入了更多补充信息来丰富Embedding信息的来源，从而使没有历史行为记录的商品获得Embedding。</strong></p>
@@ -519,7 +519,7 @@
 minimize_Φ−logPr(\frac{v_{i−w},...,v_{i+w}}{v_i}|Φ(vi))</script><p>其中，w是在序列中上下文节点的window size。使用独立假设，我们具有：</p>
 <script type="math/tex; mode=display">
 logPr(\frac{v_{i−w},...,v_{i+w}}{v_i}|Φ(vi)) = \prod_{j=i−w,j≠i}^{i+w}Pr(v_j|Φ(v_i))</script><p>通过以上embedding方法， 我们就可以得到淘宝中所有商品的embedding，来捕获在用户行为序列上的更高阶相似度，这种特性会被基于CF的方法忽略。然而，对于“冷启动（cold-start）”的items，学到精准的embeddings仍然是个挑战。所以淘宝提出了GES方法：</p>
-<p><img src="https://pic2.zhimg.com/80/v2-740642a04298d289d19cd4225d062b5d_hd.jpg" alt="v2-740642a04298d289d19cd4225d062b5d_hd"></p>
+<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703141141.png" alt></p>
 <p>在GES中的深度神经网络中加入average pooling层将不同embedding平均起来，这样就能获得更好的Embedding，阿里在此基础上进行了加强，对每个embedding加上了权重，如上图所示，对每类特征对应的Embedding向量，分别赋予了权重$a_0，a_1…a_n$ ，图中的Hidden Representation层就是对不同Embedding进行加权平均操作的层，得到加权平均后的Embedding向量后，再直接输入softmax层，这样通过梯度反向传播，就可以求的每个embedding的权重$a_i$(i=0…n)</p>
 <p>在实际的模型中，阿里采用了 <img src="https://www.zhihu.com/equation?tex=e%5E%7Ba_j%7D" alt="[公式]"> 而不是$a_j$作为相应embedding的权重，一是避免权重为0，二是因为 <img src="https://www.zhihu.com/equation?tex=e%5E%7Ba_j%7D" alt="[公式]"> 在梯度下降过程中有良好的数学性质。</p>
 <p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190702155817.png" alt></p>
