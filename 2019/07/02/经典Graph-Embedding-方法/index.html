@@ -117,7 +117,7 @@
 <meta property="og:image" content="https://www.zhihu.com/equation?tex=e%5E%7Ba_j%7D">
 <meta property="og:image" content="https://www.zhihu.com/equation?tex=e%5E%7Ba_j%7D">
 <meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190702155817.png">
-<meta property="og:updated_time" content="2019-07-02T08:04:29.827Z">
+<meta property="og:updated_time" content="2019-07-03T05:53:36.850Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="经典Graph Embedding 方法">
 <meta name="twitter:description" content="Graph Embedding 目前已经在深度学习很多领域取得很好的成绩。目前，Graph Embedding是推荐系统、计算广告领域最近非常流行的做法，是从word2vec等一路发展而来的Embedding技术的最新延伸，并且很多大厂已经用Graph Embedding 取得了很好的效果。 word2vec和由其衍生出的item2vec是embedding技术的基础性方法，但二者都是建立在“序列">
@@ -393,13 +393,23 @@
                 
               
 
-              <time title="Created: 2019-07-02 14:58:00 / Modified: 16:04:29" itemprop="dateCreated datePublished" datetime="2019-07-02T14:58:00+08:00">2019-07-02</time>
+              <time title="Created: 2019-07-02 14:58:00" itemprop="dateCreated datePublished" datetime="2019-07-02T14:58:00+08:00">2019-07-02</time>
             </span>
           
 
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-07-03 13:53:36" itemprop="dateModified" datetime="2019-07-03T13:53:36+08:00">2019-07-03</time>
+              </span>
             
           
 
@@ -484,8 +494,8 @@
 </ol>
 <p>在整个算法流程中，核心是第三步，对随机游走的跳转概率进行明确定义，即到达节点$v_i$后，下一步遍历$v_i$的临接点$v_j$的概率。如果物品的相关图是有向有权图，那么从节点$v_i$跳转到节点$v_j$的概率定义如下：</p>
 <p><img src="https://pic3.zhimg.com/80/v2-c659f8c1dd22e4e646f4e454813cf9a2_hd.jpg" alt="v2-c659f8c1dd22e4e646f4e454813cf9a2_hd"></p>
-<p>其中$N_+(v_i)$是节点$v_i$所有的出边集合，$M_{ij}$是节点$v_i$到节点$v_j$边的权重。</p>
-<p>如果物品相关图是无相无权重图，那么跳转概率将是上面公式的一个特例，即权重$M_{ij}$将为常数1，且$N_+(v_i)$应是节点$v_i$所有“边”的集合，而不是所有“出边”的集合。</p>
+<p>其中$N<em>+(v_i)$是节点$v_i$所有的出边集合，$M</em>{ij}$是节点$v_i$到节点$v_j$边的权重。</p>
+<p>如果物品相关图是无相无权重图，那么跳转概率将是上面公式的一个特例，即权重$M<em>{ij}$将为常数1，且$N</em>+(v_i)$应是节点$v_i$所有“边”的集合，而不是所有“出边”的集合。</p>
 <h2 id="DeepWalk的改进-—-Node2Vec"><a href="#DeepWalk的改进-—-Node2Vec" class="headerlink" title="DeepWalk的改进 — Node2Vec"></a>DeepWalk的改进 — Node2Vec</h2><p>2016年，斯坦福大学在DeepWalk的基础上更进一步，通过调整随机游走权重的方法使graph embedding的结果在网络的<strong>同质性（homophily）</strong>和<strong>结构性（structural equivalence）</strong>中进行权衡权衡。</p>
 <p>具体来讲，网络的“同质性”指的是距离相近节点的embedding应该尽量近似，如下图，节点u与其相连的节点s1、s2、s3、s4的embedding表达应该是接近的，这就是“同质性“的体现。</p>
 <p>“结构性”指的是结构上相似的节点的embedding应该尽量接近，图中节点u和节点s6都是各自局域网络的中心节点，结构上相似，其embedding的表达也应该近似，这是“结构性”的体现。</p>
@@ -500,13 +510,15 @@
 <p>其中$d_{tx}$指的是t到x节点的距离，参数p和q共同控制随机游走倾向性，参数p被称为返回参数（return parameter），p越小，随机游走回节点t的可能性越大，node2vec就更注重表达网络的结构性，参数q被称为进出参数（in-out parameter），q越小，则随机游走到远方节点的可能性越大，node2vec更注重表达网络的同治性，反之，当前节点更可能在附近节点游走。</p>
 <p>node2vec这种灵活表达同质性和结构性的特点也得到了实验的证实。图6的上图就是node2vec更注重同质性的体现，可以看到距离相近的节点颜色更为接近，而图6下图则是结构特点相近的节点的颜色更为接近。</p>
 <p><img src="https://pic1.zhimg.com/80/v2-d3b6b9ee7c3f3bbc1661ecf0bb678a18_hd.jpg" alt="v2-d3b6b9ee7c3f3bbc1661ecf0bb678a18_hd"></p>
-<center>node2vec试验结果</center>
-
-<p>node2vec所体现的网络的同质性和结构性在推荐系统中也是可以被很直观的解释的。<strong>同质性相同的物品很可能是同品类、同属性、或者经常被一同购买的物品</strong>，而<strong>结构性相同的物品则是各品类的爆款、各品类的最佳凑单商品等拥有类似趋势或者结构性属性的物品</strong>。毫无疑问，二者在推荐系统中都是非常重要的特征表达。由于node2vec的这种灵活性，以及发掘不同特征的能力，甚至可以把不同node2vec生成的embedding融合共同输入后续深度学习网络，以保留物品的不同特征信息。</p>
+<p><center>node2vec试验结果</center><br>node2vec所体现的网络的同质性和结构性在推荐系统中也是可以被很直观的解释的。<strong>同质性相同的物品很可能是同品类、同属性、或者经常被一同购买的物品</strong>，而<strong>结构性相同的物品则是各品类的爆款、各品类的最佳凑单商品等拥有类似趋势或者结构性属性的物品</strong>。毫无疑问，二者在推荐系统中都是非常重要的特征表达。由于node2vec的这种灵活性，以及发掘不同特征的能力，甚至可以把不同node2vec生成的embedding融合共同输入后续深度学习网络，以保留物品的不同特征信息。</p>
 <h2 id="Deepwalk的补充-—-EGES"><a href="#Deepwalk的补充-—-EGES" class="headerlink" title="Deepwalk的补充 — EGES"></a>Deepwalk的补充 — EGES</h2><p>2018年，阿里公布了其在淘宝应用的Embedding方法EGES（Enhanced Graph Embedding with Side Information），其基本思想是在DeepWalk生成的graph embedding基础上引入补充信息。</p>
 <p>如果单纯使用用户行为生成的物品相关图，固然可以生成物品的embedding，但是如果遇到新加入的物品，或者没有过多互动信息的长尾物品，推荐系统将出现严重的冷启动问题。<strong>为了使“冷启动”的商品获得“合理”的初始Embedding，阿里团队通过引入了更多补充信息来丰富Embedding信息的来源，从而使没有历史行为记录的商品获得Embedding。</strong></p>
 <p>生成Graph embedding的第一步是生成物品关系图，通过用户行为序列可以生成物品相关图，利用相同属性、相同类别等信息，也可以通过这些相似性建立物品之间的边，从而生成基于内容的knowledge graph。而基于knowledge graph生成的物品向量可以被称为补充信息（side information）embedding向量，当然，根据补充信息类别的不同，可以有多个side information embedding向量。</p>
-<p>side information是从用户行为建模中得来，在DeepWalk中我们可以生成很多序列，接着，我们使用Skip-Gram算法来学习embeddings，他会最大化在获取序列的两个节点的共现概率。这会生成以下优化问题：<br>$$<br>minimize_Φ−logPr(\frac{v_{i−w},…,v_{i+w}}{v_i}|Φ(vi))<br>$$<br>其中，w是在序列中上下文节点的window size。使用独立假设，我们具有：<br>$$<br>logPr(\frac{v_{i−w},…,v_{i+w}}{v_i}|Φ(vi)) = \prod_{j=i−w,j≠i}^{i+w}Pr(v_j|Φ(v_i))<br>$$<br>通过以上embedding方法， 我们就可以得到淘宝中所有商品的embedding，来捕获在用户行为序列上的更高阶相似度，这种特性会被基于CF的方法忽略。然而，对于“冷启动（cold-start）”的items，学到精准的embeddings仍然是个挑战。所以淘宝提出了GES方法：</p>
+<p>side information是从用户行为建模中得来，在DeepWalk中我们可以生成很多序列，接着，我们使用Skip-Gram算法来学习embeddings，他会最大化在获取序列的两个节点的共现概率。这会生成以下优化问题：</p>
+<script type="math/tex; mode=display">
+minimize_Φ−logPr(\frac{v_{i−w},...,v_{i+w}}{v_i}|Φ(vi))</script><p>其中，w是在序列中上下文节点的window size。使用独立假设，我们具有：</p>
+<script type="math/tex; mode=display">
+logPr(\frac{v_{i−w},...,v_{i+w}}{v_i}|Φ(vi)) = \prod_{j=i−w,j≠i}^{i+w}Pr(v_j|Φ(v_i))</script><p>通过以上embedding方法， 我们就可以得到淘宝中所有商品的embedding，来捕获在用户行为序列上的更高阶相似度，这种特性会被基于CF的方法忽略。然而，对于“冷启动（cold-start）”的items，学到精准的embeddings仍然是个挑战。所以淘宝提出了GES方法：</p>
 <p><img src="https://pic2.zhimg.com/80/v2-740642a04298d289d19cd4225d062b5d_hd.jpg" alt="v2-740642a04298d289d19cd4225d062b5d_hd"></p>
 <p>在GES中的深度神经网络中加入average pooling层将不同embedding平均起来，这样就能获得更好的Embedding，阿里在此基础上进行了加强，对每个embedding加上了权重，如上图所示，对每类特征对应的Embedding向量，分别赋予了权重$a_0，a_1…a_n$ ，图中的Hidden Representation层就是对不同Embedding进行加权平均操作的层，得到加权平均后的Embedding向量后，再直接输入softmax层，这样通过梯度反向传播，就可以求的每个embedding的权重$a_i$(i=0…n)</p>
 <p>在实际的模型中，阿里采用了 <img src="https://www.zhihu.com/equation?tex=e%5E%7Ba_j%7D" alt="[公式]"> 而不是$a_j$作为相应embedding的权重，一是避免权重为0，二是因为 <img src="https://www.zhihu.com/equation?tex=e%5E%7Ba_j%7D" alt="[公式]"> 在梯度下降过程中有良好的数学性质。</p>
@@ -561,6 +573,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/02/KBGAN-论文阅读笔记/" rel="prev" title="KBGAN 论文阅读笔记">
+                KBGAN 论文阅读笔记 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -636,7 +652,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-count">4</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -680,7 +696,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">3</span>
+                      
+                    
+                    <span class="site-state-item-count">4</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
@@ -969,6 +987,53 @@
   
 
   
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
+        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
+      }
+    });
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      document.getElementById(all[i].inputID + '-Frame').parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+  
+
 
   
 
