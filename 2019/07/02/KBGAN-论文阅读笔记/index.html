@@ -94,18 +94,29 @@
 
 
 
-  <meta name="description" content="1. 特色 首次尝试用对抗学习去生成有用的副样本来提升embedding效果 对抗学习框架泛化能力强，适配很多KGE模型，不需要额外本体限制 在三个常用的数据集上显示出一致性能  2. 相关工作近年来很多KGE方法被提出来。RESCAL（2011）首先用矩阵分解来进行embedding，并使用双线性映射作为score function，TransE首先提出基于翻译模型的embedding方法，Tr">
+  <meta name="description" content="1. 特色 首次尝试用对抗学习去生成有用的副样本来提升embedding效果 对抗学习框架泛化能力强，适配很多KGE模型，不需要额外本体限制 在三个常用的数据集上显示出一致性能  2. 相关工作与模型构建近年来很多KGE方法被提出来。RESCAL（2011）首先用矩阵分解来进行embedding，并使用双线性映射作为score function，TransE首先提出基于翻译模型的embedding">
 <meta name="keywords" content="Graph Embedding,GAN">
 <meta property="og:type" content="article">
 <meta property="og:title" content="KBGAN 论文阅读笔记">
 <meta property="og:url" content="http://yoursite.com/2019/07/02/KBGAN-论文阅读笔记/index.html">
 <meta property="og:site_name" content="周瑞松のblog">
-<meta property="og:description" content="1. 特色 首次尝试用对抗学习去生成有用的副样本来提升embedding效果 对抗学习框架泛化能力强，适配很多KGE模型，不需要额外本体限制 在三个常用的数据集上显示出一致性能  2. 相关工作近年来很多KGE方法被提出来。RESCAL（2011）首先用矩阵分解来进行embedding，并使用双线性映射作为score function，TransE首先提出基于翻译模型的embedding方法，Tr">
+<meta property="og:description" content="1. 特色 首次尝试用对抗学习去生成有用的副样本来提升embedding效果 对抗学习框架泛化能力强，适配很多KGE模型，不需要额外本体限制 在三个常用的数据集上显示出一致性能  2. 相关工作与模型构建近年来很多KGE方法被提出来。RESCAL（2011）首先用矩阵分解来进行embedding，并使用双线性映射作为score function，TransE首先提出基于翻译模型的embedding">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-03T05:53:33.296Z">
+<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703150923.png">
+<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703162624.png">
+<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703162748.png">
+<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703172418.png">
+<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703172547.png">
+<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703172928.png">
+<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703174351.png">
+<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703173123.png">
+<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703174514.png">
+<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703174543.png">
+<meta property="og:updated_time" content="2019-07-03T09:46:53.454Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="KBGAN 论文阅读笔记">
-<meta name="twitter:description" content="1. 特色 首次尝试用对抗学习去生成有用的副样本来提升embedding效果 对抗学习框架泛化能力强，适配很多KGE模型，不需要额外本体限制 在三个常用的数据集上显示出一致性能  2. 相关工作近年来很多KGE方法被提出来。RESCAL（2011）首先用矩阵分解来进行embedding，并使用双线性映射作为score function，TransE首先提出基于翻译模型的embedding方法，Tr">
+<meta name="twitter:description" content="1. 特色 首次尝试用对抗学习去生成有用的副样本来提升embedding效果 对抗学习框架泛化能力强，适配很多KGE模型，不需要额外本体限制 在三个常用的数据集上显示出一致性能  2. 相关工作与模型构建近年来很多KGE方法被提出来。RESCAL（2011）首先用矩阵分解来进行embedding，并使用双线性映射作为score function，TransE首先提出基于翻译模型的embedding">
+<meta name="twitter:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703150923.png">
 
 
 
@@ -392,7 +403,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-07-03 13:53:33" itemprop="dateModified" datetime="2019-07-03T13:53:33+08:00">2019-07-03</time>
+                <time title="Modified: 2019-07-03 17:46:53" itemprop="dateModified" datetime="2019-07-03T17:46:53+08:00">2019-07-03</time>
               </span>
             
           
@@ -461,8 +472,34 @@
 <li>对抗学习框架泛化能力强，适配很多KGE模型，不需要额外本体限制</li>
 <li>在三个常用的数据集上显示出一致性能</li>
 </ul>
-<h2 id="2-相关工作"><a href="#2-相关工作" class="headerlink" title="2. 相关工作"></a>2. 相关工作</h2><p>近年来很多KGE方法被提出来。RESCAL（2011）首先用矩阵分解来进行embedding，并使用双线性映射作为score function，TransE首先提出基于翻译模型的embedding方法，TransH，TransR，TransD对此进行了发展，从实体映射拓展为空间映射，DISTMULT（2015）用了对角矩阵简化了RESCAL，COMPLEX（2016）将前者带入复数域。</p>
-<p>其中有一些模型取得了很好的效果，MAINIFOLDE（2016）将三元组作为一个mainfold而不像原来那样作为point进行embed，HOLD（2016）将两个实体组合成一个三重实体的圆相关关系，</p>
+<h2 id="2-相关工作与模型构建"><a href="#2-相关工作与模型构建" class="headerlink" title="2. 相关工作与模型构建"></a>2. 相关工作与模型构建</h2><p>近年来很多KGE方法被提出来。RESCAL（2011）首先用矩阵分解来进行embedding，并使用双线性映射作为score function，TransE首先提出基于翻译模型的embedding方法，TransH，TransR，TransD对此进行了发展，从实体映射拓展为空间映射，DISTMULT（2015）用了对角矩阵简化了RESCAL，COMPLEX（2016）将前者带入复数域。</p>
+<p>其中有一些模型取得了很好的效果，MAINIFOLDE（2016）将三元组作为一个mainfold而不像原来那样作为point进行embed，HOLD（2016）将两个实体组合成一个三重实体的圆相关关系等等，但是这些方法用均匀采样去生成负样本。</p>
+<p>作者采用了独立于模型的框架，所有模型都可以合并入框架，具有很好的鲁棒性。本文提出的KBGAN损失函数为marginal loss function，带有softmax的KGE模型，其总架构为下：</p>
+<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703150923.png" alt></p>
+<p>论文使用 softmax 概率模型为生成器 G，通过概率分布进行采样；判别器部分 D 接收生成的负样本和 ground truth triple 并计算分数；G 通过梯度策略最小化生成的负三元组的分数，D 通过梯度下降最小化正样本和负样本的边缘损失</p>
+<p>首先本文列举了两种loss函数</p>
+<ol>
+<li><strong>Margin loss Function</strong></li>
+</ol>
+<h4 id><a href="#" class="headerlink" title></a><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703162624.png" alt></h4><ol>
+<li><strong>Log-softmax loss function</strong></li>
+</ol>
+<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703162748.png" alt></p>
+<p>其次分析了<strong>均匀负采样的缺陷</strong>：等概率替换会使容易区分的负样本对学习的贡献较小，会让模型学到一些简单的特征，而不是尽可能去理解语义，对此作者认为使用 log 损失函数从替换实体得到的所有负样本中筛选出更有用的负样本很有必要。</p>
+<p>受GAN的启发，作者使用基于softmax概率的KGE来产生高质量的负样本，使用margin loss损失函数。之所以使用softmax，是因为他能很好的表示离散GAN中“从概率分布中采样”过程，这样提升判别器的效果就能产生很多优秀的负样本。</p>
+<p>假设生成器得到的负样本的概率分布为：$p_G(h′,r,t′|h,r,t)$，得分函数为$f_D(h,r,t)$，那么loss可以写成：</p>
+<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703172418.png" alt></p>
+<p>生成器的目标是最大化负距离的期望为：<img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703172547.png" alt></p>
+<p>由于 RG 是一个离散采样步骤，所以得不到梯度，本文借鉴了其他论文提到的梯度策略理论获取梯度进行优化。</p>
+<p>这一部分论文把这个过程对标到强化学习，认为生成器是 agent，判别器是 environment， $(h, r, t)$ 是 state，负样本概率分布 PG 是 policy，$(h’, r, t’)$ 是 action，$-f_D(h’, r, t’)$ 是 reward，认为是 one-step RL 是在每个 epoch，actions 不会影响 state，但每个 action 后会重新从一个不相关的 state 开始；<br><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703172928.png" alt></p>
+<p>为减小算法方差而不引入新参数，作者从 reward 减掉一个任意数，这个任意数仅依赖于state，不影响梯度的分布。作者将$-f<em>D(h’, r, t’)$替换为$-f_D(h’, r, t’)-b(h,r,t)$，b是一个常量，其中$b=\sum</em>{(h,r,t)∈T}\mathbb{E}_{(h′,r,t′)∼p_G(h′,r,t′|h,r,t)}[−f_D(h′,r,t′)]$，为了便于计算，b可以近似的表示为临近几个生成负样本的rewads的均值。</p>
+<p>概率分布的计算使用以下公式，$f_G(h, r, t$) 为生成器的 score function：</p>
+<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703174351.png" alt></p>
+<p><strong>算法伪代码如下：</strong></p>
+<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703173123.png" alt></p>
+<h2 id="试验结果："><a href="#试验结果：" class="headerlink" title="试验结果："></a>试验结果：</h2><p>论文选用的数据集有 FB15K-237, WN18, WN18RR，结果发现使用 DISMULT 或 COMPLEX 作为生成器都不会对性能有较大影响，且 TransD, TransE 在 KBGAN 中很明显优于它们的 baseline。</p>
+<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703174514.png" alt></p>
+<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703174543.png" alt></p>
 
       
     </div>
@@ -698,7 +735,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-特色"><span class="nav-number">1.</span> <span class="nav-text">1. 特色</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-相关工作"><span class="nav-number">2.</span> <span class="nav-text">2. 相关工作</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-特色"><span class="nav-number">1.</span> <span class="nav-text">1. 特色</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-相关工作与模型构建"><span class="nav-number">2.</span> <span class="nav-text">2. 相关工作与模型构建</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">2.0.1.</span> <span class="nav-text"></span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#试验结果："><span class="nav-number">3.</span> <span class="nav-text">试验结果：</span></a></li></div>
             
 
           </div>
