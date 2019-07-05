@@ -102,15 +102,15 @@
 <meta property="og:site_name" content="周瑞松のblog">
 <meta property="og:description" content="论文地址：https://arxiv.org/pdf/1905.07129 1. Abstract自然语言表征模型最近受到非常多的关注，很多研究者将其视为 NLP 最重要的研究方向之一。例如在大规模语料库上预训练的 BERT，它可以从纯文本中很好地捕捉丰富的语义模式，经过微调后可以持续改善不同 NLP 任务的性能。因此，我们获取 BERT 隐藏层表征后，可用于提升自己任务的性能。 但是，已有的预训">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://yoursite.com/Users/ruisongzhou/Library/Application%20Support/typora-user-images/image-20190705172838068.png">
+<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190705220115.png">
 <meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190705214613.png">
 <meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190705215451.png">
 <meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190705215631.png">
-<meta property="og:updated_time" content="2019-07-05T13:57:39.992Z">
+<meta property="og:updated_time" content="2019-07-05T14:01:21.895Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ERNIE: Enhanced Language Representation with Informative Entities论文阅读笔记">
 <meta name="twitter:description" content="论文地址：https://arxiv.org/pdf/1905.07129 1. Abstract自然语言表征模型最近受到非常多的关注，很多研究者将其视为 NLP 最重要的研究方向之一。例如在大规模语料库上预训练的 BERT，它可以从纯文本中很好地捕捉丰富的语义模式，经过微调后可以持续改善不同 NLP 任务的性能。因此，我们获取 BERT 隐藏层表征后，可用于提升自己任务的性能。 但是，已有的预训">
-<meta name="twitter:image" content="http://yoursite.com/Users/ruisongzhou/Library/Application%20Support/typora-user-images/image-20190705172838068.png">
+<meta name="twitter:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190705220115.png">
 
 
 
@@ -382,7 +382,7 @@
                 
               
 
-              <time title="Created: 2019-07-05 17:16:03 / Modified: 21:57:39" itemprop="dateCreated datePublished" datetime="2019-07-05T17:16:03+08:00">2019-07-05</time>
+              <time title="Created: 2019-07-05 17:16:03 / Modified: 22:01:21" itemprop="dateCreated datePublished" datetime="2019-07-05T17:16:03+08:00">2019-07-05</time>
             </span>
           
 
@@ -471,7 +471,7 @@
 <li>Heterogeneous InformationFusion（异构信息融合问题）</li>
 </ol>
 <p>语言表征的预训练过程和知识表征过程有很大的不同，它们会产生两个独立的向量空间。因此，如何设计一个特殊的预训练目标，以融合词汇、句法和知识信息就显得非常重要了。</p>
-<h2 id="3-Methodology"><a href="#3-Methodology" class="headerlink" title="3. Methodology"></a>3. Methodology</h2><p><img src="/Users/ruisongzhou/Library/Application Support/typora-user-images/image-20190705172838068.png" alt="image-20190705172838068"></p>
+<h2 id="3-Methodology"><a href="#3-Methodology" class="headerlink" title="3. Methodology"></a>3. Methodology</h2><p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190705220115.png" alt></p>
 <p><em>图 2：左部分是 ERNIE 的架构。右部分是用于 token 和实体的互相融合的聚合器。信息融合层的输入有两类：一是 token 嵌入，二是 token 嵌入和实体嵌入连接起来的结果。信息融合完成后，它会为下一层输出新的 token 嵌入和实体嵌入。</em></p>
 <p>首先定义token sequence为 ${w_1,  w_2,…,w_n}$，n是其长度。</p>
 <p>定义entity sequence为 ${e_1,  e_2,…,e_m}$，其中m是其长度。注意很多情况下n与m并不相等。</p>
