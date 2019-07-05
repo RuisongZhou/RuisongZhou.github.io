@@ -94,27 +94,23 @@
 
 
 
-  <meta name="description" content="《Mining Type Information from Chinese Online Encyclopedias》论文阅读1. Introduction 找到一种从中文百科中挖掘类型信息的方案，作为中文LOD的补充 使用attribute propagation algorithm 生成了很多属性 找到一种评估种类属性和类型属性的评估方法  2. Approach工作流程：  Explicit">
-<meta name="keywords" content="知识图谱,NLP">
+  <meta name="description" content="论文地址：https://arxiv.org/pdf/1905.07129 1. Abstract自然语言表征模型最近受到非常多的关注，很多研究者将其视为 NLP 最重要的研究方向之一。例如在大规模语料库上预训练的 BERT，它可以从纯文本中很好地捕捉丰富的语义模式，经过微调后可以持续改善不同 NLP 任务的性能。因此，我们获取 BERT 隐藏层表征后，可用于提升自己任务的性能。 但是，已有的预训">
+<meta name="keywords" content="知识图谱,NLP,BERT">
 <meta property="og:type" content="article">
-<meta property="og:title" content="百度知识图谱构建技术|《Mining Type Information from Chinese Online Encyclopedias》论文阅读">
-<meta property="og:url" content="http://yoursite.com/2019/07/02/百度知识图谱构建技术-《Mining-Type-Information-from-Chinese-Online-Encyclopedias》论文阅读/index.html">
+<meta property="og:title" content="ERNIE: Enhanced Language Representation with Informative Entities论文阅读笔记">
+<meta property="og:url" content="http://yoursite.com/2019/07/05/ERNIE-Enhanced-Language-Representation-with-Informative-Entities论文阅读笔记/index.html">
 <meta property="og:site_name" content="周瑞松のblog">
-<meta property="og:description" content="《Mining Type Information from Chinese Online Encyclopedias》论文阅读1. Introduction 找到一种从中文百科中挖掘类型信息的方案，作为中文LOD的补充 使用attribute propagation algorithm 生成了很多属性 找到一种评估种类属性和类型属性的评估方法  2. Approach工作流程：  Explicit">
+<meta property="og:description" content="论文地址：https://arxiv.org/pdf/1905.07129 1. Abstract自然语言表征模型最近受到非常多的关注，很多研究者将其视为 NLP 最重要的研究方向之一。例如在大规模语料库上预训练的 BERT，它可以从纯文本中很好地捕捉丰富的语义模式，经过微调后可以持续改善不同 NLP 任务的性能。因此，我们获取 BERT 隐藏层表征后，可用于提升自己任务的性能。 但是，已有的预训">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://yoursite.com/Users/ruisongzhou/Library/Application%20Support/typora-user-images/image-20190531204637839.png">
-<meta property="og:image" content="http://yoursite.com/Users/ruisongzhou/Library/Application%20Support/typora-user-images/image-20190601170315218.png">
-<meta property="og:image" content="http://yoursite.com/Users/ruisongzhou/Library/Application%20Support/typora-user-images/image-20190601170356953.png">
-<meta property="og:image" content="http://yoursite.com/Users/ruisongzhou/Library/Application%20Support/typora-user-images/image-20190601170839026.png">
-<meta property="og:image" content="http://yoursite.com/Users/ruisongzhou/Library/Application%20Support/typora-user-images/image-20190601170855367.png">
-<meta property="og:image" content="http://yoursite.com/Users/ruisongzhou/Library/Application%20Support/typora-user-images/image-20190601175706452.png">
-<meta property="og:image" content="http://yoursite.com/Users/ruisongzhou/Library/Application%20Support/typora-user-images/image-20190601180404433.png">
-<meta property="og:image" content="http://yoursite.com/Users/ruisongzhou/Library/Application%20Support/typora-user-images/image-20190601182247799.png">
-<meta property="og:updated_time" content="2019-07-03T05:53:39.768Z">
+<meta property="og:image" content="http://yoursite.com/Users/ruisongzhou/Library/Application%20Support/typora-user-images/image-20190705172838068.png">
+<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190705214613.png">
+<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190705215451.png">
+<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190705215631.png">
+<meta property="og:updated_time" content="2019-07-05T13:57:39.992Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="百度知识图谱构建技术|《Mining Type Information from Chinese Online Encyclopedias》论文阅读">
-<meta name="twitter:description" content="《Mining Type Information from Chinese Online Encyclopedias》论文阅读1. Introduction 找到一种从中文百科中挖掘类型信息的方案，作为中文LOD的补充 使用attribute propagation algorithm 生成了很多属性 找到一种评估种类属性和类型属性的评估方法  2. Approach工作流程：  Explicit">
-<meta name="twitter:image" content="http://yoursite.com/Users/ruisongzhou/Library/Application%20Support/typora-user-images/image-20190531204637839.png">
+<meta name="twitter:title" content="ERNIE: Enhanced Language Representation with Informative Entities论文阅读笔记">
+<meta name="twitter:description" content="论文地址：https://arxiv.org/pdf/1905.07129 1. Abstract自然语言表征模型最近受到非常多的关注，很多研究者将其视为 NLP 最重要的研究方向之一。例如在大规模语料库上预训练的 BERT，它可以从纯文本中很好地捕捉丰富的语义模式，经过微调后可以持续改善不同 NLP 任务的性能。因此，我们获取 BERT 隐藏层表征后，可用于提升自己任务的性能。 但是，已有的预训">
+<meta name="twitter:image" content="http://yoursite.com/Users/ruisongzhou/Library/Application%20Support/typora-user-images/image-20190705172838068.png">
 
 
 
@@ -122,7 +118,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/2019/07/02/百度知识图谱构建技术-《Mining-Type-Information-from-Chinese-Online-Encyclopedias》论文阅读/">
+  <link rel="canonical" href="http://yoursite.com/2019/07/05/ERNIE-Enhanced-Language-Representation-with-Informative-Entities论文阅读笔记/">
 
 
 
@@ -132,7 +128,7 @@
   };
 </script>
 
-  <title>百度知识图谱构建技术|《Mining Type Information from Chinese Online Encyclopedias》论文阅读 | 周瑞松のblog</title>
+  <title>ERNIE: Enhanced Language Representation with Informative Entities论文阅读笔记 | 周瑞松のblog</title>
   
 
 
@@ -343,7 +339,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/02/百度知识图谱构建技术-《Mining-Type-Information-from-Chinese-Online-Encyclopedias》论文阅读/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/05/ERNIE-Enhanced-Language-Representation-with-Informative-Entities论文阅读笔记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="RuisongZhou">
@@ -360,7 +356,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">百度知识图谱构建技术|《Mining Type Information from Chinese Online Encyclopedias》论文阅读
+          <h1 class="post-title" itemprop="name headline">ERNIE: Enhanced Language Representation with Informative Entities论文阅读笔记
 
               
             
@@ -386,23 +382,13 @@
                 
               
 
-              <time title="Created: 2019-07-02 09:59:53" itemprop="dateCreated datePublished" datetime="2019-07-02T09:59:53+08:00">2019-07-02</time>
+              <time title="Created: 2019-07-05 17:16:03 / Modified: 21:57:39" itemprop="dateCreated datePublished" datetime="2019-07-05T17:16:03+08:00">2019-07-05</time>
             </span>
           
 
           
             
 
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-07-03 13:53:39" itemprop="dateModified" datetime="2019-07-03T13:53:39+08:00">2019-07-03</time>
-              </span>
             
           
 
@@ -433,8 +419,8 @@
                 </span>
             
                 <span class="post-meta-item-text">Comments: </span>
-                <a href="/2019/07/02/百度知识图谱构建技术-《Mining-Type-Information-from-Chinese-Online-Encyclopedias》论文阅读/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/07/02/百度知识图谱构建技术-《Mining-Type-Information-from-Chinese-Online-Encyclopedias》论文阅读/" itemprop="commentCount"></span>
+                <a href="/2019/07/05/ERNIE-Enhanced-Language-Representation-with-Informative-Entities论文阅读笔记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/07/05/ERNIE-Enhanced-Language-Representation-with-Informative-Entities论文阅读笔记/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -473,62 +459,83 @@
       
 
       
-        <h1 id="《Mining-Type-Information-from-Chinese-Online-Encyclopedias》论文阅读"><a href="#《Mining-Type-Information-from-Chinese-Online-Encyclopedias》论文阅读" class="headerlink" title="《Mining Type Information from Chinese Online Encyclopedias》论文阅读"></a>《Mining Type Information from Chinese Online Encyclopedias》论文阅读</h1><h2 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. Introduction</h2><ol>
-<li>找到一种从中文百科中挖掘类型信息的方案，作为中文LOD的补充</li>
-<li>使用attribute propagation algorithm 生成了很多属性</li>
-<li>找到一种评估种类属性和类型属性的评估方法</li>
+        <p>论文地址：<a href="https://arxiv.org/pdf/1905.07129" target="_blank" rel="noopener">https://arxiv.org/pdf/1905.07129</a></p>
+<h2 id="1-Abstract"><a href="#1-Abstract" class="headerlink" title="1. Abstract"></a>1. Abstract</h2><p>自然语言表征模型最近受到非常多的关注，很多研究者将其视为 NLP 最重要的研究方向之一。例如在大规模语料库上预训练的 BERT，它可以从纯文本中很好地捕捉丰富的语义模式，经过微调后可以持续改善不同 NLP 任务的性能。因此，我们获取 BERT 隐藏层表征后，可用于提升自己任务的性能。</p>
+<p>但是，已有的预训练语言模型很少考虑知识信息，具体而言即知识图谱（knowledge graphs，KG），知识图谱能够提供丰富的结构化知识事实，以便进行更好的知识理解。简而言之，预训练语言模型只知道语言相关的「合理性」，它并不知道语言到底描述了什么，里面是不是有什么特殊的东西。</p>
+<p>本文通过外部知识增强语言表达，同时利用大规模语料库和知识图谱，充分利用词汇、句法和知识信息，构建了新了预训练模型。</p>
+<h2 id="2-Challenge"><a href="#2-Challenge" class="headerlink" title="2. Challenge"></a>2. Challenge</h2><ol>
+<li>Structured  Knowledge  Encoding（结构化的信息编码问题）</li>
 </ol>
-<h2 id="2-Approach"><a href="#2-Approach" class="headerlink" title="2. Approach"></a>2. Approach</h2><h3 id="工作流程："><a href="#工作流程：" class="headerlink" title="工作流程："></a>工作流程：</h3><p><img src="/Users/ruisongzhou/Library/Application Support/typora-user-images/image-20190531204637839.png" alt="image-20190531204637839"></p>
+<p>对于给定的文本，如何高效地抽取并编码对应的知识图谱事实是非常重要的，这些 KG 事实需要能用于语言表征模型。</p>
 <ol>
-<li>Explicit IsA Relation Detector从百科中的摘要和infobox中检测instanceOf关系，从类别系统中检测subclassOf关系</li>
-<li>构建类别属性和实体属性，category with attributes 由被识别的instanceOf关系类别属性和实体属性组成</li>
+<li>Heterogeneous InformationFusion（异构信息融合问题）</li>
 </ol>
-<h4 id="2-1-IsA-Relation-Detector"><a href="#2-1-IsA-Relation-Detector" class="headerlink" title="2.1 IsA Relation Detector"></a>2.1 IsA Relation Detector</h4><p>启发式检测</p>
-<h5 id="InstanceOf-Relation-Detection"><a href="#InstanceOf-Relation-Detection" class="headerlink" title="InstanceOf Relation Detection"></a>InstanceOf Relation Detection</h5><p>从infoboxex和abstracts中获取</p>
-<ol>
-<li>infobox中一些(attribute, value)对经常被放入实体集和概念集中。我们认为如一个atrribute存在于概念集并且实体集存在它的值（value），就存在InstanceOf关系</li>
-<li></li>
-</ol>
-<p>一般来说，一个实体的概括(abstracts)中的第一句话是这个实体的定义。我们对这句话用fudanNLP工具进行语法分析，如果这句话的主语是实体，谓语是”是(be)”，并且宾语存在于概念集，我们认为这个主语和宾语有InstanceOf关系</p>
-<h5 id="SubclassOf-Relation-Detection"><a href="#SubclassOf-Relation-Detection" class="headerlink" title="SubclassOf Relation Detection"></a>SubclassOf Relation Detection</h5><p>从中文百科的categories中获取</p>
-<ol>
-<li>首先生成SubclassOf类别对，其形式为(sub-category, category)，其次用两种启发式搜索从这些categories中搜索subclassOf关系</li>
-<li>第一种搜索方法：根据相同的词汇开头声称对，如江苏学校 (school in Jiangsu) SubclassOf 中国学校 (school<br>in China)（在中文中，用短语的最后一个名词）。先用FudanNLP分析短语（类似分词）。例：中国足球运动员-&gt;中国/足球/运动员-&gt;（中国足球运动员，运动员)</li>
-<li>根据第一种搜索方法匹配出来的标签对，在zhishi.me中检索筛选</li>
-</ol>
-<h4 id="2-2-Category-Attributes-Generator"><a href="#2-2-Category-Attributes-Generator" class="headerlink" title="2.2 Category Attributes Generator"></a>2.2 Category Attributes Generator</h4><p>不同infoxbox的属性有很大差别，但是template（模版）量很少，并且种类属性的缺少也不利于推断，而且有很多没有属性的种类被弃用，所以作者用所有的category和subclassof关系组成了category graph，用种类图去生成属性，辨识InstanceOf和subclassOf的关系</p>
-<p><strong>Category Graph:</strong> 种类图是DAG（有向无环图），G = (N, E),  N是表示所有categories的节点集合。E表示所有边$<c_1, c_2>∈E$ ，这些边代表category $c_1$ 和category $c_2$ 有subclassOf关系。</c_1,></p>
-<p><strong>属性传播算法：</strong>属性传播算法在种类图上遵守以下规则：</p>
-<ol>
-<li>如果种类$c ∈ N$有从infobox 模版中的属性，这些属性不变</li>
-<li>如果种类$c ∈ N$有拥有属性的实体，当这些属性有一半以上的实体拥有时，这些属性应该被传播给c</li>
-<li>如果种类$c ∈ N$有拥有属性的子种类，当这些属性有一半以上的子属性拥有时，这些属性应该被传播给c</li>
-<li>如果种类$c ∈ N$的父种类有属性，那么这些属性应该继承给c</li>
-</ol>
-<p>具体流程：</p>
-<p><img src="/Users/ruisongzhou/Library/Application Support/typora-user-images/image-20190601170315218.png" alt="image-20190601170315218"></p>
-<p><img src="/Users/ruisongzhou/Library/Application Support/typora-user-images/image-20190601170356953.png" alt="image-20190601170356953"></p>
-<p><img src="/Users/ruisongzhou/Library/Application Support/typora-user-images/image-20190601170839026.png" alt="image-20190601170839026"></p>
-<p><img src="/Users/ruisongzhou/Library/Application Support/typora-user-images/image-20190601170855367.png" alt="image-20190601170855367"></p>
-<h4 id="2-3-Instance-Type-Ranker"><a href="#2-3-Instance-Type-Ranker" class="headerlink" title="2.3 Instance Type Ranker"></a>2.3 Instance Type Ranker</h4><p>在执行属性传播算法后，我们获得了相关文章的实体，实体的属性和种类，并嵌入Instance Graph中，随后使用基于实体图的随机游走算法来去除数据噪音。</p>
-<p><strong>Instance Graph:</strong> 为加权有向图. $G = (N, E, P; φ)$  其中</p>
-<p><img src="/Users/ruisongzhou/Library/Application Support/typora-user-images/image-20190601175706452.png" alt="image-20190601175706452"></p>
-<p>可以理解为：</p>
-<p>$N$: 实体，实体的属性，实体的种类的并集</p>
-<p>$E$: 给定实体和其属性的有向边，相应文章属性和种类的有向边的并集</p>
-<p>$P$: 从给定实体游走到其性质的概率，从属性游走到种类的概率的并集</p>
-<p><img src="/Users/ruisongzhou/Library/Application Support/typora-user-images/image-20190601180404433.png" alt="image-20190601180404433"></p>
-<p>如果属性的意义相同（生日/出生日期），可以用如下办法解决：</p>
-<p>对于给定实体$i_j∈N_I$, 如果一个属性$a_k ∈N_A$不属于任何种类$c_l∈N_c$, 但是$c_l$ 有$a_k$同义的属性,那么就用一条有向边把$a_k$和$c_l$连接起来。</p>
-<p><strong>Graph-Based Random Walk：</strong>假设一个属性，拥有它的种类越少，那么这个属性就越具有代表性。如果一个实体有这样的具有代表性的属性（只是一个种类的属性），那么这个实体的type就是这个种类。所以可以有如下定义：</p>
+<p>语言表征的预训练过程和知识表征过程有很大的不同，它们会产生两个独立的向量空间。因此，如何设计一个特殊的预训练目标，以融合词汇、句法和知识信息就显得非常重要了。</p>
+<h2 id="3-Methodology"><a href="#3-Methodology" class="headerlink" title="3. Methodology"></a>3. Methodology</h2><p><img src="/Users/ruisongzhou/Library/Application Support/typora-user-images/image-20190705172838068.png" alt="image-20190705172838068"></p>
+<p><em>图 2：左部分是 ERNIE 的架构。右部分是用于 token 和实体的互相融合的聚合器。信息融合层的输入有两类：一是 token 嵌入，二是 token 嵌入和实体嵌入连接起来的结果。信息融合完成后，它会为下一层输出新的 token 嵌入和实体嵌入。</em></p>
+<p>首先定义token sequence为 ${w_1,  w_2,…,w_n}$，n是其长度。</p>
+<p>定义entity sequence为 ${e_1,  e_2,…,e_m}$，其中m是其长度。注意很多情况下n与m并不相等。</p>
+<p>定义token vocabulary 为 $\mathcal{V}$，定义entity list 为$\mathcal{E}$</p>
+<p>ERNIE模型包括两个堆叠的model，the underlying textual encoder(T-Encoder)和the upper knowledgeable encoder(K-Encoder)</p>
+<ul>
+<li>T-Encoder：负责从文本中捕获基本的词法和语法信息</li>
+<li>K-Encoder：负责将知识图谱集成到底层的文本信息中</li>
+</ul>
+<p>有了T-Encoder和K-Encoder，我们就可以在一个统一的特征空间中表征 token 和实体的异构信息。</p>
+<p>我们用 N 表示 T-Encoder 的层数，用 M 表示 K-Encoder 的层数。</p>
+<h4 id="T-Encoder"><a href="#T-Encoder" class="headerlink" title="T-Encoder"></a>T-Encoder</h4><p>T-Encoder 是一个多头双向Transformer，给定token sequence和entity sequence，首先将token embedding，segment embedding，position embedding 进行合并，作为T-Encoder的输入，然后计算词法和句法特征</p>
 <script type="math/tex; mode=display">
-Weight(a_i) = \frac{1}{Count(a_i)}</script><p>其中$a_i$为属性。</p>
-<p>随机游走过程从给定实体$i<em>j ∈ N_I $ 开始，随机走到它的一个属性$a_k ∈N_A$，其概率为$p</em>{IA<em>{jk}} ∈ P</em>{IA}$，最后，从一个属性随机行走一步到一个和$i_j$在文章同一页的种类$c_l∈N_c$</p>
-<h4 id><a href="#" class="headerlink" title></a><img src="/Users/ruisongzhou/Library/Application Support/typora-user-images/image-20190601182247799.png" alt="image-20190601182247799"></h4><p>N为种类数量，$Count^*(a_k)$为从$a_k$出来的有向边的数量。 </p>
-<p>这样，随机游走更偏向于那些具有代表性的属性，我们就能得到正确的category。</p>
-<p>当从属性向种类游走时，如果种类对这个属性有相同的概率(例如Fig2中PAC1 = PAC2 = 0.5)，定义一个种类作为实体的type的概率如下</p>
+\{\textbf{w}_1,...,\textbf{w}_n\}=T-Encoder(\{w_1,...,w_n\})</script><h4 id="K-Encoder"><a href="#K-Encoder" class="headerlink" title="K-Encoder"></a>K-Encoder</h4><p>首先抽取文本中对应的实体$\{e_1,e_2,…e_m\}$，通过TransE将实体转为对应的向量表示$\{\textbf{e}_1,…,\textbf{e}_m\}$,然后将$\{\textbf{e}_1,…,\textbf{e}_m\}$和$\{\textbf{w}_1,…,\textbf{w}_n\}$喂进K-Encoder</p>
 <script type="math/tex; mode=display">
-P(c_l |i_j) = \frac{Count'(c_l)}{t}</script><p>$Count′(c_l)$ is the total number of times for$ c_l$ as the destination and $P(c_l|i_j) $converges after $t$ times graph walk. </p>
+\{\textbf{w}_1^o,...,\textbf{w}_n^o\},\{\textbf{e}_1^o,...,\textbf{e}_m^o\} = K-Encoder(\{\textbf{w}_1,...,\textbf{w}_n\},\{\textbf{e}_1,...,\textbf{e}_m\})</script><p>其中$\{\textbf{w}_1^o,…,\textbf{w}_n^o\},\{\textbf{e}_1^o,…,\textbf{e}_m^o\}$会被作为其他任务的输入特征。</p>
+<h4 id="Knowledgeable-Encoder"><a href="#Knowledgeable-Encoder" class="headerlink" title="Knowledgeable Encoder"></a>Knowledgeable Encoder</h4><p>K-Encoder由堆叠的aggregators组成，这些aggregators是设计用来encode tokens 和 entities和他们的融合其异构功能的。</p>
+<p>在K-Encoder中，词嵌入和实体嵌入都通过一个多头自注意力机制（MA-ATTs）</p>
+<p>in the i-th aggregator:</p>
+<script type="math/tex; mode=display">
+\left\{\tilde{\boldsymbol{w}}_{1}^{(i)}, \ldots, \tilde{\boldsymbol{w}}_{n}^{(i)}\right\}=\mathrm{MH}-\mathrm{A} \operatorname{TT}\left(\left\{\boldsymbol{w}_{1}^{(i-1)}, \ldots, \boldsymbol{w}_{n}^{(i-1)}\right\}\right)</script><script type="math/tex; mode=display">
+\left\{\tilde{\boldsymbol{e}}_{1}^{(i)}, \ldots, \tilde{\boldsymbol{e}}_{m}^{(i)}\right\}=\mathrm{MH}-\mathrm{ATT}\left(\left\{\boldsymbol{e}_{1}^{(i-1)}, \ldots, \boldsymbol{e}_{m}^{(i-1)}\right\}\right)</script><p>之后经过一个information fusion layer：</p>
+<script type="math/tex; mode=display">
+\boldsymbol{h}_{j}=\sigma\left(\tilde{\boldsymbol{W}}_{t}^{(i)} \boldsymbol{\tilde { w }}_{j}^{(i)}+\tilde{\boldsymbol{W}}_{e}^{(i)} \tilde{\boldsymbol{e}}_{k}^{(i)}+\tilde{\boldsymbol{b}}^{(i)}\right)</script><script type="math/tex; mode=display">
+\boldsymbol{w}_{j}^{(i)}=\sigma\left(\boldsymbol{W}_{t}^{(i)} \boldsymbol{h}_{j}+\boldsymbol{b}_{t}^{(i)}\right)</script><script type="math/tex; mode=display">
+e_{k}^{(i)}=\sigma\left(\boldsymbol{W}_{e}^{(i)} \boldsymbol{h}_{j}+\boldsymbol{b}_{e}^{(i)}\right)</script><p>其中$\boldsymbol{h}_{j}$是inner hidden state，采用GELU激活函数</p>
+<h4 id="Pre-training-for-Injecting-Knowledge"><a href="#Pre-training-for-Injecting-Knowledge" class="headerlink" title="Pre-training for Injecting Knowledge"></a>Pre-training for Injecting Knowledge</h4><p>为了通过实体将知识图谱注入语言表征模型，做了一个随机遮挡对齐的token-entity的操作，然后让模型根据对齐的token预测所有对应的实体。因为知识图谱中的实体量很大，因此，本文只预测文本出现过的实体。</p>
+<p>首先，定义对齐实体分布：</p>
+<script type="math/tex; mode=display">
+p\left(e_{j} | w_{i}\right)=\frac{\exp \left( \text { linear }\left(\boldsymbol{w}_{i}^{o}\right) \cdot \boldsymbol{e}_{j}\right)}{\sum_{k=1}^{m} \exp \left(\text { linear }\left(\boldsymbol{w}_{i}^{o}\right) \cdot \boldsymbol{e}_{k}\right)}</script><p>其中linear(.)是一个线性层。上式用于计算dEA（denoising entity auto-encode）的交叉熵loss。</p>
+<ol>
+<li><p>5%，随机替换对齐的实体，用于训练模型识别文本token对齐错误实体的情况；</p>
+</li>
+<li><p>15%，遮挡对齐的token-entity，用于训练模型识别实体对齐系统没有抽取所有的对齐信息；</p>
+</li>
+<li><p>其他，不改变，用于训练模型融合实体信息到实体表征中以更好的理解文本。</p>
+</li>
+</ol>
+<p>和BERT一样，ERNIE选用MLM（masked language model ）模型和NSP（ ext sentence prediction）作为预训练任务来让ERNIE捕获text中token的词法和语法信息。</p>
+<h4 id="Fine-tuning"><a href="#Fine-tuning" class="headerlink" title="Fine-tuning"></a>Fine-tuning</h4><p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190705214613.png" alt></p>
+<p><em>图 3：针对具体任务修改输入句子。为了对齐不同类型输入的 token，这里使用了点线构成的矩形作为占位符。彩色矩形表示具体的标记（mark）token。</em></p>
+<p>对于不同类型的常见 NLP 任务，ERNIE 可以采用类似于 BERT 的精调过程。研究者提出可将第一个 token 的最终输出嵌入（其对应于特有的 [CLS] token）用作特定任务的输入序列的表征。针对某些知识驱动型任务（比如关系分类和实体分型），可以设计出针对性的精调过程：</p>
+<p>关系分类任务需要系统基于上下文分类给定实体对的关系标签。要针对关系分类任务精调 ERNIE，最直接的方法是将池化层应用于给定实体提及的最终输出嵌入，并将它们的提及嵌入的连接结果用于表征给定的实体对，以便进行分类。</p>
+<p>这篇论文设计了另一种方法，即通过添加两个标记（mark）token 来凸显实体提及，从而修改输入 token 序列。这些额外的标记 token 的作用类似于传统的关系分类模型中的位置嵌入。然后，也取其 [CLS] token 嵌入以便分类。注意，研究者分别为头部实体和尾部实体设计了不同的 token [HD] 和 [TL]。</p>
+<p>针对实体分型的特定精调过程是关系分类的一种简化版本。因为之前的分型模型对上下文嵌入和实体提及嵌入都进行了充分的利用，所以研究者认为经过提及标记 token [ENT] 修改过的输入序列可以引导 ERNIE 关注将上下文信息与实体提及信息两者结合起来。</p>
+<p>说白了就是对于一般任务，输入为token。对于entity typing，加入了实体的标记信息。对于relation classification，加入了实体和其位置信息。</p>
+<h2 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a>Experiments</h2><ol>
+<li>Entity typing</li>
+</ol>
+<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190705215451.png" alt></p>
+<ol>
+<li>Relation Classification</li>
+</ol>
+<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190705215631.png" alt></p>
+<h2 id="Future"><a href="#Future" class="headerlink" title="Future"></a>Future</h2><ul>
+<li>将知识图谱引入基于特征的预训练模型，如ELMo</li>
+<li>将多种结构的知识引入语言表示模型</li>
+<li>标注更多真实语料进行更大规模的预训练</li>
+</ul>
+<p><strong>参考链接</strong>：</p>
+<p><a href="http://nysdy.com/post/ERNIE_Enhanced_Language_Representation_with_Informative_Entities/" target="_blank" rel="noopener">http://nysdy.com/post/ERNIE_Enhanced_Language_Representation_with_Informative_Entities/</a></p>
+<p><a href="https://blog.csdn.net/shine19930820/article/details/91478037" target="_blank" rel="noopener">https://blog.csdn.net/shine19930820/article/details/91478037</a></p>
+<p><a href="https://blog.csdn.net/summerhmh/article/details/91042273" target="_blank" rel="noopener">https://blog.csdn.net/summerhmh/article/details/91042273</a></p>
+<p><a href="https://www.jiqizhixin.com/articles/2019-05-26-4" target="_blank" rel="noopener">https://www.jiqizhixin.com/articles/2019-05-26-4</a></p>
 
       
     </div>
@@ -559,6 +566,8 @@ P(c_l |i_j) = \frac{Count'(c_l)}{t}</script><p>$Count′(c_l)$ is the total numb
           
             <a href="/tags/NLP/" rel="tag"># NLP</a>
           
+            <a href="/tags/BERT/" rel="tag"># BERT</a>
+          
         </div>
       
 
@@ -570,8 +579,8 @@ P(c_l |i_j) = \frac{Count'(c_l)}{t}</script><p>$Count′(c_l)$ is the total numb
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/07/01/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/2019/07/02/KBGAN-论文阅读笔记/" rel="next" title="KBGAN 论文阅读笔记">
+                <i class="fa fa-chevron-left"></i> KBGAN 论文阅读笔记
               </a>
             
           </div>
@@ -579,10 +588,6 @@ P(c_l |i_j) = \frac{Count'(c_l)}{t}</script><p>$Count′(c_l)$ is the total numb
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/07/02/经典Graph-Embedding-方法/" rel="prev" title="经典Graph Embedding 方法">
-                经典Graph Embedding 方法 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -770,7 +775,7 @@ P(c_l |i_j) = \frac{Count'(c_l)}{t}</script><p>$Count′(c_l)$ is the total numb
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#《Mining-Type-Information-from-Chinese-Online-Encyclopedias》论文阅读"><span class="nav-number">1.</span> <span class="nav-text">《Mining Type Information from Chinese Online Encyclopedias》论文阅读</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Introduction"><span class="nav-number">1.1.</span> <span class="nav-text">1. Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Approach"><span class="nav-number">1.2.</span> <span class="nav-text">2. Approach</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#工作流程："><span class="nav-number">1.2.1.</span> <span class="nav-text">工作流程：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-IsA-Relation-Detector"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">2.1 IsA Relation Detector</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#InstanceOf-Relation-Detection"><span class="nav-number">1.2.1.1.1.</span> <span class="nav-text">InstanceOf Relation Detection</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#SubclassOf-Relation-Detection"><span class="nav-number">1.2.1.1.2.</span> <span class="nav-text">SubclassOf Relation Detection</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-Category-Attributes-Generator"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">2.2 Category Attributes Generator</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-Instance-Type-Ranker"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">2.3 Instance Type Ranker</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">1.2.1.4.</span> <span class="nav-text"></span></a></li></ol></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Abstract"><span class="nav-number">1.</span> <span class="nav-text">1. Abstract</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Challenge"><span class="nav-number">2.</span> <span class="nav-text">2. Challenge</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Methodology"><span class="nav-number">3.</span> <span class="nav-text">3. Methodology</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#T-Encoder"><span class="nav-number">3.0.1.</span> <span class="nav-text">T-Encoder</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#K-Encoder"><span class="nav-number">3.0.2.</span> <span class="nav-text">K-Encoder</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Knowledgeable-Encoder"><span class="nav-number">3.0.3.</span> <span class="nav-text">Knowledgeable Encoder</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Pre-training-for-Injecting-Knowledge"><span class="nav-number">3.0.4.</span> <span class="nav-text">Pre-training for Injecting Knowledge</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Fine-tuning"><span class="nav-number">3.0.5.</span> <span class="nav-text">Fine-tuning</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#Experiments"><span class="nav-number">4.</span> <span class="nav-text">Experiments</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Future"><span class="nav-number">5.</span> <span class="nav-text">Future</span></a></li></div>
             
 
           </div>
@@ -960,9 +965,9 @@ P(c_l |i_j) = \frac{Count'(c_l)}{t}</script><p>$Count′(c_l)$ is the total numb
 
 <script>
   var disqus_config = function() {
-    this.page.url = "http://yoursite.com/2019/07/02/百度知识图谱构建技术-《Mining-Type-Information-from-Chinese-Online-Encyclopedias》论文阅读/";
-    this.page.identifier = "2019/07/02/百度知识图谱构建技术-《Mining-Type-Information-from-Chinese-Online-Encyclopedias》论文阅读/";
-    this.page.title = '百度知识图谱构建技术|《Mining Type Information from Chinese Online Encyclopedias》论文阅读';
+    this.page.url = "http://yoursite.com/2019/07/05/ERNIE-Enhanced-Language-Representation-with-Informative-Entities论文阅读笔记/";
+    this.page.identifier = "2019/07/05/ERNIE-Enhanced-Language-Representation-with-Informative-Entities论文阅读笔记/";
+    this.page.title = 'ERNIE: Enhanced Language Representation with Informative Entities论文阅读笔记';
     };
   function loadComments() {
     var d = document, s = d.createElement('script');
@@ -993,9 +998,9 @@ P(c_l |i_j) = \frac{Count'(c_l)}{t}</script><p>$Count′(c_l)$ is the total numb
       api: '' || 'https://disqus.com/api/',
       apikey: 'lCbSis1lxubhduhKpyjAUTnv3vv9jo2v3AuRh5wedToSWjGvHzJ0AfdGXFLl3j2Y',
       shortname: 'zhou_ruisong',
-      url: "http://yoursite.com/2019/07/02/百度知识图谱构建技术-《Mining-Type-Information-from-Chinese-Online-Encyclopedias》论文阅读/",
-      identifier: "2019/07/02/百度知识图谱构建技术-《Mining-Type-Information-from-Chinese-Online-Encyclopedias》论文阅读/",
-      title: '百度知识图谱构建技术|《Mining Type Information from Chinese Online Encyclopedias》论文阅读',
+      url: "http://yoursite.com/2019/07/05/ERNIE-Enhanced-Language-Representation-with-Informative-Entities论文阅读笔记/",
+      identifier: "2019/07/05/ERNIE-Enhanced-Language-Representation-with-Informative-Entities论文阅读笔记/",
+      title: 'ERNIE: Enhanced Language Representation with Informative Entities论文阅读笔记',
     });
   }
 
