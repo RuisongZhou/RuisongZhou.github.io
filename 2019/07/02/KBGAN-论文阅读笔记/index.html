@@ -112,7 +112,7 @@
 <meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703173123.png">
 <meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703174514.png">
 <meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703174543.png">
-<meta property="og:updated_time" content="2019-07-03T09:46:53.454Z">
+<meta property="og:updated_time" content="2019-07-08T07:22:20.930Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="KBGAN 论文阅读笔记">
 <meta name="twitter:description" content="1. 特色 首次尝试用对抗学习去生成有用的副样本来提升embedding效果 对抗学习框架泛化能力强，适配很多KGE模型，不需要额外本体限制 在三个常用的数据集上显示出一致性能  2. 相关工作与模型构建近年来很多KGE方法被提出来。RESCAL（2011）首先用矩阵分解来进行embedding，并使用双线性映射作为score function，TransE首先提出基于翻译模型的embedding">
@@ -403,7 +403,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-07-03 17:46:53" itemprop="dateModified" datetime="2019-07-03T17:46:53+08:00">2019-07-03</time>
+                <time title="Modified: 2019-07-08 15:22:20" itemprop="dateModified" datetime="2019-07-08T15:22:20+08:00">2019-07-08</time>
               </span>
             
           
@@ -489,7 +489,8 @@
 <ol>
 <li><strong>Margin loss Function</strong></li>
 </ol>
-<h4 id><a href="#" class="headerlink" title></a><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703162624.png" alt></h4><ol>
+<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703162624.png" alt></p>
+<ol>
 <li><strong>Log-softmax loss function</strong></li>
 </ol>
 <p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703162748.png" alt></p>
@@ -500,7 +501,7 @@
 <p>生成器的目标是最大化负距离的期望为：<img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703172547.png" alt></p>
 <p>由于 RG 是一个离散采样步骤，所以得不到梯度，本文借鉴了其他论文提到的梯度策略理论获取梯度进行优化。</p>
 <p>这一部分论文把这个过程对标到强化学习，认为生成器是 agent，判别器是 environment， $(h, r, t)$ 是 state，负样本概率分布 PG 是 policy，$(h’, r, t’)$ 是 action，$-f_D(h’, r, t’)$ 是 reward，认为是 one-step RL 是在每个 epoch，actions 不会影响 state，但每个 action 后会重新从一个不相关的 state 开始；<br><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703172928.png" alt></p>
-<p>为减小算法方差而不引入新参数，作者从 reward 减掉一个任意数，这个任意数仅依赖于state，不影响梯度的分布。作者将$-f<em>D(h’, r, t’)$替换为$-f_D(h’, r, t’)-b(h,r,t)$，b是一个常量，其中$b=\sum</em>{(h,r,t)∈T}\mathbb{E}_{(h′,r,t′)∼p_G(h′,r,t′|h,r,t)}[−f_D(h′,r,t′)]$，为了便于计算，b可以近似的表示为临近几个生成负样本的rewads的均值。</p>
+<p>为减小算法方差而不引入新参数，作者从 reward 减掉一个任意数，这个任意数仅依赖于state，不影响梯度的分布。作者将$-f<em>D(h’, r, t’)$ 替换为$-f_D(h’, r, t’)-b(h,r,t)$ ，b是一个常量，其中$b=\sum</em>{(h,r,t)∈T}\mathbb{E}_{(h′,r,t′)∼p_G(h′,r,t′|h,r,t)}[−f_D(h′,r,t′)]$ ，为了便于计算，b可以近似的表示为临近几个生成负样本的rewads的均值。</p>
 <p>概率分布的计算使用以下公式，$f_G(h, r, t$) 为生成器的 score function：</p>
 <p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703174351.png" alt></p>
 <p><strong>算法伪代码如下：</strong></p>
@@ -749,7 +750,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-特色"><span class="nav-number">1.</span> <span class="nav-text">1. 特色</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-相关工作与模型构建"><span class="nav-number">2.</span> <span class="nav-text">2. 相关工作与模型构建</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">2.0.1.</span> <span class="nav-text"></span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#试验结果："><span class="nav-number">3.</span> <span class="nav-text">试验结果：</span></a></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-特色"><span class="nav-number">1.</span> <span class="nav-text">1. 特色</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-相关工作与模型构建"><span class="nav-number">2.</span> <span class="nav-text">2. 相关工作与模型构建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#试验结果："><span class="nav-number">3.</span> <span class="nav-text">试验结果：</span></a></li></ol></div>
             
 
           </div>
