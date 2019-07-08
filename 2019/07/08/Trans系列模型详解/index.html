@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+<link rel="stylesheet" href="/css/main.css?v=7.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.2.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.2.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="当前主流知识库中，知识被存储为$(h,r,t)$的三元组形式，其中 $h$ 表示头实体，$r$ 表示联系，$t$表示尾实体。知识表示学习的任务就是学习 $h,r,t$ 的分布式表示（也被叫做知识图谱的嵌入表示(embedding)）。 目前，知识表示学习方法从实现形式上可以分为两类：基于结构的方法和基于语义的方法。基于结构的嵌入表示方法包括TransE, TransH, TransR&amp;amp;CT">
+<meta name="keywords" content="知识图谱,NLP,Graph Embedding">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Trans系列模型详解">
+<meta property="og:url" content="http://yoursite.com/2019/07/08/Trans系列模型详解/index.html">
+<meta property="og:site_name" content="周瑞松のblog">
+<meta property="og:description" content="当前主流知识库中，知识被存储为$(h,r,t)$的三元组形式，其中 $h$ 表示头实体，$r$ 表示联系，$t$表示尾实体。知识表示学习的任务就是学习 $h,r,t$ 的分布式表示（也被叫做知识图谱的嵌入表示(embedding)）。 目前，知识表示学习方法从实现形式上可以分为两类：基于结构的方法和基于语义的方法。基于结构的嵌入表示方法包括TransE, TransH, TransR&amp;amp;CT">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190708143649.png">
+<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190708153710.png">
+<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190708154250.png">
+<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190708154455.png">
+<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190708154517.png">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=m">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=m">
+<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190708160140.png">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=r_ph_p%5ETh%3Dh_p%5EThr_p">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=h_%5Cperp">
+<meta property="og:updated_time" content="2019-07-08T12:07:24.743Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Trans系列模型详解">
+<meta name="twitter:description" content="当前主流知识库中，知识被存储为$(h,r,t)$的三元组形式，其中 $h$ 表示头实体，$r$ 表示联系，$t$表示尾实体。知识表示学习的任务就是学习 $h,r,t$ 的分布式表示（也被叫做知识图谱的嵌入表示(embedding)）。 目前，知识表示学习方法从实现形式上可以分为两类：基于结构的方法和基于语义的方法。基于结构的嵌入表示方法包括TransE, TransH, TransR&amp;amp;CT">
+<meta name="twitter:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190708143649.png">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/2019/07/08/Trans系列模型详解/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Trans系列模型详解 | 周瑞松のblog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">周瑞松のblog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/08/Trans系列模型详解/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="RuisongZhou">
+      <meta itemprop="description" content="菜鸡一枚，仍需努力">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="周瑞松のblog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Trans系列模型详解
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-07-08 14:06:39 / Modified: 20:07:24" itemprop="dateCreated datePublished" datetime="2019-07-08T14:06:39+08:00">2019-07-08</time>
+            </span>
+          
+
+          
+            
+
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/NLP/" itemprop="url" rel="index"><span itemprop="name">NLP</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">Comments: </span>
+                <a href="/2019/07/08/Trans系列模型详解/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/07/08/Trans系列模型详解/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+                 Views:  
+                <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+              </span>
+            </span>
+          
+
+          <br>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>当前主流知识库中，知识被存储为$(h,r,t)$的三元组形式，其中 $h$ 表示头实体，$r$ 表示联系，$t$表示尾实体。知识表示学习的任务就是学习 $h,r,t$ 的分布式表示（也被叫做知识图谱的嵌入表示(embedding)）。</p>
+<p>目前，知识表示学习方法从实现形式上可以分为两类：基于结构的方法和基于语义的方法。基于结构的嵌入表示方法包括TransE, TransH, TransR&amp;CTransR, TransD等，这类方法从三元组的结构出发学习KG的实体和联系的表示；基于语义的嵌入表示方法包括NTN, SSP, DKRL等，这类方法从文本语义的角度出发学习KG的实体和联系的表示。</p>
+<p>知识表示学习从发展来看可以分成两个阶段，以2013年Borders等人受Mikolov发现的语义空间中词向量的平移不变现象启发，从而提出了翻译模型(TransE)为分割。在TransE之前，有Structed Embedding, Semantic Matching Energy等模型，在TransE之后，人们在此基础上进行改进，依次提出了TransH, TransR, TransD等模型。接线来介绍基于Trans系列的模型。</p>
+<h2 id="Trans系列模型汇总"><a href="#Trans系列模型汇总" class="headerlink" title="Trans系列模型汇总"></a>Trans系列模型汇总</h2><ul>
+<li><p>TransE, NIPS2013, Translating embeddings for modeling multi-relational data</p>
+</li>
+<li><p>TransH, AAAI2014, Knowledge graph embedding by translating on hyperplanes</p>
+</li>
+<li>TransR, AAAI2015, Learning Entity and Relation Embeddings for Knowledge Graph Completion</li>
+<li>TransD, ACL2015, Knowledge graph embedding via dynamic mapping matrix</li>
+<li>TransA, arXiv2015, An adaptive approach for knowledge graph embedding</li>
+<li>TranSparse, AAAI2016, Knowledge graph completion with adaptive sparse transfer matrix</li>
+<li>TransG, arXiv2015, A Generative Mixture Model for Knowledge Graph Embedding</li>
+<li>KG2E, CIKM2015, Learning to represent knowledge graphs with gaussian embedding</li>
+</ul>
+<h2 id="TransE：多元数据嵌入"><a href="#TransE：多元数据嵌入" class="headerlink" title="TransE：多元数据嵌入"></a>TransE：多元数据嵌入</h2><p>这篇文章提出了一种将实体与关系嵌入到低维向量空间中的简单模型，弥补了传统方法训练复杂、不易拓展的缺点，对实体和关系的建模十分简单明了，可解释性也很强。尽管现在还不清楚是否所有的关系种类都可以被这种方法建模，但目前这种方法相对于其他方法表现不错。在后续的研究中，TransE更是作为知识库vector化的基础，衍生出来了很多变体。</p>
+<p> TransE的直观含义，就是TransE基于实体和关系的分布式向量表示，将每个三元组实例（head，relation，tail）中的关系relation看做从实体head到实体tail的翻译（其实我一直很纳闷为什么叫做translating，其实就是向量相加），通过不断调整h、r和t（head、relation和tail的向量），使（h + r） 尽可能与 t 相等，即 h + r = t。其损失函数为：</p>
+<script type="math/tex; mode=display">
+f_{r}(h, t)=\|h+r-t\|_{L_{1} / L_{2}}</script><p>显然，对于正确的三元组，应该有较低的得分。在训练过程中，使用等级损失函数，这是因为在当前情况下我们没有就标签而言的监督，只有一对正确项$(h, r, t) \in \Delta$  和不正确项 $(h^{\prime}, r^{\prime}, t^{\prime}) \in \Delta^{\prime}$ ，我们的目的是让正确项的得分比不正确项高。这种情况出现在我们只有正例时，知识图谱就是这种情况，我们只知道正确的三元组（golden triplet），再通过破坏一个正例来生成负例。等级损失就适用于这种情况，因此我们定义损失函数：评分函数为：</p>
+<script type="math/tex; mode=display">
+L=\sum_{(h, r, t) \in \Delta}\sum_{(h^{\prime}, r^{\prime}, t^{\prime}) \in \Delta^{\prime}} \max \left(f_{r}(h, t)+\gamma-f_{r^{\prime}}\left(h^{\prime}, t^{\prime}\right), 0\right)</script><p>其中$\gamma$表示margin，通常取1</p>
+<p><em>其中避免出现负值的原因：如果某一项是负的，那么可以通过使得这个负值的模非常大，来使得整个公式的值是一个模非常大的负值。而这样显然不是我们想要的。这样仅仅使得某一项符合要求，并不是全局最优。</em></p>
+<p>TransE采取的生成负例三元组的方法是，将正确的三元组的头实体、尾实体、关系三者之一随机替换为其他实体或关系，从而构成负例集合 $\Delta^{\prime}$ ，这种方法称为均匀采样（与后面的伯努利采样相对比）。</p>
+<p>整体算法为：</p>
+<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190708143649.png" alt></p>
+<p>显然，TransE模型在处理复杂关系建模（一对多、多对一、多对多关系）时会遇到困难，例如，对于一对多关系<em>（美国，总统，奥巴马）</em>和<em>（美国，总统，特朗普）</em>，TransE模型会使得尾实体向量<em>奥巴马</em>和<em>特朗普</em>的表示非常相似。事实上，这是由于对于不同的关系$r$，实体向量的表示总是相同的.</p>
+<h2 id="TransH-将知识嵌入到超平面"><a href="#TransH-将知识嵌入到超平面" class="headerlink" title="TransH:将知识嵌入到超平面"></a>TransH:将知识嵌入到超平面</h2><p>TransH客服了TransE模型的上述缺陷，将实体和关系嵌入到同一的向量空间，但实体在不同关系中有不同的表示。</p>
+<p>TransH模型对于每一个关系$r$，假设一个对应的超平面，关系$r$ 落在该超平面上，其法向量为$w<em>{r}$，且有$\left|w</em>{r}\right|_{2}=1$</p>
+<p>，</p>
+<p>类似于TransE模型的翻译在该超平面上进行，具体地，首先将头实体$h$和尾实体$t$投影到该超平面上得到$h<em>{\perp}$和$t</em>{\perp}$，即</p>
+<script type="math/tex; mode=display">
+h_{\perp}=h-w_{r}^{T} h w_{r}</script><script type="math/tex; mode=display">
+t_{\perp}=t-w_{r}^{T} h w_{r}</script><p>定义得分函数为</p>
+<script type="math/tex; mode=display">
+f_{r}(\mathbf{h}, \mathbf{t})=\left\|\left(\mathbf{h}-\mathbf{w}_{r}^{\top} \mathbf{h} \mathbf{w}_{r}\right)+\mathbf{d}_{r}-\left(\mathbf{t}-\mathbf{w}_{r}^{\top} \mathbf{t} \mathbf{w}_{r}\right)\right\|_{2}^{2}</script><p>TransE与TransH的对比：</p>
+<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190708153710.png" alt></p>
+<p>考虑之前总统的例子，也就是一个一对多的问题。将关系表示成超平面后，这种问题得到了解决。如下图所示，如果分别用t和t‘表示两个总统，那么将三元组映射到超平面之后，t和t‘都能满足’（美国，总统，*）这个三元组。并且两个向量在向量空间还是不同的。多对一，多对多的情况也可以这样解决。</p>
+<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190708154250.png" alt></p>
+<p>loss函数变为：</p>
+<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190708154455.png" alt></p>
+<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190708154517.png" alt></p>
+<p>其中[]+表示的就是TransE公式中的max（*，0），即对于中括号中的值，返回0和它之间的最大值。</p>
+<p>上式还得满足三个限制。其中，限制（1）保证每个向量的模都小于1。限制（2）是$d_r$到$w_r$的投影长度除以$d_r$的长度，这个值非常小，保证了dr确实在投影平面上。限制（3）规定投影平面的法向量的模为1，这样做是为了简化公式。否则这个公式的形式就会更为复杂。</p>
+<p>虽然TransH模型使得同一实体在不同关系下通过投影有了不同的表示，但投影之后仍然处于原来的空间 $\mathbb{R}^n$ 中，这里  表示实体向量和关系向量均为$n$ 维。换言之，TransH模型假设实体和关系处于相同的语义空间中，这在一定程度上限制了它的表示能力。下面的TransR模型改进了这一缺陷，提高了模型的表示能力。</p>
+<p>值得一提的是，在本篇论文中除了提出了TranH模型，另一贡献是提出了基于伯努利分布的采样方法。在原来的均匀采样中，容易将错误的负例引入到训练过程中来，例如，对于正例（美国，总统，奥巴马），随机替换奥巴马为罗斯福构成（美国，总统，罗斯福）作为负例，实际上由于罗斯福也是总统，这并不是一个负例。新的采样方法的动机是，对于一对多关系，我们以更大的概率来替换其头实体，对于多对一关系，我们以更大的概率来替换其尾实体。具体地，对于包含关系$r$ 的所有三元组，我们定义两个统计量：</p>
+<ol>
+<li>$tph$: 平均每个头实体对应多少个尾实体</li>
+<li>$hpt$: 平均每个尾实体对应多少个头实体</li>
+</ol>
+<p>进而，取伯努利分布的参数为$<br>p=\frac{t p h}{t p h+h p t}<br>$  ，即以概率$p$替换三元组的头实体，以概率$1-p$替换三元组的尾实体。实际上，  反映了一对多关系的失衡程度。</p>
+<p>通过基于伯努利分布的采样，我们就降低了引入错误的负例的概率。在清华大学NLP组的开源代码<a href="https://github.com/thunlp/KB2E" target="_blank" rel="noopener">KB2E</a>中，同时提供了两种采样方式，bern表示伯努利采样，unif表示均匀采样。</p>
+<h2 id="TransR-amp-amp-CTransR-实体和关系分开嵌入"><a href="#TransR-amp-amp-CTransR-实体和关系分开嵌入" class="headerlink" title="TransR&amp;&amp;CTransR:实体和关系分开嵌入"></a><em>TransR&amp;&amp;CTransR</em>:实体和关系分开嵌入</h2><h3 id="TransR"><a href="#TransR" class="headerlink" title="TransR"></a>TransR</h3><p>一个实体是多种属性的综合体，不同关系关注实体的不同属性。直觉上一些相似的实体在实体空间中应该彼此靠近，但是同样地，在一些特定的不同的方面在对应的关系空间中应该彼此远离。<br>在TransR中，模型将实体和关系嵌入到不同的空间中，在对应的关系空间中实现翻译。因此不同的关系应有不同的语义空间。</p>
+<p>TransH模型是为每个关系假定一超平面，将实体投影到这个超平面上进行翻译；而TransR模型是为每个关系假定一语义空间 $\mathbb{R}^m$，将实体映射到这个语义空间上进行翻译。这里 <img src="https://www.zhihu.com/equation?tex=m" alt="[公式]"> 表示关系向量的维度为 <img src="https://www.zhihu.com/equation?tex=m" alt="[公式]"> 。</p>
+<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190708160140.png" alt></p>
+<p>TransR模型可描述为：</p>
+<script type="math/tex; mode=display">
+\mathbf{h}_{r}=\mathbf{h} \mathbf{M}_{r}, \quad \mathbf{t}_{r}=\mathbf{t} \mathbf{M}_{r}</script><script type="math/tex; mode=display">
+f_{r}(h, t)=\left\|\mathbf{h}_{r}+\mathbf{r}-\mathbf{t}_{r}\right\|_{2}^{2}</script><p>其中$$<br>h, t \in \mathbb{R}^{n}, r \in \mathbb{R}^{m}, M_{r} \in \mathbb{R}^{n \times m}</p>
+<script type="math/tex; mode=display">，$h,r,t,hM_r,tM_r$的L2范数均小于等于1
+
+### CTransR
+
+CTransR的意思是Cluster-based TransR. CTransR对于每一个特定的关系$r$，首先根据实体对 ![(h,t)](https://www.zhihu.com/equation?tex=%28h%2Ct%29) 进行AP聚类（一种不需要指定类别数的聚类方法），实际上是对实体对的差值向量 ![h-t](https://www.zhihu.com/equation?tex=h-t) 进行聚类，从而将关系 ![r](https://www.zhihu.com/equation?tex=r) 分解为更细粒度的子关系 ![r_c](https://www.zhihu.com/equation?tex=r_c) ，CTransR对每个 ![r_c](https://www.zhihu.com/equation?tex=r_c) 分别学习相应的向量表示。
+
+CTransR的得分函数可以描述为：</script><p>f<em>{r}(h, t)=\left|\mathbf{h}</em>{r, c}+\mathbf{r}<em>{c}-\mathbf{t}</em>{r, c}\right|<em>{2}^{2}+\alpha\left|\mathbf{r}</em>{c}-\mathbf{r}\right|_{2}^{2}</p>
+<script type="math/tex; mode=display">
+上式中第二项使得 ![[公式]](https://www.zhihu.com/equation?tex=r_c) 尽可能地接近 ![[公式]](https://www.zhihu.com/equation?tex=r) . 
+
+TransR & CTransR模型将原来的单个语义空间分离为**实体空间**和**关系空间**，提高了模型的表示能力，然而，TransR模型仍然存在一些缺点：
+
+1. 在同一个关系 $r$ 下，头、尾实体使用相同的投影矩阵 $M_r$ ，而头、尾实体可能类型或属性相差很大；
+
+2. 投影矩阵仅与关系有关；
+
+3. 参数多，计算复杂度高。
+
+## TransD: 通过动态映射矩阵嵌入
+
+TransD在TransR的基础上，将关系的映射矩阵简化为两个向量的积，一定程度上克服了TransR & CTransR的上述缺点。
+
+![](https://zrspic.oss-cn-beijing.aliyuncs.com/20190708161009.png)
+
+CTransR模型相比于TransR模型，实际上就是考虑了同一个关系也有不同的类型，然而，实体也有不同的类型。举个例子，在FB15k中，有关系*location.location.partially containedby*，它可以表示山川大河被某个国家包含，也可以表示山川大河被某个城市/州包含，也可以表示国家被大洲包含，还可以表示地区被国家包含。由于实体有不同的类型，因而使用相同的映射矩阵是不合理的，而且，映射矩阵不应只与关系有关，还应与头尾实体有关。以上就是TransD模型的动机，这实际上是一个更细粒度的扩展模型，本质上还是由实体语义空间和关系语义空间两个空间构成。
+
+具体来说，对于三元组$(h,r,t)$，分别分别定义对应的投影向量$h_p,r_p,t_p$，其中 ![[公式]](https://www.zhihu.com/equation?tex=p) 表示投影（projection），再定义两个投影矩阵 ![[公式]](https://www.zhihu.com/equation?tex=M_%7Brh%7D%2C+M_%7Brt%7D) 来将实体从实体空间映射到关系空间</script><p>\begin{aligned} \mathbf{M}<em>{r h} &amp;=\mathbf{r}</em>{p} \mathbf{h}<em>{p}^{\top}+\mathbf{I}^{m \times n} \\ \mathbf{M}</em>{r t} &amp;=\mathbf{r}<em>{p} \mathbf{t}</em>{p}^{\top}+\mathbf{I}^{m \times n} \end{aligned}</p>
+<script type="math/tex; mode=display">
+这里， ![[公式]](https://www.zhihu.com/equation?tex=r_p%2Cr%5Cin+%5Cmathbb+R%5Em%2C+h%2Ch_p%2Ct%2Ct_p%5Cin+%5Cmathbb+R%5En+%2C+M_%7Brh%7D%2C+M_%7Brt%7D%5Cin+%5Cmathbb+R%5E%7Bm%5Ctimes+n%7D) ， ![[公式]](https://www.zhihu.com/equation?tex=I%5E%7Bm%5Ctimes+n%7D) 表示单位阵，它的意思是说用单位阵来初始化投影矩阵。
+
+可见，在上式中，对头实体应用投影矩阵 ![[公式]](https://www.zhihu.com/equation?tex=M_%7Brh%7D) ，它不仅与关系有关，还与头实体有关；对尾实体应用投影矩阵 ![[公式]](https://www.zhihu.com/equation?tex=M_%7Brt%7D) ，它也不仅与关系有关，还与尾实体有关。利用这两个投影矩阵，可以得到头实体和尾实体在关系空间的投影</script><p>\mathbf{h}<em>{\perp}=\mathbf{M}</em>{r h} \mathbf{h}, \quad \mathbf{t}<em>{\perp}=\mathbf{M}</em>{r t} \mathbf{t}</p>
+<script type="math/tex; mode=display">
+所以得分函数为：</script><p>f<em>{r}(\mathbf{h}, \mathbf{t})=-\left|\mathbf{h}</em>{\perp}+\mathbf{r}-\mathbf{t}<em>{\perp}\right|</em>{2}^{2}</p>
+<script type="math/tex; mode=display">
+显然，TransE是TransD的一个特例，当 ![[公式]](https://www.zhihu.com/equation?tex=m%3Dn) 且所有投影向量均为零时，TransD就退化为了TransE. 与TransH对比，显然需先令TransD的 ![[公式]](https://www.zhihu.com/equation?tex=m%3Dn) ，再分别写出TransH和TransD的实体投影后的向量：</script><p>\begin{array}{l}{\text { TransH: } h<em>{\perp}=h-w</em>{r}^{T} h w<em>{r}} \\ {\text { TransD } : h</em>{\perp}=M<em>{r h} h=h+h</em>{p}^{T} h r_{p}}\end{array}</p>
+<p>$$<br>因为 <img src="https://www.zhihu.com/equation?tex=r_ph_p%5ETh%3Dh_p%5EThr_p" alt="[公式]"> ，因此为便于格式上的对比，我们将TransD中的 <img src="https://www.zhihu.com/equation?tex=h_%5Cperp" alt="[公式]"> 写成上述形式。可见，当 $m=n$ 时，TransD与TransH唯一的区别在于TransD中的投影向量不仅与关系有关，还与实体有关。</p>
+<p>对比TransR模型，TransD为头实体和尾实体分别设置了投影矩阵，另外，注意到在TransD中公式经过展开之后没有矩阵-向量乘法操作，这相比于TransR模型降低了计算复杂度，更适用于大规模知识图谱的计算。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        
+          
+        
+        <div class="post-tags">
+          
+            <a href="/tags/知识图谱/" rel="tag"># 知识图谱</a>
+          
+            <a href="/tags/NLP/" rel="tag"># NLP</a>
+          
+            <a href="/tags/Graph-Embedding/" rel="tag"># Graph Embedding</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/05/ERNIE-Enhanced-Language-Representation-with-Informative-Entities论文阅读笔记/" rel="next" title="ERNIE: Enhanced Language Representation with Informative Entities论文阅读笔记">
+                <i class="fa fa-chevron-left"></i> ERNIE: Enhanced Language Representation with Informative Entities论文阅读笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">RuisongZhou</p>
+              <div class="site-description motion-element" itemprop="description">菜鸡一枚，仍需努力</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/RuisongZhou" title="GitHub &rarr; https://github.com/RuisongZhou" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:rhyszhou99@gmail.com" title="E-Mail &rarr; mailto:rhyszhou99@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Trans系列模型汇总"><span class="nav-number">1.</span> <span class="nav-text">Trans系列模型汇总</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TransE：多元数据嵌入"><span class="nav-number">2.</span> <span class="nav-text">TransE：多元数据嵌入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TransH-将知识嵌入到超平面"><span class="nav-number">3.</span> <span class="nav-text">TransH:将知识嵌入到超平面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TransR-amp-amp-CTransR-实体和关系分开嵌入"><span class="nav-number">4.</span> <span class="nav-text">TransR&amp;&amp;CTransR:实体和关系分开嵌入</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#TransR"><span class="nav-number">4.1.</span> <span class="nav-text">TransR</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">RuisongZhou</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="Total Visitors">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="Total Views">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.2.0"></script>
+
+  <script src="/js/motion.js?v=7.2.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.2.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.2.0"></script>
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.2.0"></script>
+<script src="/js/post-details.js?v=7.2.0"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.2.0"></script>
+
+
+  
+
+  
+
+  
+
+  
+  
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://ruisong.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "http://yoursite.com/2019/07/08/Trans系列模型详解/";
+    this.page.identifier = "2019/07/08/Trans系列模型详解/";
+    this.page.title = 'Trans系列模型详解';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://ruisong.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    window.addEventListener('load', loadComments, false);
+  
+</script>
+
+
+
+
+
+  
+    
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
+
+
+
+
+<script>
+  function initialDsq() {
+    window.dsqjs = new DisqusJS({
+      api: '' || 'https://disqus.com/api/',
+      apikey: 'lCbSis1lxubhduhKpyjAUTnv3vv9jo2v3AuRh5wedToSWjGvHzJ0AfdGXFLl3j2Y',
+      shortname: 'zhou_ruisong',
+      url: "http://yoursite.com/2019/07/08/Trans系列模型详解/",
+      identifier: "2019/07/08/Trans系列模型详解/",
+      title: 'Trans系列模型详解',
+    });
+  }
+
+  function loadDsqJS() {
+    var d = document, s = d.createElement('script');
+    s.src = '//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqus.js';
+    s.onload = initialDsq;
+    (d.head || d.body).appendChild(s);
+  }
+  
+  window.addEventListener('load', loadDsqJS, false);
+</script>
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
+        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
+      }
+    });
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      document.getElementById(all[i].inputID + '-Frame').parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
