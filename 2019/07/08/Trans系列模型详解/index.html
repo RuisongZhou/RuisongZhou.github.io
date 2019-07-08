@@ -108,20 +108,8 @@
 <meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190708154455.png">
 <meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190708154517.png">
 <meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190708160140.png">
-<meta property="og:image" content="https://www.zhihu.com/equation?tex=%28h%2Ct%29">
-<meta property="og:image" content="https://www.zhihu.com/equation?tex=h-t">
-<meta property="og:image" content="https://www.zhihu.com/equation?tex=r">
-<meta property="og:image" content="https://www.zhihu.com/equation?tex=r_c">
-<meta property="og:image" content="https://www.zhihu.com/equation?tex=r_c">
-<meta property="og:image" content="https://www.zhihu.com/equation?tex=r_c">
-<meta property="og:image" content="https://www.zhihu.com/equation?tex=r">
 <meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190708161009.png">
-<meta property="og:image" content="https://www.zhihu.com/equation?tex=p">
-<meta property="og:image" content="https://www.zhihu.com/equation?tex=M_%7Brh%7D">
-<meta property="og:image" content="https://www.zhihu.com/equation?tex=M_%7Brt%7D">
-<meta property="og:image" content="https://www.zhihu.com/equation?tex=m%3Dn">
-<meta property="og:image" content="https://www.zhihu.com/equation?tex=m%3Dn">
-<meta property="og:updated_time" content="2019-07-08T13:51:48.175Z">
+<meta property="og:updated_time" content="2019-07-08T13:56:28.604Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Trans系列模型详解">
 <meta name="twitter:description" content="当前主流知识库中，知识被存储为$(h,r,t)$的三元组形式，其中 $h$ 表示头实体，$r$ 表示联系，$t$表示尾实体。知识表示学习的任务就是学习 $h,r,t$ 的分布式表示（也被叫做知识图谱的嵌入表示(embedding)）。 目前，知识表示学习方法从实现形式上可以分为两类：基于结构的方法和基于语义的方法。基于结构的嵌入表示方法包括TransE, TransH, TransR&amp;amp;CT">
@@ -397,7 +385,7 @@
                 
               
 
-              <time title="Created: 2019-07-08 14:06:39 / Modified: 21:51:48" itemprop="dateCreated datePublished" datetime="2019-07-08T14:06:39+08:00">2019-07-08</time>
+              <time title="Created: 2019-07-08 14:06:39 / Modified: 21:56:28" itemprop="dateCreated datePublished" datetime="2019-07-08T14:06:39+08:00">2019-07-08</time>
             </span>
           
 
@@ -531,10 +519,10 @@ f_{r}(\mathbf{h}, \mathbf{t})=\left\|\left(\mathbf{h}-\mathbf{w}_{r}^{\top} \mat
 <script type="math/tex; mode=display">
 \mathbf{h}_{r}=\mathbf{h} \mathbf{M}_{r}, \quad \mathbf{t}_{r}=\mathbf{t} \mathbf{M}_{r}</script><script type="math/tex; mode=display">
 f_{r}(h, t)=\left\|\mathbf{h}_{r}+\mathbf{r}-\mathbf{t}_{r}\right\|_{2}^{2}</script><p>其中$h, t \in \mathbb{R}^{n}, r \in \mathbb{R}^{m}, M_{r} \in \mathbb{R}^{n \times m}$  , $h,r,t,hM_r,tM_r$的L2范数均小于等于1</p>
-<h3 id="CTransR"><a href="#CTransR" class="headerlink" title="CTransR"></a>CTransR</h3><p>CTransR的意思是Cluster-based TransR. CTransR对于每一个特定的关系$r$，首先根据实体对 <img src="https://www.zhihu.com/equation?tex=%28h%2Ct%29" alt="(h,t)"> 进行AP聚类（一种不需要指定类别数的聚类方法），实际上是对实体对的差值向量 <img src="https://www.zhihu.com/equation?tex=h-t" alt="h-t"> 进行聚类，从而将关系 <img src="https://www.zhihu.com/equation?tex=r" alt="r"> 分解为更细粒度的子关系 <img src="https://www.zhihu.com/equation?tex=r_c" alt="r_c"> ，CTransR对每个 <img src="https://www.zhihu.com/equation?tex=r_c" alt="r_c"> 分别学习相应的向量表示。</p>
+<h3 id="CTransR"><a href="#CTransR" class="headerlink" title="CTransR"></a>CTransR</h3><p>CTransR的意思是Cluster-based TransR. CTransR对于每一个特定的关系$r$，首先根据实体对 $(h,t)$进行AP聚类（一种不需要指定类别数的聚类方法），实际上是对实体对的差值向量 $h-t$ 进行聚类，从而将关系 $r$ 分解为更细粒度的子关系 $r_c$ ，CTransR对每个 $r_c$ 分别学习相应的向量表示。</p>
 <p>CTransR的得分函数可以描述为：</p>
 <script type="math/tex; mode=display">
-f_{r}(h, t)=\left\|\mathbf{h}_{r, c}+\mathbf{r}_{c}-\mathbf{t}_{r, c}\right\|_{2}^{2}+\alpha\left\|\mathbf{r}_{c}-\mathbf{r}\right\|_{2}^{2}</script><p>上式中第二项使得 <img src="https://www.zhihu.com/equation?tex=r_c" alt="[公式]"> 尽可能地接近 <img src="https://www.zhihu.com/equation?tex=r" alt="[公式]"> . </p>
+f_{r}(h, t)=\left\|\mathbf{h}_{r, c}+\mathbf{r}_{c}-\mathbf{t}_{r, c}\right\|_{2}^{2}+\alpha\left\|\mathbf{r}_{c}-\mathbf{r}\right\|_{2}^{2}</script><p>上式中第二项使得 $r_c$ 尽可能地接近 $r$ 。</p>
 <p>TransR &amp; CTransR模型将原来的单个语义空间分离为<strong>实体空间</strong>和<strong>关系空间</strong>，提高了模型的表示能力，然而，TransR模型仍然存在一些缺点：</p>
 <ol>
 <li><p>在同一个关系 $r$ 下，头、尾实体使用相同的投影矩阵 $M_r$ ，而头、尾实体可能类型或属性相差很大；</p>
@@ -547,17 +535,16 @@ f_{r}(h, t)=\left\|\mathbf{h}_{r, c}+\mathbf{r}_{c}-\mathbf{t}_{r, c}\right\|_{2
 <h2 id="TransD-通过动态映射矩阵嵌入"><a href="#TransD-通过动态映射矩阵嵌入" class="headerlink" title="TransD: 通过动态映射矩阵嵌入"></a>TransD: 通过动态映射矩阵嵌入</h2><p>TransD在TransR的基础上，将关系的映射矩阵简化为两个向量的积，一定程度上克服了TransR &amp; CTransR的上述缺点。</p>
 <p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190708161009.png" alt></p>
 <p>CTransR模型相比于TransR模型，实际上就是考虑了同一个关系也有不同的类型，然而，实体也有不同的类型。举个例子，在FB15k中，有关系<em>location.location.partially containedby</em>，它可以表示山川大河被某个国家包含，也可以表示山川大河被某个城市/州包含，也可以表示国家被大洲包含，还可以表示地区被国家包含。由于实体有不同的类型，因而使用相同的映射矩阵是不合理的，而且，映射矩阵不应只与关系有关，还应与头尾实体有关。以上就是TransD模型的动机，这实际上是一个更细粒度的扩展模型，本质上还是由实体语义空间和关系语义空间两个空间构成。</p>
-<p>具体来说，对于三元组$(h,r,t)$，分别分别定义对应的投影向量$h<em>p,r_p,t_p$，其中 <img src="https://www.zhihu.com/equation?tex=p" alt="[公式]"> 表示投影（projection），再定义两个投影矩阵 ![[公式]](<a href="https://www.zhihu.com/equation?tex=M" target="_blank" rel="noopener">https://www.zhihu.com/equation?tex=M</a></em>%7Brh%7D%2C+M_%7Brt%7D) 来将实体从实体空间映射到关系空间</p>
+<p>具体来说，对于三元组$(h,r,t)$，分别分别定义对应的投影向量$h<em>p, r_p, t_p$ ，其中 $p$ 表示投影（projection），再定义两个投影矩阵 ![[公式]](<a href="https://www.zhihu.com/equation?tex=M" target="_blank" rel="noopener">https://www.zhihu.com/equation?tex=M</a></em>%7Brh%7D%2C+M_%7Brt%7D) 来将实体从实体空间映射到关系空间</p>
 <script type="math/tex; mode=display">
 \begin{aligned} \mathbf{M}_{r h} &=\mathbf{r}_{p} \mathbf{h}_{p}^{\top}+\mathbf{I}^{m \times n} \\ \mathbf{M}_{r t} &=\mathbf{r}_{p} \mathbf{t}_{p}^{\top}+\mathbf{I}^{m \times n} \end{aligned}</script><p>这里， $r<em>{p}, r \in \mathbb{R}^{m}, h, h</em>{p}, t, t<em>{p} \in \mathbb{R}^{n}, M</em>{r h}, M_{r t} \in \mathbb{R}^{m \times n}$  ,  $I^{m \times n}$ 表示单位阵，它的意思是说用单位阵来初始化投影矩阵。</p>
-<p>可见，在上式中，对头实体应用投影矩阵 <img src="https://www.zhihu.com/equation?tex=M_%7Brh%7D" alt="[公式]"> ，它不仅与关系有关，还与头实体有关；对尾实体应用投影矩阵 <img src="https://www.zhihu.com/equation?tex=M_%7Brt%7D" alt="[公式]"> ，它也不仅与关系有关，还与尾实体有关。利用这两个投影矩阵，可以得到头实体和尾实体在关系空间的投影</p>
+<p>可见，在上式中，对头实体应用投影矩阵 $\mathbf{M}<em>{r h}$ ，它不仅与关系有关，还与头实体有关；对尾实体应用投影矩阵 $\mathbf{M}</em>{r t}$ ，它也不仅与关系有关，还与尾实体有关。利用这两个投影矩阵，可以得到头实体和尾实体在关系空间的投影</p>
 <script type="math/tex; mode=display">
 \mathbf{h}_{\perp}=\mathbf{M}_{r h} \mathbf{h}, \quad \mathbf{t}_{\perp}=\mathbf{M}_{r t} \mathbf{t}</script><p>所以得分函数为：</p>
 <script type="math/tex; mode=display">
-f_{r}(\mathbf{h}, \mathbf{t})=-\left\|\mathbf{h}_{\perp}+\mathbf{r}-\mathbf{t}_{\perp}\right\|_{2}^{2}</script><p>显然，TransE是TransD的一个特例，当 <img src="https://www.zhihu.com/equation?tex=m%3Dn" alt="[公式]"> 且所有投影向量均为零时，TransD就退化为了TransE. 与TransH对比，显然需先令TransD的 <img src="https://www.zhihu.com/equation?tex=m%3Dn" alt="[公式]"> ，再分别写出TransH和TransD的实体投影后的向量：</p>
+f_{r}(\mathbf{h}, \mathbf{t})=-\left\|\mathbf{h}_{\perp}+\mathbf{r}-\mathbf{t}_{\perp}\right\|_{2}^{2}</script><p>显然，TransE是TransD的一个特例，当 $m=n$ 且所有投影向量均为零时，TransD就退化为了TransE. 与TransH对比，显然需先令TransD的 $m=n$ ，再分别写出TransH和TransD的实体投影后的向量：</p>
 <script type="math/tex; mode=display">
-\begin{array}{l}{\text { TransH: } h_{\perp}=h-w_{r}^{T} h w_{r}} \\ {\text { TransD } : h_{\perp}=M_{r h} h=h+h_{p}^{T} h r_{p}}\end{array}</script><p>因为 $$<br>r<em>{p} h</em>{p}^{T} h=h<em>{p}^{T} h r</em>{p}</p>
-<p>$$ ,因此为便于格式上的对比，我们将TransD中的$\mathbf{h}_{\perp}$ 写成上述形式。可见，当 $m=n$ 时，TransD与TransH唯一的区别在于TransD中的投影向量不仅与关系有关，还与实体有关。</p>
+\begin{array}{l}{\text { TransH: } h_{\perp}=h-w_{r}^{T} h w_{r}} \\ {\text { TransD } : h_{\perp}=M_{r h} h=h+h_{p}^{T} h r_{p}}\end{array}</script><p>因为 $r<em>{p} h</em>{p}^{T} h=h<em>{p}^{T} h r</em>{p}$ ,因此为便于格式上的对比，我们将TransD中的$\mathbf{h}_{\perp}$ 写成上述形式。可见，当 $m=n$ 时，TransD与TransH唯一的区别在于TransD中的投影向量不仅与关系有关，还与实体有关。</p>
 <p>对比TransR模型，TransD为头实体和尾实体分别设置了投影矩阵，另外，注意到在TransD中公式经过展开之后没有矩阵-向量乘法操作，这相比于TransR模型降低了计算复杂度，更适用于大规模知识图谱的计算。</p>
 
       
