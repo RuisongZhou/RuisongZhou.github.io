@@ -111,7 +111,7 @@
 <meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190713012353.png">
 <meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190713013727.png">
 <meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190713014319.png">
-<meta property="og:updated_time" content="2019-07-12T17:58:24.530Z">
+<meta property="og:updated_time" content="2019-07-12T18:02:59.435Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="XLNET论文笔记及理解">
 <meta name="twitter:description" content="Title: XLNet: Generalized Autoregressive Pretraining for Language Understanding. 1. Introduction1.1 AE &amp;amp;&amp;amp; AR无监督表征学习已经在自然语言处理领域取得了巨大的成功。在这种理念下，很多研究探索了不同的无监督预训练目标，其中，自回归（AR）语言建模和自编码（AE）成为两个最成功的预">
@@ -402,7 +402,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-07-13 01:58:24" itemprop="dateModified" datetime="2019-07-13T01:58:24+08:00">2019-07-13</time>
+                <time title="Modified: 2019-07-13 02:02:59" itemprop="dateModified" datetime="2019-07-13T02:02:59+08:00">2019-07-13</time>
               </span>
             
           
@@ -491,7 +491,7 @@
 <p>记号$x&lt;t$表示t时刻之前的所有x，也就是<script type="math/tex">x_{1:t−1}</script>。<script type="math/tex">h_θ(x_{1:t−1})</script>是RNN或者Transformer。<script type="math/tex">e(x)</script>是词x的embedding。</p>
 <p>而BERT是去噪(denoising)自编码的方法。对于序列<script type="math/tex">\mathbf{x}</script>，BERT会随机挑选15%的Token变成[MASK]得到带噪声版本的<script type="math/tex">\hat{\mathbf{x}}</script>。假设被Mask部分的原始值为<script type="math/tex">\overline{\mathbf{x}}</script>，那么BERT希望尽量根据上下文恢复(猜测)出原始值了，也就是</p>
 <p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190712234956.png" alt></p>
-<p>$m<em>t=1$表示t时刻是一个Mask，$$H</em>θ$$是一个Transformer，它把长度为T的序列$\mathbf{x}$映射为隐状态的向量序列$H<em>{\theta}(\mathbf{x})=\left[H</em>{\theta}(\mathbf{x})<em>{1}, H</em>{\theta}(\mathbf{x})<em>{2}, \cdots, H</em>{\theta}(\mathbf{x})_{T}\right]$。</p>
+<p>上面的公式中，<script type="math/tex">m_t=1</script>表示t时刻是一个Mask，<script type="math/tex">H_θ</script>是一个Transformer，它把长度为T的序列$\mathbf{x}$映射为隐状态的向量序列<script type="math/tex">H_{\theta}(\mathbf{x})=\left[H_{\theta}(\mathbf{x})_{1}, H_{\theta}(\mathbf{x})_{2}, \cdots, H_{\theta}(\mathbf{x})_{T}\right]</script>。</p>
 <p>这两个模型的优缺点分别为：</p>
 <ul>
 <li><p>独立假设：注意等式 (2) 的约等号 ≈，它的意思是假设在给定的条件下被 Mask 的词是独立的（没有关系的），这个显然并不成立，比如”New York is a city”，假设我们 Mask 住”New”和”York”两个词，那么给定”is a city”的条件下”New”和”York”并不独立，因为”New York”是一个实体，看到”New”则后面出现”York”的概率要比看到”Old”后面出现”York”概率要大得多。而公式 (1) 没有这样的独立性假设，它是严格的等号。 </p>
@@ -521,7 +521,7 @@ p_{\theta}\left(X_{z_{t}} | \mathbf{x}_{\mathbf{z}<t}\right)=\frac{\exp \left(e(
 p_{\theta}\left(X_{z_{t}}=x | \mathbf{x}_{z_{<t}}\right)=\frac{\exp \left(e(x)^{\top} g_{\theta}\left(\mathbf{x}_{\mathbf{z}_{<t}}, z_{t}\right)\right)}{\sum_{x^{\prime}} \exp \left(e\left(x^{\prime}\right)^{\top} g_{\theta}\left(\mathbf{x}_{\mathbf{z}_{<t}}, z_{t}\right)\right)}</script><p>上式中<script type="math/tex">g_{\theta}(\mathbf{x}_{\mathbf{z}_{<t}}, z_{t})</script>表示这是一个新的模型 g，并且它的参数除了之前的词<script type="math/tex">\mathbf{x}_{\mathbf{z}_{<t}}</script>，还有要预测的词的位置 $z_t$。</p>
 <h4 id="Two-Stream-Self-Attention"><a href="#Two-Stream-Self-Attention" class="headerlink" title="Two-Stream Self-Attention"></a>Two-Stream Self-Attention</h4><p>表示<script type="math/tex">g_{\theta}(\mathbf{x}_{\mathbf{z}_{<t}}, z_{t})</script>时，有很多可选的模型，我们这里通过位置<script type="math/tex">z_t</script>来从 context <script type="math/tex">\mathbf{x}_{\mathbf{z}<t}</script>里通过 Attention 机制提取需要的信息来预测这个位置的词。那么它需要满足如下两点要求：</p>
 <ol>
-<li><p>为了预测<script type="math/tex">X_{z_{t}}</script>，<script type="math/tex">g_{\theta}(\mathbf{x}_{\mathbf{z}_{<t}}, z_{t})</script>只能使用位置信息 $𝑧<em>t$ 而不能使用$$X</em>{z_{t}}$$。这是显然的：你预测一个词当然不能知道要预测的是什么词。 </p>
+<li><p>为了预测<script type="math/tex">X_{z_{t}}</script>，<script type="math/tex">g_{\theta}(\mathbf{x}_{\mathbf{z}_{<t}}, z_{t})</script>只能使用位置信息<script type="math/tex">z_t</script>而不能使用<script type="math/tex">X_{z_{t}}</script>。这是显然的：你预测一个词当然不能知道要预测的是什么词。 </p>
 </li>
 <li><p>为了预测<script type="math/tex">𝑧_t</script>之后的词，<script type="math/tex">g_{\theta}(\mathbf{x}_{\mathbf{z}_{<t}}, z_{t})</script>必须编码了<script type="math/tex">X_{z_{t}}</script>的信息（语义）。 </p>
 </li>
