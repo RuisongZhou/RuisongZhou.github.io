@@ -94,34 +94,25 @@
 
 
 
-  <meta name="description" content="Graph Embedding 目前已经在深度学习很多领域取得很好的成绩。目前，Graph Embedding是推荐系统、计算广告领域最近非常流行的做法，是从word2vec等一路发展而来的Embedding技术的最新延伸，并且很多大厂已经用Graph Embedding 取得了很好的效果。 word2vec和由其衍生出的item2vec是embedding技术的基础性方法，但二者都是建立在“序列">
-<meta name="keywords" content="Graph Embedding">
+  <meta name="description" content="Knowledge Based QA System Construction基于知识图谱的问答系统构架分为四个方面：  Entity Detection Entity Linking Relation Prediction Evidence Integration  然而，想要应用知识图谱，Knowledge Graph Embedding也是必不可少的环节。目前研究的 KBQA 暂时专注在简单知">
+<meta name="keywords" content="NLP,知识图谱,Knowledge Graph Embedding">
 <meta property="og:type" content="article">
-<meta property="og:title" content="经典Graph Embedding 方法">
-<meta property="og:url" content="http://yoursite.com/2019/07/02/经典Graph-Embedding-方法/index.html">
+<meta property="og:title" content="基于知识图谱的问答应用分析">
+<meta property="og:url" content="http://yoursite.com/2019/07/18/基于知识图谱的问答应用分析/index.html">
 <meta property="og:site_name" content="周瑞松のblog">
-<meta property="og:description" content="Graph Embedding 目前已经在深度学习很多领域取得很好的成绩。目前，Graph Embedding是推荐系统、计算广告领域最近非常流行的做法，是从word2vec等一路发展而来的Embedding技术的最新延伸，并且很多大厂已经用Graph Embedding 取得了很好的效果。 word2vec和由其衍生出的item2vec是embedding技术的基础性方法，但二者都是建立在“序列">
+<meta property="og:description" content="Knowledge Based QA System Construction基于知识图谱的问答系统构架分为四个方面：  Entity Detection Entity Linking Relation Prediction Evidence Integration  然而，想要应用知识图谱，Knowledge Graph Embedding也是必不可少的环节。目前研究的 KBQA 暂时专注在简单知">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://pic2.zhimg.com/80/v2-aef010269ddfef8db052fa65479ba9dd_hd.jpg">
-<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703140852.png">
-<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703140918.png">
-<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703140941.png">
-<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703141010.png">
-<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703141027.png">
-<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703141045.png">
-<meta property="og:image" content="https://www.zhihu.com/equation?tex=%5Comega_%7Bvx%7D">
-<meta property="og:image" content="https://www.zhihu.com/equation?tex=%5Calpha_%7Bpq%7D%28t%2Cx%29">
-<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703141100.png">
-<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703141119.png">
-<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703141141.png">
-<meta property="og:image" content="https://www.zhihu.com/equation?tex=e%5E%7Ba_j%7D">
-<meta property="og:image" content="https://www.zhihu.com/equation?tex=e%5E%7Ba_j%7D">
-<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190702155817.png">
-<meta property="og:updated_time" content="2019-07-03T06:11:51.266Z">
+<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190718161610.png">
+<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190718163935.png">
+<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190718164002.png">
+<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190718171050.png">
+<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190718174724.png">
+<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190718182119.png">
+<meta property="og:updated_time" content="2019-07-18T10:30:32.541Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="经典Graph Embedding 方法">
-<meta name="twitter:description" content="Graph Embedding 目前已经在深度学习很多领域取得很好的成绩。目前，Graph Embedding是推荐系统、计算广告领域最近非常流行的做法，是从word2vec等一路发展而来的Embedding技术的最新延伸，并且很多大厂已经用Graph Embedding 取得了很好的效果。 word2vec和由其衍生出的item2vec是embedding技术的基础性方法，但二者都是建立在“序列">
-<meta name="twitter:image" content="https://pic2.zhimg.com/80/v2-aef010269ddfef8db052fa65479ba9dd_hd.jpg">
+<meta name="twitter:title" content="基于知识图谱的问答应用分析">
+<meta name="twitter:description" content="Knowledge Based QA System Construction基于知识图谱的问答系统构架分为四个方面：  Entity Detection Entity Linking Relation Prediction Evidence Integration  然而，想要应用知识图谱，Knowledge Graph Embedding也是必不可少的环节。目前研究的 KBQA 暂时专注在简单知">
+<meta name="twitter:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190718161610.png">
 
 
 
@@ -129,7 +120,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/2019/07/02/经典Graph-Embedding-方法/">
+  <link rel="canonical" href="http://yoursite.com/2019/07/18/基于知识图谱的问答应用分析/">
 
 
 
@@ -139,7 +130,7 @@
   };
 </script>
 
-  <title>经典Graph Embedding 方法 | 周瑞松のblog</title>
+  <title>基于知识图谱的问答应用分析 | 周瑞松のblog</title>
   
 
 
@@ -350,7 +341,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/02/经典Graph-Embedding-方法/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/18/基于知识图谱的问答应用分析/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="RuisongZhou">
@@ -367,7 +358,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">经典Graph Embedding 方法
+          <h1 class="post-title" itemprop="name headline">基于知识图谱的问答应用分析
 
               
             
@@ -393,23 +384,13 @@
                 
               
 
-              <time title="Created: 2019-07-02 14:58:00" itemprop="dateCreated datePublished" datetime="2019-07-02T14:58:00+08:00">2019-07-02</time>
+              <time title="Created: 2019-07-18 15:52:26 / Modified: 18:30:32" itemprop="dateCreated datePublished" datetime="2019-07-18T15:52:26+08:00">2019-07-18</time>
             </span>
           
 
           
             
 
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-07-03 14:11:51" itemprop="dateModified" datetime="2019-07-03T14:11:51+08:00">2019-07-03</time>
-              </span>
             
           
 
@@ -440,8 +421,8 @@
                 </span>
             
                 <span class="post-meta-item-text">Comments: </span>
-                <a href="/2019/07/02/经典Graph-Embedding-方法/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/07/02/经典Graph-Embedding-方法/" itemprop="commentCount"></span>
+                <a href="/2019/07/18/基于知识图谱的问答应用分析/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/07/18/基于知识图谱的问答应用分析/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -480,59 +461,40 @@
       
 
       
-        <p>Graph Embedding 目前已经在深度学习很多领域取得很好的成绩。目前，<strong>Graph Embedding是推荐系统、计算广告领域最近非常流行的做法</strong>，是从word2vec等一路发展而来的Embedding技术的最新延伸，并且很多大厂已经用Graph Embedding 取得了很好的效果。</p>
-<p>word2vec和由其衍生出的item2vec是embedding技术的基础性方法，但二者都是建立在“<strong>序列</strong>”样本（比如句子、推荐列表）的基础上的。而在互联网场景下，数据对象之间更多呈现的是图结构。典型的场景是由用户行为数据生成的和物品全局关系图（图1），以及加入更多属性的物品组成的知识图谱（图2）。</p>
-<p><img src="https://pic2.zhimg.com/80/v2-aef010269ddfef8db052fa65479ba9dd_hd.jpg" alt="v2-aef010269ddfef8db052fa65479ba9dd_hd"></p>
-<center>
-图1 由用户行为序列生成的物品全局关系图 </center>
-
-<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703140852.png" alt></p>
-<center>
-图2 由属性、实体、各类知识组成的知识图谱 </center>
-
-<p>在面对图结构的时候，传统的序列embedding方法就显得力不从心了。在这样的背景下，对图结构中间的节点进行表达的graph embedding成为了新的研究方向，并逐渐在深度学习推荐系统领域流行起来。</p>
-<h2 id="经典方法1-—DeepWalk"><a href="#经典方法1-—DeepWalk" class="headerlink" title="经典方法1 —DeepWalk"></a>经典方法1 —DeepWalk</h2><p>早期影响力较大的graph embedding是2014年的DeepWalk，其主要思想是在由节点组成的图上随机游走，产生大量节点序列，然后将这些序列作为训练样本进行word2vec，得到embedding</p>
-<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703140918.png" alt></p>
-<p>如上图所示，整个DeepWalk可以分为四个过程：</p>
-<ol>
-<li>图a展示了原始的用户行为序列</li>
-<li>图b基于这些用户行为序列构建了物品相关图，可以看出，物品A，B之间的边产生的原因就是因为用户U1先后购买了物品A和物品B，所以产生了一条由A到B的有向边。如果后续产生了多条相同的有向边，则有向边的权重被加强。在将所有用户行为序列都转换成物品相关图中的边之后，全局的物品相关图就建立起来了。</li>
-<li><strong>图c采用随机游走的方式随机选择起始点，重新产生物品序列。</strong></li>
-<li>图d最终将这些物品序列输入word2vec模型，生成最终的物品Embedding向量。</li>
-</ol>
-<p>在整个算法流程中，核心是第三步，对随机游走的跳转概率进行明确定义，即到达节点$v_i$后，下一步遍历$v_i$的临接点$v_j$的概率。如果物品的相关图是有向有权图，那么从节点$v_i$跳转到节点$v_j$的概率定义如下：</p>
-<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703140941.png" alt></p>
-<p>其中$N<em>+(v_i)$是节点$v_i$所有的出边集合，$M</em>{ij}$是节点$v_i$到节点$v_j$边的权重。</p>
-<p>如果物品相关图是无相无权重图，那么跳转概率将是上面公式的一个特例，即权重$M<em>{ij}$将为常数1，且$N</em>+(v_i)$应是节点$v_i$所有“边”的集合，而不是所有“出边”的集合。</p>
-<h2 id="DeepWalk的改进-—-Node2Vec"><a href="#DeepWalk的改进-—-Node2Vec" class="headerlink" title="DeepWalk的改进 — Node2Vec"></a>DeepWalk的改进 — Node2Vec</h2><p>2016年，斯坦福大学在DeepWalk的基础上更进一步，通过调整随机游走权重的方法使graph embedding的结果在网络的<strong>同质性（homophily）</strong>和<strong>结构性（structural equivalence）</strong>中进行权衡权衡。</p>
-<p>具体来讲，网络的“同质性”指的是距离相近节点的embedding应该尽量近似，如下图，节点u与其相连的节点s1、s2、s3、s4的embedding表达应该是接近的，这就是“同质性“的体现。</p>
-<p>“结构性”指的是结构上相似的节点的embedding应该尽量接近，图中节点u和节点s6都是各自局域网络的中心节点，结构上相似，其embedding的表达也应该近似，这是“结构性”的体现。</p>
-<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703141010.png" alt></p>
-<p>为了让Graph Embedding的结果更能表达同质性，在<strong>游走过程</strong>中需要更倾向于DFS，因为DFS更喜欢走到跟当前节点有直接相连的节点上，从而被embedding表达；另一方面，为了抓住网络的结构性，需要随机游走更倾向于BFS，这样会使生成的样本序列包含网络整体信息。</p>
-<p>在node2vec算法中。主要是通过节点间的跳转概率控制BFS和DFS的倾向性。下图表示了<strong>从节点t跳转到节点v后</strong>，下一步从<strong>节点v</strong>跳转到周围各点的跳转概率。</p>
-<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703141027.png" alt></p>
-<p>形式化来讲。从节点v跳到下一个节点x的概率为</p>
-<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703141045.png" alt></p>
-<p>其中 <img src="https://www.zhihu.com/equation?tex=%5Comega_%7Bvx%7D" alt="[公式]"> 是边vx的权重， <img src="https://www.zhihu.com/equation?tex=%5Calpha_%7Bpq%7D%28t%2Cx%29" alt="[公式]"> 的定义如下</p>
-<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703141100.png" alt></p>
-<p>其中$d_{tx}$指的是t到x节点的距离，参数p和q共同控制随机游走倾向性，参数p被称为返回参数（return parameter），p越小，随机游走回节点t的可能性越大，node2vec就更注重表达网络的结构性，参数q被称为进出参数（in-out parameter），q越小，则随机游走到远方节点的可能性越大，node2vec更注重表达网络的同治性，反之，当前节点更可能在附近节点游走。</p>
-<p>node2vec这种灵活表达同质性和结构性的特点也得到了实验的证实。图6的上图就是node2vec更注重同质性的体现，可以看到距离相近的节点颜色更为接近，而图6下图则是结构特点相近的节点的颜色更为接近。</p>
-<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703141119.png" alt></p>
-<p><center>node2vec试验结果</center><br>node2vec所体现的网络的同质性和结构性在推荐系统中也是可以被很直观的解释的。<strong>同质性相同的物品很可能是同品类、同属性、或者经常被一同购买的物品</strong>，而<strong>结构性相同的物品则是各品类的爆款、各品类的最佳凑单商品等拥有类似趋势或者结构性属性的物品</strong>。毫无疑问，二者在推荐系统中都是非常重要的特征表达。由于node2vec的这种灵活性，以及发掘不同特征的能力，甚至可以把不同node2vec生成的embedding融合共同输入后续深度学习网络，以保留物品的不同特征信息。</p>
-<h2 id="Deepwalk的补充-—-EGES"><a href="#Deepwalk的补充-—-EGES" class="headerlink" title="Deepwalk的补充 — EGES"></a>Deepwalk的补充 — EGES</h2><p>2018年，阿里公布了其在淘宝应用的Embedding方法EGES（Enhanced Graph Embedding with Side Information），其基本思想是在DeepWalk生成的graph embedding基础上引入补充信息。</p>
-<p>如果单纯使用用户行为生成的物品相关图，固然可以生成物品的embedding，但是如果遇到新加入的物品，或者没有过多互动信息的长尾物品，推荐系统将出现严重的冷启动问题。<strong>为了使“冷启动”的商品获得“合理”的初始Embedding，阿里团队通过引入了更多补充信息来丰富Embedding信息的来源，从而使没有历史行为记录的商品获得Embedding。</strong></p>
-<p>生成Graph embedding的第一步是生成物品关系图，通过用户行为序列可以生成物品相关图，利用相同属性、相同类别等信息，也可以通过这些相似性建立物品之间的边，从而生成基于内容的knowledge graph。而基于knowledge graph生成的物品向量可以被称为补充信息（side information）embedding向量，当然，根据补充信息类别的不同，可以有多个side information embedding向量。</p>
-<p>side information是从用户行为建模中得来，在DeepWalk中我们可以生成很多序列，接着，我们使用Skip-Gram算法来学习embeddings，他会最大化在获取序列的两个节点的共现概率。这会生成以下优化问题：</p>
+        <h1 id="Knowledge-Based-QA-System-Construction"><a href="#Knowledge-Based-QA-System-Construction" class="headerlink" title="Knowledge Based QA System Construction"></a>Knowledge Based QA System Construction</h1><p>基于知识图谱的问答系统构架分为四个方面：</p>
+<ul>
+<li>Entity Detection</li>
+<li>Entity Linking</li>
+<li>Relation Prediction</li>
+<li>Evidence Integration</li>
+</ul>
+<p>然而，想要应用知识图谱，Knowledge Graph Embedding也是必不可少的环节。<strong>目前研究的 KBQA 暂时专注在简单知识库问答上：</strong>即根据一个问题，抽出一条三元组，生成 Sparql 语句，进而进行知识图谱查询返回答案。 应用知识图谱后，我们不必生成查询语句，可以直接根据head实体和relation得到tail实体的embedding并应用。</p>
+<h2 id="Dataset"><a href="#Dataset" class="headerlink" title="Dataset"></a>Dataset</h2><p>常用知识图谱数据分为以下几种：</p>
+<ul>
+<li>freebase系列：freebase数据集拥有超过5M的实体和1M的关系，来源于开放性知识库。可以构建大型知识图谱。</li>
+<li>NLPCC2016KBQA：本数据集是中文数据集，来自 <strong>NLPCC ICCPOL 2016 KBQA 任务集</strong>，其包含 14,609 个问答对的训练集和包含 9870 个问答对的测试集。并提供一个知识库，包含 6,502,738 个实体、 587,875 个属性以及 43,063,796 个三元组。</li>
+<li>Todo</li>
+</ul>
+<p>常用QA数据：</p>
+<ul>
+<li>SimpleQuestion_v2：基于freebase系列知识的问答，Facebook制作</li>
+<li>Todo</li>
+</ul>
+<h2 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h2><p>首先介绍基于深度学习的知识图谱构建和应用：</p>
+<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190718161610.png" alt></p>
+<h3 id="1-Knowledge-Graph-Embedding"><a href="#1-Knowledge-Graph-Embedding" class="headerlink" title="1. Knowledge Graph Embedding"></a>1. Knowledge Graph Embedding</h3><p>对知识图谱进行embedding旨在对知识图谱进行知识表示。常用方法有Trans系列等，Trans系列论文可见我的另一片<a href="[http://aiblog.top/2019/07/08/Trans%E7%B3%BB%E5%88%97%E6%A8%A1%E5%9E%8B%E8%AF%A6%E8%A7%A3/](http://aiblog.top/2019/07/08/Trans系列模型详解/">博文</a>)，</p>
+<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190718163935.png" alt></p>
+<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190718164002.png" alt></p>
+<h3 id="2-Predicate-and-Head-Entity-Learning-Models"><a href="#2-Predicate-and-Head-Entity-Learning-Models" class="headerlink" title="2. Predicate and Head Entity Learning Models"></a>2. Predicate and Head Entity Learning Models</h3><h4 id="1-Predicate-Representation-Learning-amp-amp-Head-Entity-Learning-Model"><a href="#1-Predicate-Representation-Learning-amp-amp-Head-Entity-Learning-Model" class="headerlink" title="1. Predicate Representation Learning &amp;&amp; Head Entity Learning Model"></a>1. Predicate Representation Learning &amp;&amp; Head Entity Learning Model</h4><p>对于关系和头实体的表示，可以使用Bi-LSTM和Attention机制，将问题中的entity和predicate映射为graph embedding中的表示并提取出来。</p>
+<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190718171050.png" alt></p>
+<h3 id="3-Head-Entity-Detection-Model"><a href="#3-Head-Entity-Detection-Model" class="headerlink" title="3. Head Entity Detection Model"></a>3. Head Entity Detection Model</h3><p>如果在训练时将头实体直接训练为graph embedding中的表示，计算量会很大(实体数很多)，所以KBQA提出了一种新的Head Entity Detection模型，减少了计算量。</p>
+<p>作者将相同或者相近的实体名设为一种实体，再去解决相同实体名带来的歧义问题。为了简化问题，作者使用双向神经网络（Bi-LSTM），但不含Attention层。首先将句子进行word embedding，然后经过Bi-LSTM，再经过全连接和softmax层，得到目标向量<script type="math/tex">\mathbf{v}_{j} \in \mathbb{R}^{2 \times 1}</script> ,<script type="math/tex">\mathbf{v}_{j}</script>的两个值可以代表第j个token属于两个label category的策略（如entity name token和non entity name token）。用这种方式我们可以将token分类并识别头实体名。</p>
+<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190718174724.png" alt></p>
+<h3 id="4-Joint-Search-on-Embedding-Spaces"><a href="#4-Joint-Search-on-Embedding-Spaces" class="headerlink" title="4. Joint Search on Embedding Spaces"></a>4. Joint Search on Embedding Spaces</h3><p>作者利用关系信息提出了一种联合距离度量方法，可以表示为：</p>
 <script type="math/tex; mode=display">
-minimize_Φ−logPr(\frac{v_{i−w},...,v_{i+w}}{v_i}|Φ(vi))</script><p>其中，w是在序列中上下文节点的window size。使用独立假设，我们具有：</p>
-<script type="math/tex; mode=display">
-logPr(\frac{v_{i−w},...,v_{i+w}}{v_i}|Φ(vi)) = \prod_{j=i−w,j≠i}^{i+w}Pr(v_j|Φ(v_i))</script><p>通过以上embedding方法， 我们就可以得到淘宝中所有商品的embedding，来捕获在用户行为序列上的更高阶相似度，这种特性会被基于CF的方法忽略。然而，对于“冷启动（cold-start）”的items，学到精准的embeddings仍然是个挑战。所以淘宝提出了GES方法：</p>
-<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703141141.png" alt></p>
-<p>在GES中的深度神经网络中加入average pooling层将不同embedding平均起来，这样就能获得更好的Embedding，阿里在此基础上进行了加强，对每个embedding加上了权重，如上图所示，对每类特征对应的Embedding向量，分别赋予了权重$a_0，a_1…a_n$ ，图中的Hidden Representation层就是对不同Embedding进行加权平均操作的层，得到加权平均后的Embedding向量后，再直接输入softmax层，这样通过梯度反向传播，就可以求的每个embedding的权重$a_i$(i=0…n)</p>
-<p>在实际的模型中，阿里采用了 <img src="https://www.zhihu.com/equation?tex=e%5E%7Ba_j%7D" alt="[公式]"> 而不是$a_j$作为相应embedding的权重，一是避免权重为0，二是因为 <img src="https://www.zhihu.com/equation?tex=e%5E%7Ba_j%7D" alt="[公式]"> 在梯度下降过程中有良好的数学性质。</p>
-<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190702155817.png" alt></p>
-<p>阿里的EGES并没有过于复杂的理论创新，但给出一个工程性的结合多种Embedding的方法，降低了某类Embedding缺失造成的冷启动问题，是实用性极强的Embedding方法。</p>
-<h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>近些年中，KGE又与GAN结合起来，提高了KGE的效率，代表有KBGAN等，在以后的博文中我会详细介绍。</p>
+\begin{aligned} \underset{(h, \ell, t) \in C}{\operatorname{minimize}} &\left\|\mathbf{p}_{\ell}-\hat{\mathbf{p}}_{\ell}\right\|_{2}+\beta_{1}\left\|\mathbf{e}_{h}-\hat{\mathbf{e}}_{h}\right\| f\left(\mathbf{e}_{h}, \mathbf{p}_{\ell}\right)-\hat{\mathbf{e}}_{t} \|_{2} \\ &-\beta_{3} \operatorname{sim}\left[n(h), \operatorname{HED}_{\mathrm{entity}}\right]-\beta_{4} \operatorname{sim}\left[n(\ell), \operatorname{HED}_{\mathrm{non}}\right] \end{aligned}</script><p>其中<script type="math/tex">\hat{\mathbf{e}}_{t}=f\left(\hat{\mathbf{e}}_{h}, \hat{\mathbf{p}}_{\ell}\right)</script>, $n(·)$是实体或者关系的名称，使用L2正则化计算距离。</p>
+<p>整理流程为：</p>
+<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190718182119.png" alt></p>
 
       
     </div>
@@ -559,7 +521,11 @@ logPr(\frac{v_{i−w},...,v_{i+w}}{v_i}|Φ(vi)) = \prod_{j=i−w,j≠i}^{i+w}Pr(
         
         <div class="post-tags">
           
-            <a href="/tags/Graph-Embedding/" rel="tag"># Graph Embedding</a>
+            <a href="/tags/NLP/" rel="tag"># NLP</a>
+          
+            <a href="/tags/知识图谱/" rel="tag"># 知识图谱</a>
+          
+            <a href="/tags/Knowledge-Graph-Embedding/" rel="tag"># Knowledge Graph Embedding</a>
           
         </div>
       
@@ -572,8 +538,8 @@ logPr(\frac{v_{i−w},...,v_{i+w}}{v_i}|Φ(vi)) = \prod_{j=i−w,j≠i}^{i+w}Pr(
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/07/02/百度知识图谱构建技术-《Mining-Type-Information-from-Chinese-Online-Encyclopedias》论文阅读/" rel="next" title="百度知识图谱构建技术|《Mining Type Information from Chinese Online Encyclopedias》论文阅读">
-                <i class="fa fa-chevron-left"></i> 百度知识图谱构建技术|《Mining Type Information from Chinese Online Encyclopedias》论文阅读
+              <a href="/2019/07/12/XLNET论文笔记及理解/" rel="next" title="XLNET论文笔记及理解">
+                <i class="fa fa-chevron-left"></i> XLNET论文笔记及理解
               </a>
             
           </div>
@@ -581,10 +547,6 @@ logPr(\frac{v_{i−w},...,v_{i+w}}{v_i}|Φ(vi)) = \prod_{j=i−w,j≠i}^{i+w}Pr(
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/07/02/KBGAN-论文阅读笔记/" rel="prev" title="KBGAN 论文阅读笔记">
-                KBGAN 论文阅读笔记 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -780,7 +742,7 @@ logPr(\frac{v_{i−w},...,v_{i+w}}{v_i}|Φ(vi)) = \prod_{j=i−w,j≠i}^{i+w}Pr(
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#经典方法1-—DeepWalk"><span class="nav-number">1.</span> <span class="nav-text">经典方法1 —DeepWalk</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DeepWalk的改进-—-Node2Vec"><span class="nav-number">2.</span> <span class="nav-text">DeepWalk的改进 — Node2Vec</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Deepwalk的补充-—-EGES"><span class="nav-number">3.</span> <span class="nav-text">Deepwalk的补充 — EGES</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#最后"><span class="nav-number">3.1.</span> <span class="nav-text">最后</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Knowledge-Based-QA-System-Construction"><span class="nav-number">1.</span> <span class="nav-text">Knowledge Based QA System Construction</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Dataset"><span class="nav-number">1.1.</span> <span class="nav-text">Dataset</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Model"><span class="nav-number">1.2.</span> <span class="nav-text">Model</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Knowledge-Graph-Embedding"><span class="nav-number">1.2.1.</span> <span class="nav-text">1. Knowledge Graph Embedding</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Predicate-and-Head-Entity-Learning-Models"><span class="nav-number">1.2.2.</span> <span class="nav-text">2. Predicate and Head Entity Learning Models</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Predicate-Representation-Learning-amp-amp-Head-Entity-Learning-Model"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">1. Predicate Representation Learning &amp;&amp; Head Entity Learning Model</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Head-Entity-Detection-Model"><span class="nav-number">1.2.3.</span> <span class="nav-text">3. Head Entity Detection Model</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Joint-Search-on-Embedding-Spaces"><span class="nav-number">1.2.4.</span> <span class="nav-text">4. Joint Search on Embedding Spaces</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -970,9 +932,9 @@ logPr(\frac{v_{i−w},...,v_{i+w}}{v_i}|Φ(vi)) = \prod_{j=i−w,j≠i}^{i+w}Pr(
 
 <script>
   var disqus_config = function() {
-    this.page.url = "http://yoursite.com/2019/07/02/经典Graph-Embedding-方法/";
-    this.page.identifier = "2019/07/02/经典Graph-Embedding-方法/";
-    this.page.title = '经典Graph Embedding 方法';
+    this.page.url = "http://yoursite.com/2019/07/18/基于知识图谱的问答应用分析/";
+    this.page.identifier = "2019/07/18/基于知识图谱的问答应用分析/";
+    this.page.title = '基于知识图谱的问答应用分析';
     };
   function loadComments() {
     var d = document, s = d.createElement('script');
@@ -1003,9 +965,9 @@ logPr(\frac{v_{i−w},...,v_{i+w}}{v_i}|Φ(vi)) = \prod_{j=i−w,j≠i}^{i+w}Pr(
       api: '' || 'https://disqus.com/api/',
       apikey: 'lCbSis1lxubhduhKpyjAUTnv3vv9jo2v3AuRh5wedToSWjGvHzJ0AfdGXFLl3j2Y',
       shortname: 'zhou_ruisong',
-      url: "http://yoursite.com/2019/07/02/经典Graph-Embedding-方法/",
-      identifier: "2019/07/02/经典Graph-Embedding-方法/",
-      title: '经典Graph Embedding 方法',
+      url: "http://yoursite.com/2019/07/18/基于知识图谱的问答应用分析/",
+      identifier: "2019/07/18/基于知识图谱的问答应用分析/",
+      title: '基于知识图谱的问答应用分析',
     });
   }
 
