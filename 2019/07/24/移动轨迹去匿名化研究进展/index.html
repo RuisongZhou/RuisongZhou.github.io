@@ -94,29 +94,25 @@
 
 
 
-  <meta name="description" content="1. 特色 首次尝试用对抗学习去生成有用的副样本来提升embedding效果 对抗学习框架泛化能力强，适配很多KGE模型，不需要额外本体限制 在三个常用的数据集上显示出一致性能  2. 相关工作与模型构建近年来很多KGE方法被提出来。RESCAL（2011）首先用矩阵分解来进行embedding，并使用双线性映射作为score function，TransE首先提出基于翻译模型的embedding">
-<meta name="keywords" content="Graph Embedding,GAN">
+  <meta name="description" content="论文标题：De-anonymization of Mobility Trajectories: Dissecting the Gaps between Theory and Practice 本文探讨了移动轨迹去匿名化理论方法在实际数据集应用中的差距，并提出了四种能很好的解决实际数据集各种问题的算法。 Indroduction通常来说，移动轨迹的匿名化数据集由ISP厂商提供，然而去匿名化算法可能将">
+<meta name="keywords" content="Machine Learning,De-anonymization">
 <meta property="og:type" content="article">
-<meta property="og:title" content="KBGAN 论文阅读笔记">
-<meta property="og:url" content="http://yoursite.com/2019/07/02/KBGAN-论文阅读笔记/index.html">
+<meta property="og:title" content="移动轨迹去匿名化研究进展">
+<meta property="og:url" content="http://yoursite.com/2019/07/24/移动轨迹去匿名化研究进展/index.html">
 <meta property="og:site_name" content="周瑞松のblog">
-<meta property="og:description" content="1. 特色 首次尝试用对抗学习去生成有用的副样本来提升embedding效果 对抗学习框架泛化能力强，适配很多KGE模型，不需要额外本体限制 在三个常用的数据集上显示出一致性能  2. 相关工作与模型构建近年来很多KGE方法被提出来。RESCAL（2011）首先用矩阵分解来进行embedding，并使用双线性映射作为score function，TransE首先提出基于翻译模型的embedding">
+<meta property="og:description" content="论文标题：De-anonymization of Mobility Trajectories: Dissecting the Gaps between Theory and Practice 本文探讨了移动轨迹去匿名化理论方法在实际数据集应用中的差距，并提出了四种能很好的解决实际数据集各种问题的算法。 Indroduction通常来说，移动轨迹的匿名化数据集由ISP厂商提供，然而去匿名化算法可能将">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703150923.png">
-<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703162624.png">
-<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703162748.png">
-<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703172418.png">
-<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703172547.png">
-<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703172928.png">
-<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703174351.png">
-<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703173123.png">
-<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703174514.png">
-<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703174543.png">
-<meta property="og:updated_time" content="2019-07-10T12:51:58.250Z">
+<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190724010348.png">
+<meta property="og:image" content="http://yoursite.com/Users/ruisongzhou/Library/Application%20Support/typora-user-images/image-20190724010650553.png">
+<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190724012117.png">
+<meta property="og:image" content="http://yoursite.com/Users/ruisongzhou/Library/Application%20Support/typora-user-images/image-20190724012241381.png">
+<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190724013230.png">
+<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190724014050.png">
+<meta property="og:updated_time" content="2019-07-23T17:44:28.935Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="KBGAN 论文阅读笔记">
-<meta name="twitter:description" content="1. 特色 首次尝试用对抗学习去生成有用的副样本来提升embedding效果 对抗学习框架泛化能力强，适配很多KGE模型，不需要额外本体限制 在三个常用的数据集上显示出一致性能  2. 相关工作与模型构建近年来很多KGE方法被提出来。RESCAL（2011）首先用矩阵分解来进行embedding，并使用双线性映射作为score function，TransE首先提出基于翻译模型的embedding">
-<meta name="twitter:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703150923.png">
+<meta name="twitter:title" content="移动轨迹去匿名化研究进展">
+<meta name="twitter:description" content="论文标题：De-anonymization of Mobility Trajectories: Dissecting the Gaps between Theory and Practice 本文探讨了移动轨迹去匿名化理论方法在实际数据集应用中的差距，并提出了四种能很好的解决实际数据集各种问题的算法。 Indroduction通常来说，移动轨迹的匿名化数据集由ISP厂商提供，然而去匿名化算法可能将">
+<meta name="twitter:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190724010348.png">
 
 
 
@@ -124,7 +120,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/2019/07/02/KBGAN-论文阅读笔记/">
+  <link rel="canonical" href="http://yoursite.com/2019/07/24/移动轨迹去匿名化研究进展/">
 
 
 
@@ -134,7 +130,7 @@
   };
 </script>
 
-  <title>KBGAN 论文阅读笔记 | 周瑞松のblog</title>
+  <title>移动轨迹去匿名化研究进展 | 周瑞松のblog</title>
   
 
 
@@ -345,7 +341,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/02/KBGAN-论文阅读笔记/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/24/移动轨迹去匿名化研究进展/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="RuisongZhou">
@@ -362,7 +358,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">KBGAN 论文阅读笔记
+          <h1 class="post-title" itemprop="name headline">移动轨迹去匿名化研究进展
 
               
             
@@ -388,23 +384,13 @@
                 
               
 
-              <time title="Created: 2019-07-02 17:32:04" itemprop="dateCreated datePublished" datetime="2019-07-02T17:32:04+08:00">2019-07-02</time>
+              <time title="Created: 2019-07-24 00:17:29 / Modified: 01:44:28" itemprop="dateCreated datePublished" datetime="2019-07-24T00:17:29+08:00">2019-07-24</time>
             </span>
           
 
           
             
 
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-07-10 20:51:58" itemprop="dateModified" datetime="2019-07-10T20:51:58+08:00">2019-07-10</time>
-              </span>
             
           
 
@@ -435,8 +421,8 @@
                 </span>
             
                 <span class="post-meta-item-text">Comments: </span>
-                <a href="/2019/07/02/KBGAN-论文阅读笔记/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/07/02/KBGAN-论文阅读笔记/" itemprop="commentCount"></span>
+                <a href="/2019/07/24/移动轨迹去匿名化研究进展/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/07/24/移动轨迹去匿名化研究进展/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -475,41 +461,63 @@
       
 
       
-        <h2 id="1-特色"><a href="#1-特色" class="headerlink" title="1. 特色"></a>1. 特色</h2><ul>
-<li>首次尝试用对抗学习去生成有用的副样本来提升embedding效果</li>
-<li>对抗学习框架泛化能力强，适配很多KGE模型，不需要额外本体限制</li>
-<li>在三个常用的数据集上显示出一致性能</li>
-</ul>
-<h2 id="2-相关工作与模型构建"><a href="#2-相关工作与模型构建" class="headerlink" title="2. 相关工作与模型构建"></a>2. 相关工作与模型构建</h2><p>近年来很多KGE方法被提出来。RESCAL（2011）首先用矩阵分解来进行embedding，并使用双线性映射作为score function，TransE首先提出基于翻译模型的embedding方法，TransH，TransR，TransD对此进行了发展，从实体映射拓展为空间映射，DISTMULT（2015）用了对角矩阵简化了RESCAL，COMPLEX（2016）将前者带入复数域。</p>
-<p>其中有一些模型取得了很好的效果，MAINIFOLDE（2016）将三元组作为一个mainfold而不像原来那样作为point进行embed，HOLD（2016）将两个实体组合成一个三重实体的圆相关关系等等，但是这些方法用均匀采样去生成负样本。</p>
-<p>作者采用了独立于模型的框架，所有模型都可以合并入框架，具有很好的鲁棒性。本文提出的KBGAN损失函数为marginal loss function，带有softmax的KGE模型，其总架构为下：</p>
-<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703150923.png" alt></p>
-<p>论文使用 softmax 概率模型为生成器 G，通过概率分布进行采样；判别器部分 D 接收生成的负样本和 ground truth triple 并计算分数；G 通过梯度策略最小化生成的负三元组的分数，D 通过梯度下降最小化正样本和负样本的边缘损失</p>
-<p>首先本文列举了两种loss函数</p>
+        <p><strong>论文标题：De-anonymization of Mobility Trajectories: Dissecting the Gaps between Theory and Practice</strong></p>
+<p>本文探讨了移动轨迹去匿名化理论方法在实际数据集应用中的差距，并提出了四种能很好的解决实际数据集各种问题的算法。</p>
+<h2 id="Indroduction"><a href="#Indroduction" class="headerlink" title="Indroduction"></a>Indroduction</h2><p>通常来说，移动轨迹的匿名化数据集由ISP厂商提供，然而去匿名化算法可能将用户隐私暴露出来，因此研究如何去匿名化以及新的匿名化方法是很重要的。早起的研究使用的数据是生成数据，其形式单一且不能和实际贴切，所以本文建立了一个新的数据集，其数据由真实的网络数据而来，并且体量巨大。</p>
+<p>同时作者在真实数据集上使用7种经典的去匿名化算法进行攻击，发现这些算法在真实数据上并不work，其主要原因是1. ISP轨迹中有明显的时空不匹配2. GPS轨迹可能会有偏差，这些原因导致去匿名化工作富有挑战性。</p>
+<p>所以，作者提出了四种新算法， 空间匹配算法（SM），时间匹配算法（TM），基于高斯过程和马尔可夫的算法（GM）及其改进版本（GM-B）。这些算法对比以前算法，表现提高超过17%。</p>
+<p>文章亮点：</p>
 <ol>
-<li><strong>Margin loss Function</strong></li>
+<li>数据集    2. 新算法    3. 首次尝试将理论和实践结合（大雾）</li>
 </ol>
-<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703162624.png" alt></p>
+<h2 id="Related-Work"><a href="#Related-Work" class="headerlink" title="Related Work"></a>Related Work</h2><p>本节总结了以前去匿名化的七种算法并进行对比，并对以往的假数据和现在的真数据进行分析。</p>
+<p>其中，去匿名化的种类有：位置轨迹信息去匿名化和网络行为信息去匿名化。</p>
+<p><strong>位置信息去匿名化</strong>：</p>
+<p>算法有（对应下表）时间不匹配算法[28]，空间不匹配算法[23]，及其其他算法 [27],[32],[33] 。基于’encountering’事件的算法[8],[31], 但没有算法同时考虑时间和空间的不匹配。</p>
+<p><strong>网络行为信息去匿名化：</strong></p>
+<p>基于network dataset，其算法有[35],[20]等，这些算法需要用户的社交网络图作为额外信息。基于profile dataset，算法有[15],[16],[26]等。</p>
+<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190724010348.png" alt></p>
+<h3 id="Threat-Model"><a href="#Threat-Model" class="headerlink" title="Threat Model"></a>Threat Model</h3><p>本节着重讲解去匿名化算法攻击手段的及符号定义</p>
+<p><img src="/Users/ruisongzhou/Library/Application Support/typora-user-images/image-20190724010650553.png" alt="image-20190724010650553"></p>
+<p>对于攻击者拥有的信息。我们使用长度为T的vector$\boldsymbol{S}<em>{u}=\left(S</em>{u}(1), S<em>{u}(2), \ldots, S</em>{u}(T)\right)$去代替。代表时间$t$  (time shot)，用户$u$的位置信息。其中$S(t)=\emptyset$表示此时刻没有用户信息。并且用$\mathcal{S}=\left\{\boldsymbol{S}_{u} | u \in \boldsymbol{U}\right\}$代表所有用户信息。</p>
+<p><strong>攻击方法：</strong></p>
+<p>我们用score function $D$ 去量化攻击效果。对于用户u，攻击者需要从其掌握信息中寻找出该用户信息，因此$\boldsymbol{L}_{\sigma}(u)$越高越好。</p>
+<p>具体来说，我们用$R(u,D)$来表示$\boldsymbol{L}_{\sigma}(u)$的排名，其中用$h$ 表示排名的指标。所以攻击方法的性能度量可以表示为：</p>
+<script type="math/tex; mode=display">
+\Phi(\mathcal{S}, D)=\frac{1}{|\boldsymbol{U}|} \sum_{S_{u} \in \mathcal{S}} h(R(u, D))</script><p>目标函数为：</p>
+<script type="math/tex; mode=display">
+\arg \max _{D} \Phi(\mathcal{S}, D)</script><p>具体来说，<script type="math/tex">h</script>函数可以用一个广泛使用的评估函数top-k来表示：</p>
+<script type="math/tex; mode=display">
+h(x)=\left\{\begin{array}{ll}{\frac{k-(x-1)}{k},} & {\text { if } k \geq x \geq 1} \\ {0,} & {\text { if } x>k}\end{array}\right.</script><h2 id="经典算法表现"><a href="#经典算法表现" class="headerlink" title="经典算法表现"></a>经典算法表现</h2><p>首先介绍数据集（省略的一节，论文中有数据的详细处理）</p>
+<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190724012117.png" alt></p>
+<p><img src="/Users/ruisongzhou/Library/Application Support/typora-user-images/image-20190724012241381.png" alt="image-20190724012241381"></p>
+<p>我们用$T_p$表示一个用户的一条由随机的时空-位置点组成的轨迹，我们将匹配的轨迹定义为用户的匿名设置，用$A(T_p)$表示，用$|A(T_p)|$来表征用户的唯一性。如果$|A(T_p)|=1$说明匿名数据其只有一条轨迹。我们对数据集进行分析，即可得出理论分析的privacy bound</p>
+<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190724013230.png" alt></p>
+<p>现在我们对这七种算法进行分别介绍：</p>
+<h4 id="HMM"><a href="#HMM" class="headerlink" title="HMM"></a>HMM</h4><script type="math/tex; mode=display">
+D_{\mathrm{HMM}}=P\left(\boldsymbol{S}_{u} | T^{v}\right)=\sum_{\boldsymbol{Z}} \prod_{t \in \mathcal{T}} f(Z(t), S(t)) T_{Z(t-1), Z(t)}^{v}</script><p>其中Z是隐含变量，表示用户真实位置。</p>
+<h4 id="HIST"><a href="#HIST" class="headerlink" title="HIST"></a>HIST</h4><p>使用$\Gamma<em>{u}$来表示用户u的直方图统计，定义为$$\Gamma</em>{u}=\frac{1}{|\mathcal{T}|} \sum<em>{t \in \mathcal{T}} I\left(S</em>{u}(t)=r\right)$$ 。 </p>
+<p>其相似函数定义为：</p>
+<script type="math/tex; mode=display">
+D_{\mathrm{HIST}}=-D_{\mathrm{KL}}\left(\Gamma_{u} | \frac{\Gamma_{u}+\Gamma_{v}}{2}\right)-D_{\mathrm{KL}}\left(\Gamma_{v} | \frac{\Gamma_{u}+\Gamma_{v}}{2}\right)</script><h4 id="WYCI"><a href="#WYCI" class="headerlink" title="WYCI"></a>WYCI</h4><script type="math/tex; mode=display">
+P\left(r | \boldsymbol{L}_{v}\right)=\frac{n_{r}^{v}+\alpha}{\sum_{r \in \mathcal{R}} n_{r}^{v}+\alpha|\mathcal{R}|}</script><script type="math/tex; mode=display">
+D_{\mathrm{WYCI}}=\prod_{t \in \mathcal{T}, S(t) \neq \emptyset} P\left(S(t) | \boldsymbol{L}_{v}\right)</script><h4 id="ME"><a href="#ME" class="headerlink" title="ME"></a>ME</h4><script type="math/tex; mode=display">
+D_{\mathrm{ME}}=\sum_{t \in \mathcal{T}} I(S(t)=L(t))</script><h4 id="POIS"><a href="#POIS" class="headerlink" title="POIS"></a>POIS</h4><script type="math/tex; mode=display">
+D_{\mathrm{POIS}}\left(\boldsymbol{S}_{u}, \boldsymbol{L}_{v}\right)=\sum_{t \in \mathcal{T}} \sum_{r \in \mathcal{R}} \phi_{r, t}\left(S_{u}(t), L_{v}(t)\right)</script><h4 id="NFLX"><a href="#NFLX" class="headerlink" title="NFLX"></a>NFLX</h4><script type="math/tex; mode=display">
+D_{\mathrm{NFLX}}=\sum_{(r, t) : r=S_{u}(t)=L_{v}(t)} w_{r} * f_{r}\left(\boldsymbol{S}_{u}, \boldsymbol{L}_{v}\right)</script><script type="math/tex; mode=display">
+w_{r}=1 / \operatorname{In}\left(\sum_{v, t} L_{v}(t)=r\right)</script><script type="math/tex; mode=display">
+f_{r}\left(\boldsymbol{S}_{u}, \boldsymbol{L}_{v}\right)=e^{\frac{n_{r}^{v}}{n_{0}}}+e^{-\frac{1}{n_{r}^{v}} \sum_{t : S_{u}(t)=r} \min _{t^{\prime} : L_{v}\left(t^{\prime}\right)=r} \frac{\left|t-t^{\prime}\right|}{\tau_{0}}}</script><h4 id="MSQ"><a href="#MSQ" class="headerlink" title="MSQ"></a>MSQ</h4><script type="math/tex; mode=display">
+D_{\mathrm{MSQ}}=-\sum_{t \in \mathcal{T}}|L(t)-S(t)|^{2}</script><p>试验结果为：</p>
+<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190724014050.png" alt></p>
+<p><strong>原因分析:</strong></p>
 <ol>
-<li><strong>Log-softmax loss function</strong></li>
+<li><p>时空不匹配</p>
+<p>原因：GPS信号弱及其更新机制</p>
+</li>
+<li><p>数据稀疏</p>
+</li>
 </ol>
-<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703162748.png" alt></p>
-<p>其次分析了<strong>均匀负采样的缺陷</strong>：等概率替换会使容易区分的负样本对学习的贡献较小，会让模型学到一些简单的特征，而不是尽可能去理解语义，对此作者认为使用 log 损失函数从替换实体得到的所有负样本中筛选出更有用的负样本很有必要。</p>
-<p>受GAN的启发，作者使用基于softmax概率的KGE来产生高质量的负样本，使用margin loss损失函数。之所以使用softmax，是因为他能很好的表示离散GAN中“从概率分布中采样”过程，这样提升判别器的效果就能产生很多优秀的负样本。</p>
-<p>假设生成器得到的负样本的概率分布为：$p_G(h′,r,t′|h,r,t)$，得分函数为$f_D(h,r,t)$，那么loss可以写成：</p>
-<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703172418.png" alt></p>
-<p>生成器的目标是最大化负距离的期望为：<img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703172547.png" alt></p>
-<p>由于 RG 是一个离散采样步骤，所以得不到梯度，本文借鉴了其他论文提到的梯度策略理论获取梯度进行优化。</p>
-<p>这一部分论文把这个过程对标到强化学习，认为生成器是 agent，判别器是 environment， $(h, r, t)$ 是 state，负样本概率分布 PG 是 policy，$(h’, r, t’)$ 是 action，$-f_D(h’, r, t’)$ 是 reward，认为是 one-step RL 是在每个 epoch，actions 不会影响 state，但每个 action 后会重新从一个不相关的 state 开始；<br><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703172928.png" alt></p>
-<p>为减小算法方差而不引入新参数，作者从 reward 减掉一个任意数，这个任意数仅依赖于state，不影响梯度的分布。作者将$-f<em>D(h’, r, t’)$ 替换为<script type="math/tex">-f_D(h’, r, t’)-b(h,r,t)</script> ，b是一个常量，其中$$b=\sum</em>{(h,r,t)∈T}\mathbb{E}_{(h′,r,t′)∼p_G(h′,r,t′|h,r,t)}[−f_D(h′,r,t′)]$$ ，为了便于计算，b可以近似的表示为临近几个生成负样本的rewads的均值。</p>
-<p>概率分布的计算使用以下公式，$f_G(h, r, t$) 为生成器的 score function：</p>
-<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703174351.png" alt></p>
-<p><strong>算法伪代码如下：</strong></p>
-<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703173123.png" alt></p>
-<h2 id="试验结果："><a href="#试验结果：" class="headerlink" title="试验结果："></a>试验结果：</h2><p>论文选用的数据集有 FB15K-237, WN18, WN18RR，结果发现使用 DISMULT 或 COMPLEX 作为生成器都不会对性能有较大影响，且 TransD, TransE 在 KBGAN 中很明显优于它们的 baseline。</p>
-<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703174514.png" alt></p>
-<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703174543.png" alt></p>
-
+<h2 id="Our-Method"><a href="#Our-Method" class="headerlink" title="Our Method"></a>Our Method</h2>
       
     </div>
 
@@ -535,9 +543,9 @@
         
         <div class="post-tags">
           
-            <a href="/tags/Graph-Embedding/" rel="tag"># Graph Embedding</a>
+            <a href="/tags/Machine-Learning/" rel="tag"># Machine Learning</a>
           
-            <a href="/tags/GAN/" rel="tag"># GAN</a>
+            <a href="/tags/De-anonymization/" rel="tag"># De-anonymization</a>
           
         </div>
       
@@ -550,8 +558,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/07/02/经典Graph-Embedding-方法/" rel="next" title="经典Graph Embedding 方法">
-                <i class="fa fa-chevron-left"></i> 经典Graph Embedding 方法
+              <a href="/2019/07/18/基于知识图谱的问答应用分析/" rel="next" title="基于知识图谱的问答应用分析">
+                <i class="fa fa-chevron-left"></i> 基于知识图谱的问答应用分析
               </a>
             
           </div>
@@ -559,10 +567,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/07/05/ERNIE-Enhanced-Language-Representation-with-Informative-Entities论文阅读笔记/" rel="prev" title="ERNIE: Enhanced Language Representation with Informative Entities论文阅读笔记">
-                ERNIE: Enhanced Language Representation with Informative Entities论文阅读笔记 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -762,7 +766,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-特色"><span class="nav-number">1.</span> <span class="nav-text">1. 特色</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-相关工作与模型构建"><span class="nav-number">2.</span> <span class="nav-text">2. 相关工作与模型构建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#试验结果："><span class="nav-number">3.</span> <span class="nav-text">试验结果：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Indroduction"><span class="nav-number">1.</span> <span class="nav-text">Indroduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Related-Work"><span class="nav-number">2.</span> <span class="nav-text">Related Work</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Threat-Model"><span class="nav-number">2.1.</span> <span class="nav-text">Threat Model</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#经典算法表现"><span class="nav-number">3.</span> <span class="nav-text">经典算法表现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#HMM"><span class="nav-number">3.0.1.</span> <span class="nav-text">HMM</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HIST"><span class="nav-number">3.0.2.</span> <span class="nav-text">HIST</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#WYCI"><span class="nav-number">3.0.3.</span> <span class="nav-text">WYCI</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ME"><span class="nav-number">3.0.4.</span> <span class="nav-text">ME</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#POIS"><span class="nav-number">3.0.5.</span> <span class="nav-text">POIS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NFLX"><span class="nav-number">3.0.6.</span> <span class="nav-text">NFLX</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MSQ"><span class="nav-number">3.0.7.</span> <span class="nav-text">MSQ</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#Our-Method"><span class="nav-number">4.</span> <span class="nav-text">Our Method</span></a></li></div>
             
 
           </div>
@@ -952,9 +956,9 @@
 
 <script>
   var disqus_config = function() {
-    this.page.url = "http://yoursite.com/2019/07/02/KBGAN-论文阅读笔记/";
-    this.page.identifier = "2019/07/02/KBGAN-论文阅读笔记/";
-    this.page.title = 'KBGAN 论文阅读笔记';
+    this.page.url = "http://yoursite.com/2019/07/24/移动轨迹去匿名化研究进展/";
+    this.page.identifier = "2019/07/24/移动轨迹去匿名化研究进展/";
+    this.page.title = '移动轨迹去匿名化研究进展';
     };
   function loadComments() {
     var d = document, s = d.createElement('script');
@@ -985,9 +989,9 @@
       api: '' || 'https://disqus.com/api/',
       apikey: 'lCbSis1lxubhduhKpyjAUTnv3vv9jo2v3AuRh5wedToSWjGvHzJ0AfdGXFLl3j2Y',
       shortname: 'zhou_ruisong',
-      url: "http://yoursite.com/2019/07/02/KBGAN-论文阅读笔记/",
-      identifier: "2019/07/02/KBGAN-论文阅读笔记/",
-      title: 'KBGAN 论文阅读笔记',
+      url: "http://yoursite.com/2019/07/24/移动轨迹去匿名化研究进展/",
+      identifier: "2019/07/24/移动轨迹去匿名化研究进展/",
+      title: '移动轨迹去匿名化研究进展',
     });
   }
 
