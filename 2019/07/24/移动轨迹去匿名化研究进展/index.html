@@ -109,7 +109,11 @@
 <meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190724013230.png">
 <meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190724014050.png">
 <meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190725014247.png">
-<meta property="og:updated_time" content="2019-07-24T17:49:34.830Z">
+<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190725020651.png">
+<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190725020735.png">
+<meta property="og:image" content="http://yoursite.com/Users/ruisongzhou/Library/Application%20Support/typora-user-images/image-20190725021127398.png">
+<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190725021146.png">
+<meta property="og:updated_time" content="2019-07-24T18:13:39.506Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="移动轨迹去匿名化研究进展">
 <meta name="twitter:description" content="论文标题：De-anonymization of Mobility Trajectories: Dissecting the Gaps between Theory and Practice 论文地址：点击前往 本文探讨了移动轨迹去匿名化理论方法在实际数据集应用中的差距，并提出了四种能很好的解决实际数据集各种问题的算法。 Indroduction通常来说，移动轨迹的匿名化数据集由ISP厂商提供，然">
@@ -400,7 +404,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-07-25 01:49:34" itemprop="dateModified" datetime="2019-07-25T01:49:34+08:00">2019-07-25</time>
+                <time title="Modified: 2019-07-25 02:13:39" itemprop="dateModified" datetime="2019-07-25T02:13:39+08:00">2019-07-25</time>
               </span>
             
           
@@ -538,7 +542,37 @@ D_{\mathrm{GM}}(\boldsymbol{S}, \boldsymbol{L})=\log p(\boldsymbol{S} | \boldsym
 <script type="math/tex; mode=display">
 p(x)=\sum_{k=1}^{K} \pi(k) \mathcal{N}\left(x | u_{k}, \Sigma_{k}\right)</script><p>在模型中，<script type="math/tex">\mathcal{N}\left(x | u_{p}, \Sigma_{p}\right)</script>可以表示具有p个时间单位的时间不匹配的外部记录概率密度，因此对记录$S(t)$概率密度函数可表示为：</p>
 <script type="math/tex; mode=display">
-p(S(t) | \boldsymbol{L})=\sum_{p=-H_{l}}^{H_{u}} \pi(p) \cdot \mathcal{N}\left(S(t) | L(t-p), \sigma^{2}(p) I_{2}\right)</script>
+p(S(t) | \boldsymbol{L})=\sum_{p=-H_{l}}^{H_{u}} \pi(p) \cdot \mathcal{N}\left(S(t) | L(t-p), \sigma^{2}(p) I_{2}\right)</script><p>其中$\pi(p)$是p时刻时间不匹配的概率，而$\sigma(p)$是以p时间单位的时间不匹配为条件的空间不匹配的均方根。</p>
+<p>我们使用EM算法去计算π和$\sigma$的值。第E步计算：</p>
+<script type="math/tex; mode=display">
+\gamma\left(z_{n k}\right) :=P\left(z_{n k}=1\right)=\frac{\pi(k) \mathcal{N}\left(S_{n} | L_{n k}, \sigma^{2}(k) I_{2}\right)}{\sum_{j=-H_{l}}^{H_{u}} \pi(k) \mathcal{N}\left(S_{n} | L_{n j}, \sigma^{2}(j) I_{2}\right)}</script><p>第M步计算：</p>
+<script type="math/tex; mode=display">
+\left\{\begin{array}{l}{\pi(k)=\frac{1}{N} \sum_{n=1}^{N} \gamma\left(z_{n k}\right), \quad k=-H_{l}, \ldots, H_{u}} \\ {\sigma^{2}(k)=\frac{1}{2 N} \sum_{n=1}^{N} \gamma\left(z_{n k}\right)\left|S_{n}-L_{n k}\right|^{2}, \quad k=-H_{l}, \ldots, H_{u}}\end{array}\right.</script><p>其中，$z<em>{nk}$是表明被$L</em>{nk}$生成的$S_n$的潜在变量(corresponding  temporal  mismatch  is k time  units)</p>
+<h3 id="Marcov-Model"><a href="#Marcov-Model" class="headerlink" title="Marcov Model"></a>Marcov Model</h3><p>为了计算S(t)的PDF(概率密度函数)，建立模型：</p>
+<script type="math/tex; mode=display">
+p(\boldsymbol{S} | \boldsymbol{L})=\sum_{L_{C} \in \mathcal{C}(L)} p\left(\boldsymbol{L}_{C} | \boldsymbol{L}\right) \prod_{S(t) \neq \emptyset} p\left(S(t) | \boldsymbol{L}_{C}\right)</script><p>并分别建立了0阶和1阶的模型：</p>
+<h4 id="0-Order-Markov-Model"><a href="#0-Order-Markov-Model" class="headerlink" title="0-Order  Markov  Model"></a>0-Order  Markov  Model</h4><p>条件假设：每个时间点的位置信息相互独立</p>
+<p>用E(r)表示用户的边缘分布(margin distribution )，可写为：</p>
+<script type="math/tex; mode=display">
+E(r) :=p(L(t)=r)=\frac{\sum_{t \in \mathcal{T}} I(L(t)=r)+\alpha(r)}{\sum_{t \in \mathcal{T}} I(L(t) \neq \emptyset)+\sum_{r \in \mathcal{R}} \alpha(r)}</script><p>其中</p>
+<script type="math/tex; mode=display">
+\alpha(r)=\alpha_{0} \cdot \sum_{v \in \mathcal{V}} \sum_{t \in \mathcal{T}} I\left(L_{v}(T)=r\right)</script><p>与位置r的记录数成比例，以α0为参数，调整位置上下文的影响</p>
+<p>因此我们有：</p>
+<script type="math/tex; mode=display">
+p\left(\boldsymbol{L}_{\boldsymbol{C}} | \boldsymbol{L}\right)=\prod_{t \in \mathcal{T}, L(t)=\emptyset} E\left(L_{C}(t)\right)</script><h4 id="1-Order-Markov-Model"><a href="#1-Order-Markov-Model" class="headerlink" title="1-Order  Markov  Model"></a>1-Order  Markov  Model</h4><p>条件假设：每个时间点的位置信息仅与上个时间点位置有关</p>
+<p>因此我们可以构建转移矩阵：</p>
+<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190725020651.png" alt></p>
+<p>其中：</p>
+<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190725020735.png" alt></p>
+<h3 id="Spatial-Matching-Algorithm-SM"><a href="#Spatial-Matching-Algorithm-SM" class="headerlink" title="Spatial  Matching  Algorithm  (SM)"></a>Spatial  Matching  Algorithm  (SM)</h3><p>可表示为：</p>
+<script type="math/tex; mode=display">
+D_{\mathrm{SM}}(\boldsymbol{S}, \boldsymbol{L})=\log \prod_{S(t) \neq \emptyset} \frac{1}{2 \pi \sigma^{2}} \exp \left(-\frac{(S(t)-L(t))^{2}}{2 \sigma^{2}}\right)</script><h3 id="Temporal-Matching-Algorithm-TM"><a href="#Temporal-Matching-Algorithm-TM" class="headerlink" title="Temporal  Matching  Algorithm  (TM)"></a>Temporal  Matching  Algorithm  (TM)</h3><p>可表示为：</p>
+<script type="math/tex; mode=display">
+D_{\mathrm{TM}}(\boldsymbol{S}, \boldsymbol{L})=\sum_{S(t) \neq \emptyset} \pi\left(\arg \min _{p \in \mathcal{T}, S(t)=L(p)}|t-p|\right)</script><h2 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h2><p><img src="/Users/ruisongzhou/Library/Application Support/typora-user-images/image-20190725021127398.png" alt="image-20190725021127398"></p>
+<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190725021146.png" alt></p>
+<p><strong>局限性：</strong></p>
+<p>攻击者持有非ISP数据，所有模型展示的效果均为上限效果</p>
+
       
     </div>
 
@@ -787,7 +821,7 @@ p(S(t) | \boldsymbol{L})=\sum_{p=-H_{l}}^{H_{u}} \pi(p) \cdot \mathcal{N}\left(S
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Indroduction"><span class="nav-number">1.</span> <span class="nav-text">Indroduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Related-Work"><span class="nav-number">2.</span> <span class="nav-text">Related Work</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Threat-Model"><span class="nav-number">3.</span> <span class="nav-text">Threat Model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#经典算法表现"><span class="nav-number">4.</span> <span class="nav-text">经典算法表现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#HMM"><span class="nav-number">4.0.1.</span> <span class="nav-text">HMM</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HIST"><span class="nav-number">4.0.2.</span> <span class="nav-text">HIST</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#WYCI"><span class="nav-number">4.0.3.</span> <span class="nav-text">WYCI</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ME"><span class="nav-number">4.0.4.</span> <span class="nav-text">ME</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#POIS"><span class="nav-number">4.0.5.</span> <span class="nav-text">POIS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NFLX"><span class="nav-number">4.0.6.</span> <span class="nav-text">NFLX</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MSQ"><span class="nav-number">4.0.7.</span> <span class="nav-text">MSQ</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#Our-Method"><span class="nav-number">5.</span> <span class="nav-text">Our Method</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#GMM"><span class="nav-number">5.1.</span> <span class="nav-text">GMM</span></a></li></ol></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Indroduction"><span class="nav-number">1.</span> <span class="nav-text">Indroduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Related-Work"><span class="nav-number">2.</span> <span class="nav-text">Related Work</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Threat-Model"><span class="nav-number">3.</span> <span class="nav-text">Threat Model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#经典算法表现"><span class="nav-number">4.</span> <span class="nav-text">经典算法表现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#HMM"><span class="nav-number">4.0.1.</span> <span class="nav-text">HMM</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HIST"><span class="nav-number">4.0.2.</span> <span class="nav-text">HIST</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#WYCI"><span class="nav-number">4.0.3.</span> <span class="nav-text">WYCI</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ME"><span class="nav-number">4.0.4.</span> <span class="nav-text">ME</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#POIS"><span class="nav-number">4.0.5.</span> <span class="nav-text">POIS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NFLX"><span class="nav-number">4.0.6.</span> <span class="nav-text">NFLX</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MSQ"><span class="nav-number">4.0.7.</span> <span class="nav-text">MSQ</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#Our-Method"><span class="nav-number">5.</span> <span class="nav-text">Our Method</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#GMM"><span class="nav-number">5.1.</span> <span class="nav-text">GMM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Marcov-Model"><span class="nav-number">5.2.</span> <span class="nav-text">Marcov Model</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#0-Order-Markov-Model"><span class="nav-number">5.2.1.</span> <span class="nav-text">0-Order  Markov  Model</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Order-Markov-Model"><span class="nav-number">5.2.2.</span> <span class="nav-text">1-Order  Markov  Model</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spatial-Matching-Algorithm-SM"><span class="nav-number">5.3.</span> <span class="nav-text">Spatial  Matching  Algorithm  (SM)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Temporal-Matching-Algorithm-TM"><span class="nav-number">5.4.</span> <span class="nav-text">Temporal  Matching  Algorithm  (TM)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#效果"><span class="nav-number">6.</span> <span class="nav-text">效果</span></a></li></div>
             
 
           </div>
