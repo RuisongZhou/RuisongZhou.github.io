@@ -95,7 +95,7 @@
 
 
   <meta name="description" content="当前主流知识库中，知识被存储为$(h,r,t)$的三元组形式，其中 $h$ 表示头实体，$r$ 表示联系，$t$表示尾实体。知识表示学习的任务就是学习 $h,r,t$ 的分布式表示（也被叫做知识图谱的嵌入表示(embedding)）。 目前，知识表示学习方法从实现形式上可以分为两类：基于结构的方法和基于语义的方法。基于结构的嵌入表示方法包括TransE, TransH, TransR&amp;amp;CT">
-<meta name="keywords" content="知识图谱,NLP,Graph Embedding">
+<meta name="keywords" content="NLP,Graph Embedding,知识图谱">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Trans系列模型详解">
 <meta property="og:url" content="http://yoursite.com/2019/07/08/Trans系列模型详解/index.html">
@@ -109,7 +109,8 @@
 <meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190708154517.png">
 <meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190708160140.png">
 <meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190708161009.png">
-<meta property="og:updated_time" content="2019-07-08T14:07:06.247Z">
+<meta property="og:image" content="http://yoursite.com/Users/ruisongzhou/Library/Application%20Support/typora-user-images/image-20190812111304774.png">
+<meta property="og:updated_time" content="2019-08-12T06:39:34.017Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Trans系列模型详解">
 <meta name="twitter:description" content="当前主流知识库中，知识被存储为$(h,r,t)$的三元组形式，其中 $h$ 表示头实体，$r$ 表示联系，$t$表示尾实体。知识表示学习的任务就是学习 $h,r,t$ 的分布式表示（也被叫做知识图谱的嵌入表示(embedding)）。 目前，知识表示学习方法从实现形式上可以分为两类：基于结构的方法和基于语义的方法。基于结构的嵌入表示方法包括TransE, TransH, TransR&amp;amp;CT">
@@ -385,13 +386,23 @@
                 
               
 
-              <time title="Created: 2019-07-08 14:06:39 / Modified: 22:07:06" itemprop="dateCreated datePublished" datetime="2019-07-08T14:06:39+08:00">2019-07-08</time>
+              <time title="Created: 2019-07-08 14:06:39" itemprop="dateCreated datePublished" datetime="2019-07-08T14:06:39+08:00">2019-07-08</time>
             </span>
           
 
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-08-12 14:39:34" itemprop="dateModified" datetime="2019-08-12T14:39:34+08:00">2019-08-12</time>
+              </span>
             
           
 
@@ -546,6 +557,15 @@ f_{r}(\mathbf{h}, \mathbf{t})=-\left\|\mathbf{h}_{\perp}+\mathbf{r}-\mathbf{t}_{
 <script type="math/tex; mode=display">
 \begin{array}{l}{\text { TransH: } h_{\perp}=h-w_{r}^{T} h w_{r}} \\ {\text { TransD } : h_{\perp}=M_{r h} h=h+h_{p}^{T} h r_{p}}\end{array}</script><p>因为<script type="math/tex">r_{p} h_{p}^{T} h=h_{p}^{T} h r_{p}</script>  ，因此为便于格式上的对比，我们将TransD中的​ $\mathbf{h}_{\perp}$  写成上述形式。可见，当 $m=n$ 时，TransD与TransH唯一的区别在于TransD中的投影向量不仅与关系有关，还与实体有关。</p>
 <p>对比TransR模型，TransD为头实体和尾实体分别设置了投影矩阵，另外，注意到在TransD中公式经过展开之后没有矩阵-向量乘法操作，这相比于TransR模型降低了计算复杂度，更适用于大规模知识图谱的计算。</p>
+<h2 id="TransA：自适应度量函数"><a href="#TransA：自适应度量函数" class="headerlink" title="TransA：自适应度量函数"></a>TransA：自适应度量函数</h2><p>TransE本质上是欧式距离计算：公式为：</p>
+<script type="math/tex; mode=display">
+\begin{aligned} f_{r}(h, t) &=\|\mathbf{h}+\mathbf{r}-\mathbf{t}\|_{2}^{2} \\ &=(\mathbf{h}+\mathbf{r}-\mathbf{t})^{\top}(\mathbf{h}+\mathbf{r}-\mathbf{t}) \end{aligned}</script><p>对应图形是一个圆。本文提出了一种基于马氏距离的 TransA 模型，其 PCA 降维图形对应的是一个椭圆：</p>
+<p><img src="/Users/ruisongzhou/Library/Application Support/typora-user-images/image-20190812111304774.png" alt="image-20190812111304774"></p>
+<p>公式为：</p>
+<script type="math/tex; mode=display">
+f_{r}(h, t)=(|\mathbf{h}+\mathbf{r}-\mathbf{t}|)^{\top} \mathbf{W}_{\mathbf{r}}(|\mathbf{h}+\mathbf{r}-\mathbf{t}|)</script><p>对$W_r$使用LDL进行分解：</p>
+<script type="math/tex; mode=display">
+\begin{array}{c}{\mathbf{W}_{\mathbf{r}}=\mathbf{L}_{\mathbf{r}}^{\top} \mathbf{D}_{\mathbf{r}} \mathbf{L}_{\mathbf{r}}} \\ {f_{r}=\left(\mathbf{L}_{\mathbf{r}}|\mathbf{h}+\mathbf{r}-\mathbf{t}|\right)^{\top} \mathbf{D}_{\mathbf{r}}\left(\mathbf{L}_{\mathbf{r}}|\mathbf{h}+\mathbf{r}-\mathbf{t}|\right)}\end{array}</script><p>公式中$L<em>r$可以看作transformation matrix，将loss vector映射到另一个空间，<script type="math/tex">D_r</script>是对角矩阵$$<br>\mathbf{D}</em>{\mathbf{r}}=\operatorname{diag}\left(w<em>{1}, w</em>{2}, w_{3} \dots\right)$$，对角线上的元素表示不同维度上的权重。</p>
 
       
     </div>
@@ -572,11 +592,11 @@ f_{r}(\mathbf{h}, \mathbf{t})=-\left\|\mathbf{h}_{\perp}+\mathbf{r}-\mathbf{t}_{
         
         <div class="post-tags">
           
-            <a href="/tags/知识图谱/" rel="tag"># 知识图谱</a>
-          
             <a href="/tags/NLP/" rel="tag"># NLP</a>
           
             <a href="/tags/Graph-Embedding/" rel="tag"># Graph Embedding</a>
+          
+            <a href="/tags/知识图谱/" rel="tag"># 知识图谱</a>
           
         </div>
       
@@ -677,7 +697,7 @@ f_{r}(\mathbf{h}, \mathbf{t})=-\left\|\mathbf{h}_{\perp}+\mathbf{r}-\mathbf{t}_{
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-count">11</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -803,7 +823,7 @@ f_{r}(\mathbf{h}, \mathbf{t})=-\left\|\mathbf{h}_{\perp}+\mathbf{r}-\mathbf{t}_{
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Trans系列模型汇总"><span class="nav-number">1.</span> <span class="nav-text">Trans系列模型汇总</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TransE：多元数据嵌入"><span class="nav-number">2.</span> <span class="nav-text">TransE：多元数据嵌入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TransH-将知识嵌入到超平面"><span class="nav-number">3.</span> <span class="nav-text">TransH:将知识嵌入到超平面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TransR-amp-amp-CTransR-实体和关系分开嵌入"><span class="nav-number">4.</span> <span class="nav-text">TransR&amp;&amp;CTransR:实体和关系分开嵌入</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#TransR"><span class="nav-number">4.1.</span> <span class="nav-text">TransR</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CTransR"><span class="nav-number">4.2.</span> <span class="nav-text">CTransR</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TransD-通过动态映射矩阵嵌入"><span class="nav-number">5.</span> <span class="nav-text">TransD: 通过动态映射矩阵嵌入</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Trans系列模型汇总"><span class="nav-number">1.</span> <span class="nav-text">Trans系列模型汇总</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TransE：多元数据嵌入"><span class="nav-number">2.</span> <span class="nav-text">TransE：多元数据嵌入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TransH-将知识嵌入到超平面"><span class="nav-number">3.</span> <span class="nav-text">TransH:将知识嵌入到超平面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TransR-amp-amp-CTransR-实体和关系分开嵌入"><span class="nav-number">4.</span> <span class="nav-text">TransR&amp;&amp;CTransR:实体和关系分开嵌入</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#TransR"><span class="nav-number">4.1.</span> <span class="nav-text">TransR</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CTransR"><span class="nav-number">4.2.</span> <span class="nav-text">CTransR</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TransD-通过动态映射矩阵嵌入"><span class="nav-number">5.</span> <span class="nav-text">TransD: 通过动态映射矩阵嵌入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TransA：自适应度量函数"><span class="nav-number">6.</span> <span class="nav-text">TransA：自适应度量函数</span></a></li></ol></div>
             
 
           </div>
