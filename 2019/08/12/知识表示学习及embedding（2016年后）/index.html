@@ -102,7 +102,7 @@
 <meta property="og:site_name" content="周瑞松のblog">
 <meta property="og:description" content="本文旨在介绍TransD模型提出后，近年来新的基于结构的知识表示模型。 本文介绍模型论文：  TranSparse, AAAI2016, Knowledge graph completion with adaptive sparse transfer matrix  TransG, arXiv2015, A Generative Mixture Model for Knowledge Graph">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-08-12T08:00:12.609Z">
+<meta property="og:updated_time" content="2019-08-12T08:04:17.328Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="知识表示学习及embedding（2015年后）">
 <meta name="twitter:description" content="本文旨在介绍TransD模型提出后，近年来新的基于结构的知识表示模型。 本文介绍模型论文：  TranSparse, AAAI2016, Knowledge graph completion with adaptive sparse transfer matrix  TransG, arXiv2015, A Generative Mixture Model for Knowledge Graph">
@@ -377,7 +377,7 @@
                 
               
 
-              <time title="Created: 2019-08-12 11:26:09 / Modified: 16:00:12" itemprop="dateCreated datePublished" datetime="2019-08-12T11:26:09+08:00">2019-08-12</time>
+              <time title="Created: 2019-08-12 11:26:09 / Modified: 16:04:17" itemprop="dateCreated datePublished" datetime="2019-08-12T11:26:09+08:00">2019-08-12</time>
             </span>
           
 
@@ -478,10 +478,11 @@
 <p>与上述方法类似，不同点在于对于每个关系三元组(h,r,t)，头尾实体的映射矩阵为两个不同的稀疏矩阵，其稀疏程度与该关系的头尾实体的数目有关，即头/尾涉及到的实体越多，矩阵约稠密；反之涉及到的实体越少，矩阵越稀疏。</p>
 <p>设头实体和尾实体的投影矩阵为<script type="math/tex">\boldsymbol{M}_{r}^{h}\left(\theta_{r}^{h}\right)</script>和<script type="math/tex">\boldsymbol{M}_{r}^{t}\left(\theta_{r}^{t}\right)</script> , 稀疏度定义为：</p>
 <script type="math/tex; mode=display">
-\theta_{r}^{\prime}=1-\left(1-\theta_{\min }\right) N_{r}^{l} / N_{r}^{l}*</script><script type="math/tex; mode=display">N_r^{l}$$表示关系r在位置l连接的实体对数量(l可能是头实体或为实体)，$$N_{r}^{l}*$$表示$N_{r}^{l}$中最大的数，投影向量为：</script><p>\boldsymbol{l}<em>{h</em>{r}}=\boldsymbol{l}<em>{\boldsymbol{h}} \boldsymbol{M}</em>{r}\left(\theta<em>{r}^h\right) \\ l</em>{t<em>{r}}=l</em>{t} \boldsymbol{M}<em>{r}\left(\theta</em>{r}^t\right)</p>
+\theta_{r}^{\prime}=1-\left(1-\theta_{\min }\right) N_{r}^{l} / N_{r}^{l}*</script><p>其中<script type="math/tex">N_r^{l}</script>表示关系r在位置l连接的实体对数量(l可能是头实体或为实体)，<script type="math/tex">N_{r}^{l}*</script>表示$N_{r}^{l}$中最大的数，投影向量为：</p>
 <script type="math/tex; mode=display">
-得分函数为：</script><p>f<em>{r}(\mathbf{h}, \mathbf{t})=\left|\mathbf{h}</em>{p}+\mathbf{r}-\mathbf{t}<em>{p}\right|</em>{\ell_{1 / 2}}^{2}<br>$$</p>
-
+\boldsymbol{l}_{h_{r}}=\boldsymbol{l}_{\boldsymbol{h}} \boldsymbol{M}_{r}\left(\theta_{r}^h\right) \\ l_{t_{r}}=l_{t} \boldsymbol{M}_{r}\left(\theta_{r}^t\right)</script><p>得分函数为：</p>
+<script type="math/tex; mode=display">
+f_{r}(\mathbf{h}, \mathbf{t})=\left\|\mathbf{h}_{p}+\mathbf{r}-\mathbf{t}_{p}\right\|_{\ell_{1 / 2}}^{2}</script>
       
     </div>
 
