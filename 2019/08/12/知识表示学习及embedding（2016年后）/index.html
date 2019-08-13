@@ -94,19 +94,27 @@
 
 
 
-  <meta name="description" content="本文旨在介绍TransD模型提出后，近年来新的基于结构的知识表示模型。 本文介绍模型论文：  TranSparse, AAAI2016, Knowledge graph completion with adaptive sparse transfer matrix  TransG, arXiv2015, A Generative Mixture Model for Knowledge Graph">
-<meta name="keywords" content="知识图谱,NLP,Graph Embedding">
+  <meta name="description" content="本文旨在介绍TransD模型提出后，近年来新的基于结构的知识表示模型。 本文介绍模型论文：  TranSparse, AAAI2016, Knowledge graph completion with adaptive sparse transfer matrix TransG, arXiv2015, A Generative Mixture Model for Knowledge Graph E">
+<meta name="keywords" content="NLP,Graph Embedding,知识图谱">
 <meta property="og:type" content="article">
 <meta property="og:title" content="知识表示学习及embedding（2015年后）">
 <meta property="og:url" content="http://yoursite.com/2019/08/12/知识表示学习及embedding（2016年后）/index.html">
 <meta property="og:site_name" content="周瑞松のblog">
-<meta property="og:description" content="本文旨在介绍TransD模型提出后，近年来新的基于结构的知识表示模型。 本文介绍模型论文：  TranSparse, AAAI2016, Knowledge graph completion with adaptive sparse transfer matrix  TransG, arXiv2015, A Generative Mixture Model for Knowledge Graph">
+<meta property="og:description" content="本文旨在介绍TransD模型提出后，近年来新的基于结构的知识表示模型。 本文介绍模型论文：  TranSparse, AAAI2016, Knowledge graph completion with adaptive sparse transfer matrix TransG, arXiv2015, A Generative Mixture Model for Knowledge Graph E">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190812195840.png">
-<meta property="og:updated_time" content="2019-08-12T17:02:40.430Z">
+<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190813011008.png">
+<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190813105417.png">
+<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190813110715.png">
+<meta property="og:image" content="http://yoursite.com/Users/ruisongzhou/Library/Application%20Support/typora-user-images/image-20190813110746918.png">
+<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190813110742.png">
+<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190813161118.png">
+<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190813164048.png">
+<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190813164447.png">
+<meta property="og:updated_time" content="2019-08-13T08:44:50.643Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="知识表示学习及embedding（2015年后）">
-<meta name="twitter:description" content="本文旨在介绍TransD模型提出后，近年来新的基于结构的知识表示模型。 本文介绍模型论文：  TranSparse, AAAI2016, Knowledge graph completion with adaptive sparse transfer matrix  TransG, arXiv2015, A Generative Mixture Model for Knowledge Graph">
+<meta name="twitter:description" content="本文旨在介绍TransD模型提出后，近年来新的基于结构的知识表示模型。 本文介绍模型论文：  TranSparse, AAAI2016, Knowledge graph completion with adaptive sparse transfer matrix TransG, arXiv2015, A Generative Mixture Model for Knowledge Graph E">
 <meta name="twitter:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190812195840.png">
 
 
@@ -394,7 +402,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-08-13 01:02:40" itemprop="dateModified" datetime="2019-08-13T01:02:40+08:00">2019-08-13</time>
+                <time title="Modified: 2019-08-13 16:44:50" itemprop="dateModified" datetime="2019-08-13T16:44:50+08:00">2019-08-13</time>
               </span>
             
           
@@ -469,12 +477,10 @@
         <p>本文旨在介绍TransD模型提出后，近年来新的基于结构的知识表示模型。</p>
 <p>本文介绍模型论文：</p>
 <ul>
-<li><p>TranSparse, AAAI2016, Knowledge graph completion with adaptive sparse transfer matrix</p>
-</li>
-<li><p>TransG, arXiv2015, A Generative Mixture Model for Knowledge Graph Embedding</p>
-</li>
-<li><p>KG2E, CIKM2015, Learning to represent knowledge graphs with gaussian embedding</p>
-</li>
+<li>TranSparse, AAAI2016, Knowledge graph completion with adaptive sparse transfer matrix</li>
+<li>TransG, arXiv2015, A Generative Mixture Model for Knowledge Graph Embedding</li>
+<li>KG2E, CIKM2015, Learning to represent knowledge graphs with gaussian embedding</li>
+<li>ConvE, AAAI2018, Convolutional 2D Knowledge Graph Embeddings</li>
 </ul>
 <h2 id="TranSparse-自适应稀疏转换矩阵"><a href="#TranSparse-自适应稀疏转换矩阵" class="headerlink" title="TranSparse:自适应稀疏转换矩阵"></a>TranSparse:自适应稀疏转换矩阵</h2><p>知识库中实体和关系的异质性和不平衡性是制约知识表示学习的关键：</p>
 <p>1）异质性：知识库中某些关系可能会与大量的实体有连接，而某些关系则可能仅仅与少量实体有关系</p>
@@ -495,7 +501,44 @@
 \boldsymbol{l}_{h_{r}}=\boldsymbol{l}_{\boldsymbol{h}} \boldsymbol{M}_{r}\left(\theta_{r}^h\right) \\ l_{t_{r}}=l_{t} \boldsymbol{M}_{r}\left(\theta_{r}^t\right)</script><p>得分函数为：</p>
 <script type="math/tex; mode=display">
 f_{r}(\mathbf{h}, \mathbf{t})=\left\|\mathbf{h}_{p}+\mathbf{r}-\mathbf{t}_{p}\right\|_{\ell_{1 / 2}}^{2}</script><p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190812195840.png" alt></p>
-<h2 id="TransG：-高斯混合模型"><a href="#TransG：-高斯混合模型" class="headerlink" title="TransG： 高斯混合模型"></a>TransG： 高斯混合模型</h2>
+<h2 id="TransG：-高斯混合模型"><a href="#TransG：-高斯混合模型" class="headerlink" title="TransG： 高斯混合模型"></a>TransG： 高斯混合模型</h2><p>解决多关系语义的问题，同一种关系在语义上是不同的，TransG提出使用高斯混合模型描述头，尾之间的关系，该模型认为，一个关系会对应多种语意，每种语义用一个高斯分布刻画：</p>
+<script type="math/tex; mode=display">
+\boldsymbol{l}_{t}-\boldsymbol{l}_{h} | \boldsymbol{l}_{r} \sim \sum_{m=1}^{m} \pi_{r, m} N\left(\boldsymbol{\mu}_{r, m}, \boldsymbol{I}\right)</script><p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190813011008.png" alt></p>
+<p>训练方法为：</p>
+<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190813105417.png" alt></p>
+<p>其中$u_h$和$u_t$为头部和尾部实体的平均embedding，CRP为狄利克雷过程，它能自动检测语义成分。</p>
+<script type="math/tex; mode=display">
+\begin{aligned} \mathbb{P}\{(h, r, t)\} & \propto \sum_{m=1}^{M_{r}} \pi_{r, m} \mathbb{P}\left(\mathbf{u}_{\mathbf{r}, \mathbf{m}} | h, t\right)=\sum_{m=1}^{M_{r}} \pi_{r, m} e^{-\frac{\left\|\mathbf{u}_{\mathbf{h}}+\mathbf{u}_{\mathbf{r}, \mathbf{m}}-\mathbf{u}_{\mathbf{t}}\right\|_{2}^{2}}{\sigma_{h}^{2}+\sigma_{t}^{2}}} \end{aligned}</script><p>训练过程：</p>
+<ol>
+<li>更新非参数项</li>
+</ol>
+<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190813110715.png" alt></p>
+<ol>
+<li>嵌入模型的目标函数</li>
+</ol>
+<p><img src="/Users/ruisongzhou/Library/Application Support/typora-user-images/image-20190813110746918.png" alt="image-20190813110746918"></p>
+<ol>
+<li>满足此条件时更新参数</li>
+</ol>
+<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190813110742.png" alt></p>
+<h2 id="ConvE：多层卷积神经网络"><a href="#ConvE：多层卷积神经网络" class="headerlink" title="ConvE：多层卷积神经网络"></a>ConvE：多层卷积神经网络</h2><p>这是一篇关于KG链接预测（Link prediction）的文章，提出了一种多层卷积神经网络模型ConvE，主要优点就是参数利用率高（相同表现下参数是DistMult的8分之一，R-GCN的17分之一），擅长对在复杂KG中常见的高入度结点建模以及利用1-N score来加速训练和极大加速测试过程。</p>
+<p>这类模型包括encoding component和scoring component，前者负责把两个实体$s, o \in \varepsilon$encode成embedding <script type="math/tex">e_{s}, e_{o} \in R^{k}</script>， 后者则负责给三元组打分<script type="math/tex">\psi(s, r, o)=\psi_{r}\left(e_{s}, e_{o}\right) \in R</script> ,下表是不同的sorcing function：</p>
+<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190813161118.png" alt></p>
+<p>ConvE中，得分函数为：</p>
+<script type="math/tex; mode=display">
+\psi_{r}\left(\mathbf{e}_{s}, \mathbf{e}_{o}\right)=f\left(\operatorname{vec}\left(f\left(\left[\overline{\mathbf{e}_{s}} ; \overline{\mathbf{r}}_{r}\right] * \omega\right)\right) \mathbf{W}\right) \mathbf{e}_{o}</script><p>其中$r_{r} \in R^{k}$是依赖于r的relation parameter，带上划线的e则是各自embedding的2D reshaping版本，feed-forward的具体流程就是</p>
+<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190813164048.png" alt></p>
+<ol>
+<li>经过look-up embedding分别获得relation和entity的embedding，然后reshape成2D stack起来</li>
+<li>用c个filter对stack后的矩阵进行卷积操作，生成一个feature map tensor $\mathcal{T} \in \mathbb{R}^{c \times m \times n}$</li>
+<li>把$\mathcal{T}$ 维reshape成一个向量<script type="math/tex">\operatorname{vec}(\tau) \in R^{\mathrm{cmn}}</script>，然后经过FC层$W \in R^{c m n \times k}$投射进k维空间</li>
+<li>最后与目标实体embedding相乘获得相应score</li>
+</ol>
+<p>ConvE中的loss function是一个经典cross-entropy loss</p>
+<script type="math/tex; mode=display">
+\mathcal{L}(p, t)=-\frac{1}{N} \sum_{i}\left(t_{i} \cdot \log \left(p_{i}\right)+\left(1-t_{i}\right) \cdot \log \left(1-p_{i}\right)\right)</script><p>试验结果：</p>
+<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190813164447.png" alt></p>
+
       
     </div>
 
@@ -521,11 +564,11 @@ f_{r}(\mathbf{h}, \mathbf{t})=\left\|\mathbf{h}_{p}+\mathbf{r}-\mathbf{t}_{p}\ri
         
         <div class="post-tags">
           
-            <a href="/tags/知识图谱/" rel="tag"># 知识图谱</a>
-          
             <a href="/tags/NLP/" rel="tag"># NLP</a>
           
             <a href="/tags/Graph-Embedding/" rel="tag"># Graph Embedding</a>
+          
+            <a href="/tags/知识图谱/" rel="tag"># 知识图谱</a>
           
         </div>
       
@@ -748,7 +791,7 @@ f_{r}(\mathbf{h}, \mathbf{t})=\left\|\mathbf{h}_{p}+\mathbf{r}-\mathbf{t}_{p}\ri
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#TranSparse-自适应稀疏转换矩阵"><span class="nav-number">1.</span> <span class="nav-text">TranSparse:自适应稀疏转换矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TransG：-高斯混合模型"><span class="nav-number">2.</span> <span class="nav-text">TransG： 高斯混合模型</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#TranSparse-自适应稀疏转换矩阵"><span class="nav-number">1.</span> <span class="nav-text">TranSparse:自适应稀疏转换矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TransG：-高斯混合模型"><span class="nav-number">2.</span> <span class="nav-text">TransG： 高斯混合模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ConvE：多层卷积神经网络"><span class="nav-number">3.</span> <span class="nav-text">ConvE：多层卷积神经网络</span></a></li></ol></div>
             
 
           </div>
