@@ -95,7 +95,7 @@
 
 
   <meta name="description" content="本文旨在介绍TransD模型提出后，近年来新的基于结构的知识表示模型。 本文介绍模型论文：  TranSparse, AAAI2016, Knowledge graph completion with adaptive sparse transfer matrix TransG, arXiv2015, A Generative Mixture Model for Knowledge Graph E">
-<meta name="keywords" content="NLP,Graph Embedding,知识图谱">
+<meta name="keywords" content="知识图谱,NLP,Graph Embedding">
 <meta property="og:type" content="article">
 <meta property="og:title" content="知识表示学习及embedding（2015年后）">
 <meta property="og:url" content="http://yoursite.com/2019/08/12/知识表示学习及embedding（2016年后）/index.html">
@@ -111,7 +111,10 @@
 <meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190813161118.png">
 <meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190813164048.png">
 <meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190813164447.png">
-<meta property="og:updated_time" content="2019-08-13T08:44:50.643Z">
+<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190814152856.png">
+<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190814155344.png">
+<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190814160759.png">
+<meta property="og:updated_time" content="2019-08-14T08:08:05.237Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="知识表示学习及embedding（2015年后）">
 <meta name="twitter:description" content="本文旨在介绍TransD模型提出后，近年来新的基于结构的知识表示模型。 本文介绍模型论文：  TranSparse, AAAI2016, Knowledge graph completion with adaptive sparse transfer matrix TransG, arXiv2015, A Generative Mixture Model for Knowledge Graph E">
@@ -402,7 +405,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-08-13 16:44:50" itemprop="dateModified" datetime="2019-08-13T16:44:50+08:00">2019-08-13</time>
+                <time title="Modified: 2019-08-14 16:08:05" itemprop="dateModified" datetime="2019-08-14T16:08:05+08:00">2019-08-14</time>
               </span>
             
           
@@ -538,6 +541,38 @@ f_{r}(\mathbf{h}, \mathbf{t})=\left\|\mathbf{h}_{p}+\mathbf{r}-\mathbf{t}_{p}\ri
 <script type="math/tex; mode=display">
 \mathcal{L}(p, t)=-\frac{1}{N} \sum_{i}\left(t_{i} \cdot \log \left(p_{i}\right)+\left(1-t_{i}\right) \cdot \log \left(1-p_{i}\right)\right)</script><p>试验结果：</p>
 <p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190813164447.png" alt></p>
+<h2 id="RotatE-将关系看作头实体到尾实体旋转"><a href="#RotatE-将关系看作头实体到尾实体旋转" class="headerlink" title="RotatE: 将关系看作头实体到尾实体旋转"></a>RotatE: 将关系看作头实体到尾实体旋转</h2><p>目前的KG知识表示中，现有模型都不能建模和推断关系的<strong>对称/非对称、倒置和组合(symmetry/antisymmetry,inversion, andcomposition)</strong>，因此本文提出了一种新的模型，通过欧拉定理$e^{i \theta}=\cos \theta+i \sin \theta$来将实体和关系映射到复杂向量空间，并将每个关系定义为从源实体到目标实体的旋转。</p>
+<p>给定三元组(h,r,t)，以往采用的结构表示是t = h+r， 本文则是<script type="math/tex">t=h \circ r</script>， 其中$\circ$表示Hadamard product（内积），这样我们就可以通过简单的乘法来对三种关系进行建模。</p>
+<p><strong>关系模式的建模和推断：</strong></p>
+<ul>
+<li>定义1. 对称(非对称) ：$\text { if } \forall \mathrm{x}, \mathrm{y}$</li>
+</ul>
+<script type="math/tex; mode=display">
+\mathbf{r}(\mathbf{x}, \mathbf{y}) \Rightarrow \mathbf{r}(\mathbf{y}, \mathbf{x})(\mathbf{r}(\mathbf{x}, \mathbf{y}) \Rightarrow \neg \mathbf{r}(\mathbf{y}, \mathbf{x}))</script><ul>
+<li>定义2. 关系r1是关系r2的反转：$\text { if } \forall \mathrm{x}, \mathrm{y}$</li>
+</ul>
+<script type="math/tex; mode=display">
+\mathbf{r}_{2}(\mathbf{x}, \mathbf{y}) \Rightarrow \mathbf{r}_{1}(\mathbf{y}, \mathbf{x})</script><ul>
+<li>定义3. 关系r1是关系r2和r3的组合：$\text { if } \forall \mathrm{x}, \mathrm{y}$</li>
+</ul>
+<script type="math/tex; mode=display">
+\mathbf{r}_{2}(\mathbf{x}, \mathbf{y}) \wedge \mathbf{r}_{3}(\mathbf{y}, \mathbf{z}) \Rightarrow \mathbf{r}_{1}(\mathbf{x}, \mathbf{z})</script><p>通过对关系的关系，我们对以往模型进行分析，可以发现没有模型能兼顾所有类型关系：</p>
+<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190814152856.png" alt></p>
+<p><strong>RotatE模型</strong></p>
+<p>本文定义r和h，t的关系为:</p>
+<script type="math/tex; mode=display">
+\mathbf{t}=\mathbf{h} \circ \mathbf{r}, \quad \text { where }\left|r_{i}\right|=1 \\ 
+d_{r}(\mathbf{h}, \mathbf{t})=\|\mathbf{h} \circ \mathbf{r}-\mathbf{t}\|</script><p>在TransE中，任何对称关系将由<strong>0</strong>转换向量表示，导致具有对称关系的实体在嵌入空间中彼此接近，RotatE解决了这一问题</p>
+<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190814155344.png" alt></p>
+<p><strong>优化</strong></p>
+<p>loss函数为：</p>
+<script type="math/tex; mode=display">
+L=-\log \sigma\left(\gamma-d_{r}(\mathbf{h}, \mathbf{t})\right)-\sum_{i=1}^{n} \frac{1}{k} \log \sigma\left(d_{r}\left(\mathbf{h}_{i}^{\prime}, \mathbf{t}_{i}^{\prime}\right)-\gamma\right)</script><p>同时本文提出了一种新的负样本提出方式，原来的负样本采样是随机采样。许多样本在训练过程中明显是错误的，作者提出了一种称为自对抗负样本采样方法，根据当前的embedding模型对负样本采样，其中采取负样本遵循分布：</p>
+<script type="math/tex; mode=display">
+p\left(h_{j}^{\prime}, r, t_{j}^{\prime} |\left\{\left(h_{i}, r_{i}, t_{i}\right)\right\}\right)=\frac{\exp \alpha f_{r}\left(\mathbf{h}_{j}^{\prime}, \mathbf{t}_{j}^{\prime}\right)}{\sum_{i} \exp \alpha f_{r}\left(\mathbf{h}_{i}^{\prime}, \mathbf{t}_{i}^{\prime}\right)}</script><p>其中$\alpha$是temperature of sampling，由于采样方法太过复杂，应用时我们将上述概率视为负样本的权重，此时负样本loss写为：</p>
+<script type="math/tex; mode=display">
+L=-\log \sigma\left(\gamma-d_{r}(\mathbf{h}, \mathbf{t})\right)-\sum_{i=1}^{n} p\left(h_{i}^{\prime}, r, t_{i}^{\prime}\right) \log \sigma\left(d_{r}\left(\mathbf{h}_{i}^{\prime}, \mathbf{t}_{i}^{\prime}\right)-\gamma\right)</script><p><strong>试验结果</strong></p>
+<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190814160759.png" alt></p>
 
       
     </div>
@@ -564,11 +599,11 @@ f_{r}(\mathbf{h}, \mathbf{t})=\left\|\mathbf{h}_{p}+\mathbf{r}-\mathbf{t}_{p}\ri
         
         <div class="post-tags">
           
+            <a href="/tags/知识图谱/" rel="tag"># 知识图谱</a>
+          
             <a href="/tags/NLP/" rel="tag"># NLP</a>
           
             <a href="/tags/Graph-Embedding/" rel="tag"># Graph Embedding</a>
-          
-            <a href="/tags/知识图谱/" rel="tag"># 知识图谱</a>
           
         </div>
       
@@ -791,7 +826,7 @@ f_{r}(\mathbf{h}, \mathbf{t})=\left\|\mathbf{h}_{p}+\mathbf{r}-\mathbf{t}_{p}\ri
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#TranSparse-自适应稀疏转换矩阵"><span class="nav-number">1.</span> <span class="nav-text">TranSparse:自适应稀疏转换矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TransG：-高斯混合模型"><span class="nav-number">2.</span> <span class="nav-text">TransG： 高斯混合模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ConvE：多层卷积神经网络"><span class="nav-number">3.</span> <span class="nav-text">ConvE：多层卷积神经网络</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#TranSparse-自适应稀疏转换矩阵"><span class="nav-number">1.</span> <span class="nav-text">TranSparse:自适应稀疏转换矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TransG：-高斯混合模型"><span class="nav-number">2.</span> <span class="nav-text">TransG： 高斯混合模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ConvE：多层卷积神经网络"><span class="nav-number">3.</span> <span class="nav-text">ConvE：多层卷积神经网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RotatE-将关系看作头实体到尾实体旋转"><span class="nav-number">4.</span> <span class="nav-text">RotatE: 将关系看作头实体到尾实体旋转</span></a></li></ol></div>
             
 
           </div>
