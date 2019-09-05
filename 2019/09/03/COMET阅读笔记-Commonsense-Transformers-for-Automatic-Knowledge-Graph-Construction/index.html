@@ -106,7 +106,7 @@
 <meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190903175656.png">
 <meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190903180206.png">
 <meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190904143423.png">
-<meta property="og:updated_time" content="2019-09-05T11:21:37.584Z">
+<meta property="og:updated_time" content="2019-09-05T11:31:12.419Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="COMET阅读笔记|Commonsense Transformers for Automatic Knowledge Graph Construction">
 <meta name="twitter:description" content="Introduction本文是Allen实验室发表在ACL2019的一篇关于自动常识知识库构建的文章。作者提出了Commonsense Transformers（COMET）生成模型，主体框架是Transformer语言模型，在ATOMIC和ConceptNet知识库中选取种子知识训练集进行预训练，使得模型可以自动构建常识知识库。Allen实验室也提供了Demo和Code，Demo挺有意思的，输入">
@@ -397,7 +397,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-09-05 19:21:37" itemprop="dateModified" datetime="2019-09-05T19:21:37+08:00">2019-09-05</time>
+                <time title="Modified: 2019-09-05 19:31:12" itemprop="dateModified" datetime="2019-09-05T19:31:12+08:00">2019-09-05</time>
               </span>
             
           
@@ -481,7 +481,7 @@
 <h2 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h2><p><strong>任务定义</strong></p>
 <p>训练样例<script type="math/tex">{s,r,o}</script>，s是三元组的头实体，r是实体间的关系，o是尾实体。</p>
 <p>例如ConceptNet中：(s=“take a nap”, r=Causes, o=“have energy”)。</p>
-<p>定义<script type="math/tex">X^{s}=\left\{x_{0}^{s}, \dots, x_{|s|}^{s}\right\}</script> 为头实体集合，同理 <script type="math/tex">X^{r}=\left\{x_{0}^{r}, \ldots, x_{|r|}^{r}\right\}</script> 为集合的tuple， 并且$X^{o}=\left\{x<em>{0}^{o}, \ldots, x</em>{|o|}^{o}\right\}$ 为尾实体tuple</p>
+<p>定义 <script type="math/tex">X^{s}=\left\{x_{0}^{s}, \dots, x_{|s|}^{s}\right\}</script>  为头实体集合，同理 <script type="math/tex">X^{r}=\left\{x_{0}^{r}, \dots, x_{|r|}^{r}\right\}</script> 为集合的tuple， 并且<script type="math/tex">X^{o}=\left\{x_{0}^{o}, \ldots, x_{|o|}^{o}\right\}</script> 为尾实体tuple</p>
 <p><strong>Transformer语言模型</strong></p>
 <p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190903174026.png" alt></p>
 <p>模型基于GPT生成式Transformer， 对于每一层，有：</p>
