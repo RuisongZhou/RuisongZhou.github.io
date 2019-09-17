@@ -94,19 +94,19 @@
 
 
 
-  <meta name="description" content="在《Linux初步》这门课上，我们实现了从内核出发，定制自己的Linux系统。要了解Linux，让我们从开机说起。  本文使用的操作系统  1. 启动流程​        以个人计算机为例，当按下开机键时，计算机硬件会读取BIOS来加载硬件信息及进行硬件系统的自我测试，之后系统会主动读取第一个可启动设备，此时就可以读入引导装载程序了。 ​        引导装载程序可以指定使用哪个内核文件来启动，">
+  <meta name="description" content="在上一片博文中，我们知道操作系统的启动流程为：  所以启动Linux时有两种启动办法：  加载bios 的硬件信息-&amp;gt; 读取MBR –&amp;gt;执行Grub -&amp;gt;加载kernel–&amp;gt; 加载驱动–&amp;gt; init –&amp;gt; 执行bash 加载bios 的硬件信息-&amp;gt; 读取MBR –&amp;gt;执行Grub -&amp;gt;加载kernel–&amp;gt; 加载驱动–&amp;gt; init –&amp;">
 <meta name="keywords" content="Linux,operation system">
 <meta property="og:type" content="article">
-<meta property="og:title" content="认识Linux系统的启动">
-<meta property="og:url" content="http://yoursite.com/2019/09/09/定制自己的Linux系统/index.html">
+<meta property="og:title" content="定制外围Linux操作系统">
+<meta property="og:url" content="http://yoursite.com/2019/09/17/定制外围Linux操作系统/index.html">
 <meta property="og:site_name" content="周瑞松のblog">
-<meta property="og:description" content="在《Linux初步》这门课上，我们实现了从内核出发，定制自己的Linux系统。要了解Linux，让我们从开机说起。  本文使用的操作系统  1. 启动流程​        以个人计算机为例，当按下开机键时，计算机硬件会读取BIOS来加载硬件信息及进行硬件系统的自我测试，之后系统会主动读取第一个可启动设备，此时就可以读入引导装载程序了。 ​        引导装载程序可以指定使用哪个内核文件来启动，">
+<meta property="og:description" content="在上一片博文中，我们知道操作系统的启动流程为：  所以启动Linux时有两种启动办法：  加载bios 的硬件信息-&amp;gt; 读取MBR –&amp;gt;执行Grub -&amp;gt;加载kernel–&amp;gt; 加载驱动–&amp;gt; init –&amp;gt; 执行bash 加载bios 的硬件信息-&amp;gt; 读取MBR –&amp;gt;执行Grub -&amp;gt;加载kernel–&amp;gt; 加载驱动–&amp;gt; init –&amp;">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190910090235.png">
-<meta property="og:updated_time" content="2019-09-10T01:02:51.892Z">
+<meta property="og:updated_time" content="2019-09-17T03:43:42.226Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="认识Linux系统的启动">
-<meta name="twitter:description" content="在《Linux初步》这门课上，我们实现了从内核出发，定制自己的Linux系统。要了解Linux，让我们从开机说起。  本文使用的操作系统  1. 启动流程​        以个人计算机为例，当按下开机键时，计算机硬件会读取BIOS来加载硬件信息及进行硬件系统的自我测试，之后系统会主动读取第一个可启动设备，此时就可以读入引导装载程序了。 ​        引导装载程序可以指定使用哪个内核文件来启动，">
+<meta name="twitter:title" content="定制外围Linux操作系统">
+<meta name="twitter:description" content="在上一片博文中，我们知道操作系统的启动流程为：  所以启动Linux时有两种启动办法：  加载bios 的硬件信息-&amp;gt; 读取MBR –&amp;gt;执行Grub -&amp;gt;加载kernel–&amp;gt; 加载驱动–&amp;gt; init –&amp;gt; 执行bash 加载bios 的硬件信息-&amp;gt; 读取MBR –&amp;gt;执行Grub -&amp;gt;加载kernel–&amp;gt; 加载驱动–&amp;gt; init –&amp;">
 <meta name="twitter:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190910090235.png">
 
 
@@ -115,7 +115,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/2019/09/09/定制自己的Linux系统/">
+  <link rel="canonical" href="http://yoursite.com/2019/09/17/定制外围Linux操作系统/">
 
 
 
@@ -125,7 +125,7 @@
   };
 </script>
 
-  <title>认识Linux系统的启动 | 周瑞松のblog</title>
+  <title>定制外围Linux操作系统 | 周瑞松のblog</title>
   
 
 
@@ -336,7 +336,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/09/定制自己的Linux系统/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/17/定制外围Linux操作系统/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="RuisongZhou">
@@ -353,7 +353,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">认识Linux系统的启动
+          <h1 class="post-title" itemprop="name headline">定制外围Linux操作系统
 
               
             
@@ -379,23 +379,13 @@
                 
               
 
-              <time title="Created: 2019-09-09 08:55:17" itemprop="dateCreated datePublished" datetime="2019-09-09T08:55:17+08:00">2019-09-09</time>
+              <time title="Created: 2019-09-17 10:15:16 / Modified: 11:43:42" itemprop="dateCreated datePublished" datetime="2019-09-17T10:15:16+08:00">2019-09-17</time>
             </span>
           
 
           
             
 
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-09-10 09:02:51" itemprop="dateModified" datetime="2019-09-10T09:02:51+08:00">2019-09-10</time>
-              </span>
             
           
 
@@ -426,8 +416,8 @@
                 </span>
             
                 <span class="post-meta-item-text">Comments: </span>
-                <a href="/2019/09/09/定制自己的Linux系统/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/09/09/定制自己的Linux系统/" itemprop="commentCount"></span>
+                <a href="/2019/09/17/定制外围Linux操作系统/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/09/17/定制外围Linux操作系统/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -466,53 +456,28 @@
       
 
       
-        <p>在《Linux初步》这门课上，我们实现了从内核出发，定制自己的Linux系统。要了解Linux，让我们从开机说起。</p>
-<ul>
-<li>本文使用的操作系统</li>
-</ul>
-<h2 id="1-启动流程"><a href="#1-启动流程" class="headerlink" title="1. 启动流程"></a>1. 启动流程</h2><p>​        以个人计算机为例，当按下开机键时，计算机硬件会读取BIOS来加载硬件信息及进行硬件系统的自我测试，之后系统会主动读取第一个可启动设备，此时就可以读入引导装载程序了。</p>
-<p>​        引导装载程序可以指定使用哪个内核文件来启动，并实际加载内核到内存中进行解压缩与执行，然后内核就在内存中开始活动，等到内核检测硬件与加载程序执行完毕后，操作系统就完全跑起来了。</p>
-<p>​    主机系统开始运行后，，此时Linux才会调用外部程序开始准备软件执行的环境，并且实际加载所有系统运行所需要的软件程序，最后系统就会进入等待登入页面。整体来说，流程如下：</p>
+        <p>在上一片博文中，我们知道操作系统的启动流程为：</p>
+<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190910090235.png" alt></p>
+<p>所以启动Linux时有两种启动办法：</p>
 <ol>
-<li>加载BIOS的硬件信息与自我测试，依据设置获得第一个可启动设备</li>
-<li>读取并执行第一个启动设备内MBR的boot Loader(即grub，spfdisk等程序)</li>
-<li>依据boot loader的设置加载Kernel，Kernel就开始检测硬件与加载驱动程序。</li>
-<li>硬件驱动成功后，Kernel会调用Init进程，init会取得run-level信息</li>
-<li>init执行 <code>/etc/rc.d/rc.sysinit</code>档案来准备软件执行的作业环境(如网络、时区等)</li>
-<li>init执行run-level的服务</li>
-<li>init执行<code>/etc/rc.d/rc.local</code></li>
-<li>init执行终端机仿真程序mingetty来启动login</li>
+<li>加载bios 的硬件信息-&gt; 读取MBR –&gt;执行Grub -&gt;加载kernel–&gt; 加载驱动–&gt; init –&gt; 执行bash</li>
+<li>加载bios 的硬件信息-&gt; 读取MBR –&gt;执行Grub -&gt;加载kernel–&gt; 加载驱动–&gt; init –&gt; /sbin/init -&gt; 取得run-level信息 -&gt; /etc/rc.d/rc.sysinit -&gt; services –&gt; /etc/rc.d/rc.local –&gt; mingetty –&gt; login</li>
 </ol>
-<h2 id="2-BootLoader"><a href="#2-BootLoader" class="headerlink" title="2. BootLoader"></a>2. BootLoader</h2><p>​        加载BIOS与开机自检后，就进入了BootLoader环节，为什么要有bootloader呢？因为不同的操作系统的文件系统格式不同，所以我们需要一个开机管理进程来处理核心文档加载的问题。bootloader安装在开机装置的第一个扇区内，也就是MBR。</p>
-<p>​        每个操作系统都有一块启动扇区，所以都有自己的boatloader，比如Linux系统的grub和Windows的windows boot manager。虽然各个操作系统都可以安装一份boot loader到boot sector中，但是系统MBR只有一个，所以在bootloader中，我们要通过“选单”来选择我们的操作系统。此时我们要提一提boatload的功能了。boatloader的功能如下：</p>
-<ol>
-<li>提供选单：选择开机项目</li>
-<li>载入核心文档：指向开机程序段</li>
-<li>转交其他loader</li>
-</ol>
-<p>​        我们以Linux为例，Linux的grub用来管理开机程序，当我们选择一个内核版本时，系统会进入加载kernel环节；我们也可以选择开启windows，这时windows的loader会接管开机程序，所以windows才可以启动。</p>
-<h2 id="3-加载Kernel与Initrd"><a href="#3-加载Kernel与Initrd" class="headerlink" title="3. 加载Kernel与Initrd"></a>3. 加载Kernel与Initrd</h2><p>​        当我们由boot loader的管理开始读取核心文档后，Linux就会将核心解压到主储存器中，然后开始测试与驱动周边装置，包括ROM，CPU，网卡与声卡等。在Linux系统中，我们可以在<code>/boot</code>中中发现取名为<code>vmlinuz</code>的文件，这就是kernel</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">➜ /boot ll</span><br><span class="line">总用量 59M</span><br><span class="line">config-2.6.32-754.18.2.el6.x86_64 	#此版本核心被编译时选择的功能与模块配置</span><br><span class="line">grub	#设置引导，管理开机程序</span><br><span class="line">initramfs-2.6.32-754.18.2.el6.x86_64.img	#虚拟文件系统档</span><br><span class="line">System.map-2.6.32-754.18.2.el6.x86_64#核心功能放到内存地址的对应表</span><br><span class="line">vmlinuz-2.6.32-754.18.2.el6.x86_64	#kernel，核心档案</span><br></pre></td></tr></table></figure>
-<p>​        Linux核心是可以通过动态加载核心模块的，如USB，DATA，SCSI等，这些模块放在<code>/lib/modules</code>中，但是核心不认识你的硬盘，所以需要加载硬盘驱动，但是我们此时又读不了硬盘，无法挂载根目录，怎么办？此时我们就需要用initrd虚拟文件系统档来处理。</p>
-<p>​        !<img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190910090235.png" alt>)</p>
-<center>Linux系统启动流程</center>
-
-<p>首先我们了解一下initrd里面都有什么</p>
-<ol>
-<li>将/boot/initrd 复制到/tmp/initrd中</li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir /tmp/initrd</span><br><span class="line">cp /boot/initramfs-2.6.32-754.18.2.el6.x86_64.img /tmp/initrd</span><br><span class="line">cd /tmp/initrd</span><br></pre></td></tr></table></figure>
-<ol>
-<li>解压文档</li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mv initramfs-2.6.32-754.18.2.el6.x86_64.img initrd.img.gz</span><br><span class="line">gzip initrd.img.gz</span><br><span class="line">cpio -i &lt; initrd.img</span><br></pre></td></tr></table></figure>
-<ol>
-<li>观察文档</li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">drwxr-xr-x. 2 zrs zrs 4.0K 9月   4 19:59 bin</span><br><span class="line">drwxr-xr-x. 2 zrs zrs 4.0K 9月   4 19:59 cmdline</span><br><span class="line">drwxr-xr-x. 3 zrs zrs 4.0K 9月   4 19:59 dev</span><br><span class="line">-rw-r--r--. 1 zrs zrs   19 6月  19 2018 dracut-004-411.el6</span><br><span class="line">drwxr-xr-x. 2 zrs zrs 4.0K 9月   4 19:59 emergency</span><br><span class="line">drwxr-xr-x. 6 zrs zrs 4.0K 9月   5 04:56 etc</span><br><span class="line">-rwxr-xr-x. 1 zrs zrs 8.8K 6月  19 2018 init</span><br><span class="line">drwxr-xr-x. 2 zrs zrs 4.0K 9月   4 18:47 initqueue</span><br><span class="line">drwxr-xr-x. 2 zrs zrs 4.0K 9月   4 18:47 initqueue-finished</span><br><span class="line">drwxr-xr-x. 2 zrs zrs 4.0K 9月   4 18:47 initqueue-settled</span><br><span class="line">drwxr-xr-x. 2 zrs zrs 4.0K 9月   4 19:59 initqueue-timeout</span><br><span class="line">-rwxr-xr-x. 1 zrs zrs  51M 9月   4 19:56 initrd.img</span><br><span class="line">drwxr-xr-x. 7 zrs zrs 4.0K 9月   5 02:42 lib</span><br><span class="line">drwxr-xr-x. 2 zrs zrs 4.0K 9月   4 19:59 lib64</span><br><span class="line"><span class="meta">#</span>·····后续省略</span><br></pre></td></tr></table></figure>
-<p>我们发现这里也有一个init，用vim打开init后，我们可以发现其中有挂载内存虚拟文件系统和建立系统的装置,并且还有加载核心模块的驱动程序，有了这些，kernel就可以正确运作了</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/nash			&lt;==使用类似 bash 的 shell 来执行</span><br><span class="line">····		</span><br><span class="line">mount -t proc /proc /proc				#&lt;==挂载内存的虚拟文件系统</span><br><span class="line">····</span><br><span class="line">mknod /dev/null c 1 3						#&lt;==建立系统所需要的各项装置</span><br><span class="line">····</span><br><span class="line">insmod /lib/ehci-hcd.ko					#&lt;==加载各项核心模块，即驱动程序</span><br><span class="line">····</span><br></pre></td></tr></table></figure>
-<p>⚠注: 是否没有 initrd 就无法顺利开机？ 答： 不一定。需要 initrd 最重要的原因是，当开机时无法挂载根目录的情况下， 此时就一定 需要 initrd ，例如你的根目录在特殊的磁盘接口 (USB, SATA, SCSI) ， 戒者是你的文件系 统较为特殊 (LVM, RAID) 等等，扄会需要 initrd。如果你的 Linux 是安装在 IDE 接口的磁盘上，并且使用默认的 ext2/ext3 文件系统， 那么 不需要 initrd 也能够顺利的开机进入Linux 。</p>
+<p>为了从简单入手，我们从手动启动init开始。</p>
+<h2 id="获取系统的initrd-img"><a href="#获取系统的initrd-img" class="headerlink" title="获取系统的initrd.img"></a>获取系统的initrd.img</h2><p>在上一片博文中，我们已经知道如何解压img文件，此处不在阐述。但是需要说明的是，如果我们需要启动自己的驱动文件，需要更改<code>/boot/grub/grub.conf</code>文件，添加自己的grub启动项。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">title MicroLinux-Core754		//名称</span><br><span class="line">        root (hd0,0)				//挂载硬盘</span><br><span class="line">        kernel /vmlinuz-2.6.32-754.18.2.el6.x86_64	</span><br><span class="line">        initrd /microlinux.img</span><br></pre></td></tr></table></figure>
+<p>现在我们讲讲如何制作自己的img文件。</p>
+<p>首先，我们需要写一个脚本<code>init</code>作为启动项，使得内核用该文件系统启动后能够直接获得一个<code>Bash</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/bash</span><br><span class="line">/bin/bash</span><br></pre></td></tr></table></figure>
+<p>​    为了启动我们的<code>init</code>文件，我们还需要<code>bin</code>和<code>lib64</code>文件，其中<code>bin</code>文件夹存放可执行文件，<code>lib64</code>存放应用程序所依赖的动态库。由于<code>bash</code>等这些命令需要依赖<code>/lib64</code>等目录下的一些动态链接的共享库，所以需要将依赖的库拷贝到小系统对应的目录下，用<code>ldd</code>命令查询应用程序及其依赖的动态库。完成之后，执行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find . | cpio -H newc -o | gzip &gt; /boot/microlinux.img</span><br></pre></td></tr></table></figure>
+<p>将根文件系统打包成<code>microlinux.img</code>放到<code>/boot</code>目录下。启动时系统会自动执行<code>microlinux.img</code>中的<code>init</code>(配置好grub后)</p>
+<p>此时我们重启系统，并在grub引导程序选择我们自己的启动程序后，就可以进入bash（虽然啥都没有）</p>
+<h2 id="挂载原有系统"><a href="#挂载原有系统" class="headerlink" title="挂载原有系统"></a>挂载原有系统</h2><p>如果想挂载原系统，需要加载一些驱动程序，比如<code>ext4</code>文件系统的驱动、<code>scsi</code>设备的相关驱动等。这些驱动程序</p>
+<p>在系统的<code>/lib/modules</code>里，我们需要将一些必要的驱动拷到我们的小系统里，并需要<code>modinfo</code>和<code>lsmod</code>命令</p>
+<p>编写<code>init</code>文件为</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/bash</span><br><span class="line"><span class="meta">#</span> mount some important things</span><br><span class="line">export PATH=/sbin:/bin:/usr/sbin:/usr/bin</span><br><span class="line"></span><br><span class="line">mknod  /dev/null c 1 3</span><br><span class="line">mknod /dev/console c 5 1</span><br><span class="line">insmod /lib/modules/kernel/drivers/scsi/scsi_transport_spi.ko</span><br><span class="line">insmod /lib/modules/kernel/drivers/message/fusion/mptbase.ko</span><br><span class="line">insmod /lib/modules/kernel/drivers/message/fusion/mptscsih.ko</span><br><span class="line">insmod /lib/modules/kernel/drivers/message/fusion/mptspi.ko</span><br><span class="line">insmod /lib/modules/kernel/lib/crc-t10dif.ko</span><br><span class="line">insmod /lib/modules/kernel/drivers/scsi/sd_mod.ko</span><br><span class="line"></span><br><span class="line">insmod /lib/modules/kernel/fs/mbcache.ko</span><br><span class="line">insmod /lib/modules/kernel/fs/jbd2/jbd2.ko</span><br><span class="line">insmod /lib/modules/kernel/fs/ext4/ext4.ko</span><br><span class="line"></span><br><span class="line">mount -t proc proc /proc &gt;/dev/null 2&gt;&amp;1</span><br><span class="line">mount -t sysfs sysfs /sys &gt;/dev/null 2&gt;&amp;1</span><br><span class="line"></span><br><span class="line">mkdir root</span><br><span class="line">mknod /dev/sda2 b 8 2</span><br><span class="line">mount -t ext4 /dev/sda2 /root/</span><br><span class="line"></span><br><span class="line">exec /bin/bash</span><br></pre></td></tr></table></figure>
+<p>这样，系统在启动时会先加载init中所写的一些ko文件，再挂载系统磁盘，然后挂载原有系统。</p>
 
       
     </div>
@@ -554,8 +519,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/09/03/COMET阅读笔记-Commonsense-Transformers-for-Automatic-Knowledge-Graph-Construction/" rel="next" title="COMET阅读笔记|Commonsense Transformers for Automatic Knowledge Graph Construction">
-                <i class="fa fa-chevron-left"></i> COMET阅读笔记|Commonsense Transformers for Automatic Knowledge Graph Construction
+              <a href="/2019/09/09/定制自己的Linux系统/" rel="next" title="认识Linux系统的启动">
+                <i class="fa fa-chevron-left"></i> 认识Linux系统的启动
               </a>
             
           </div>
@@ -563,10 +528,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/09/17/定制外围Linux操作系统/" rel="prev" title="定制外围Linux操作系统">
-                定制外围Linux操作系统 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -776,7 +737,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-启动流程"><span class="nav-number">1.</span> <span class="nav-text">1. 启动流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-BootLoader"><span class="nav-number">2.</span> <span class="nav-text">2. BootLoader</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-加载Kernel与Initrd"><span class="nav-number">3.</span> <span class="nav-text">3. 加载Kernel与Initrd</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#获取系统的initrd-img"><span class="nav-number">1.</span> <span class="nav-text">获取系统的initrd.img</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#挂载原有系统"><span class="nav-number">2.</span> <span class="nav-text">挂载原有系统</span></a></li></ol></div>
             
 
           </div>
@@ -966,9 +927,9 @@
 
 <script>
   var disqus_config = function() {
-    this.page.url = "http://yoursite.com/2019/09/09/定制自己的Linux系统/";
-    this.page.identifier = "2019/09/09/定制自己的Linux系统/";
-    this.page.title = '认识Linux系统的启动';
+    this.page.url = "http://yoursite.com/2019/09/17/定制外围Linux操作系统/";
+    this.page.identifier = "2019/09/17/定制外围Linux操作系统/";
+    this.page.title = '定制外围Linux操作系统';
     };
   function loadComments() {
     var d = document, s = d.createElement('script');
@@ -999,9 +960,9 @@
       api: '' || 'https://disqus.com/api/',
       apikey: 'lCbSis1lxubhduhKpyjAUTnv3vv9jo2v3AuRh5wedToSWjGvHzJ0AfdGXFLl3j2Y',
       shortname: 'zhou_ruisong',
-      url: "http://yoursite.com/2019/09/09/定制自己的Linux系统/",
-      identifier: "2019/09/09/定制自己的Linux系统/",
-      title: '认识Linux系统的启动',
+      url: "http://yoursite.com/2019/09/17/定制外围Linux操作系统/",
+      identifier: "2019/09/17/定制外围Linux操作系统/",
+      title: '定制外围Linux操作系统',
     });
   }
 
