@@ -104,7 +104,8 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190910090235.png">
 <meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190918081158.png">
-<meta property="og:updated_time" content="2019-09-18T00:54:51.569Z">
+<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190918093135.png">
+<meta property="og:updated_time" content="2019-09-18T01:45:42.305Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="定制外围Linux操作系统">
 <meta name="twitter:description" content="在上一片博文中，我们知道操作系统的启动流程为：  所以启动Linux时有两种启动办法：  加载bios 的硬件信息-&amp;gt; 读取MBR –&amp;gt;执行Grub -&amp;gt;加载kernel–&amp;gt; 加载驱动–&amp;gt; init –&amp;gt; 执行bash 加载bios 的硬件信息-&amp;gt; 读取MBR –&amp;gt;执行Grub -&amp;gt;加载kernel–&amp;gt; 加载驱动–&amp;gt; init –&amp;">
@@ -395,7 +396,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-09-18 08:54:51" itemprop="dateModified" datetime="2019-09-18T08:54:51+08:00">2019-09-18</time>
+                <time title="Modified: 2019-09-18 09:45:42" itemprop="dateModified" datetime="2019-09-18T09:45:42+08:00">2019-09-18</time>
               </span>
             
           
@@ -497,12 +498,19 @@
 <p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190918081158.png" alt></p>
 <p>其中<code>/root</code>为创建的用户目录，<code>/proc</code>和<code>/sys</code>为系统目录，<code>/dev</code>为设备目录，<code>/var</code>存放变量，以上目录在小系统的img文件中均为空文件夹，<code>lib64</code>存放共享库文件，<code>lib</code>文件存放kernel的modules驱动目录和udevd的规则文件.</p>
 <h2 id="4-完成拥有login登录能力-多窗口"><a href="#4-完成拥有login登录能力-多窗口" class="headerlink" title="4.完成拥有login登录能力(多窗口)"></a>4.完成拥有login登录能力(多窗口)</h2><p>login有一套复杂的机制，我们不妨先实现能在bash中手动执行login创建多窗口。</p>
-<p>login的依赖很复杂，它有一套完整的认证体系，如<code>/etc/pam.d</code>的配置和<code>/lib64/security</code>的依赖（这个共享库还会依赖别的共享库，需要注意）</p>
+<p>login的依赖很复杂，它有一套完整的认证体系，如<code>/etc/pam.d</code>的配置和<code>/lib64/security</code>的依赖（这个共享库还会依赖别的共享库，需要注意）<code>login</code>还涉及用户组管理<code>/bin/chgrp</code>、<code>/bin/chown</code>、<code>/bin/chmod</code>等，保存用户名的文件<code>/etc/passwd</code>、<code>/etc/group</code>，用户密码文件为<code>/etc/shadow</code>等等</p>
 <p>我们可以用<code>strace</code>命令去追踪<code>login</code>执行时所调用的文件，并将他们拷贝到我们的小系统里，这些文件在<code>/etc</code>,<code>/lib</code>,<code>/lib64</code>中都有分布。</p>
 <p>那怎么知道我们可以使用多窗口登入了呢，使用udevd管理设备后，我们可以在打开小系统后发现里面有一堆tty文件，意味着我们可以同时使用多个终端，但是我们发现使用ctrl+alt+Fn组合键并不能打开新的终端，这是因为快捷键驱动我们还没挂起，但是没关系，我们可以将login重定向到另一个终端，在bash中执行</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">login &gt; /dev/tty2  2&gt;/dev/tty2 &lt; /dev/tty2 &amp;</span><br></pre></td></tr></table></figure>
 <p>就可以在后台执行一个login，并重定向到tty2，现在在使用ctrl+alt+F2就可以打开tty2终端。我们使用ps命令查看进程，就可以发现一些运行的命令是在tty2下运行的。</p>
-<h2 id="5-使用-sbin-init管理的小系统原型"><a href="#5-使用-sbin-init管理的小系统原型" class="headerlink" title="5. 使用/sbin/init管理的小系统原型"></a>5. 使用/sbin/init管理的小系统原型</h2>
+<h2 id="5-使用-sbin-init管理的小系统原型"><a href="#5-使用-sbin-init管理的小系统原型" class="headerlink" title="5. 使用/sbin/init管理的小系统原型"></a>5. 使用/sbin/init管理的小系统原型</h2><p>在以往的环节中，我们都是手动启动设备管理，手动登入和执行bash，但是如果我们退出这个bash，系统就会死掉，所以我们需要一个可以保护系统bash和控制启动流程的程序，<code>sbin/init</code>就很好的帮我们解决了这些烦恼。</p>
+<p>执行/sbin/init后，执行顺序如下：</p>
+<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190918093135.png" alt></p>
+<p><code>/sbin/init</code>的过程大致分为三块：第一块是udevd加载驱动模块、文件系统检查和根切换，相关配置在<code>/etc/rc.sysinit</code>中；第二块是启动各项服务，相关配置在<code>/etc/rc.d/</code>目录下；第三块是登录部分，需要调用<code>/sbin/mingetty</code>和<code>/bin/login</code>等命令。将上述所涉及的命令及文件拷贝到小系统对应的目录下，并对配置进行修改。</p>
+<p>我们需要把与init启动相关的文件拷到小系统里</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">/etc/inittab 配置默认运行级别</span><br><span class="line">/etc/init/rcS.conf 加载rc.sysinit脚本，完成系统初始化任务</span><br><span class="line">/etc/init/rc.conf 兼容脚本，负责各运行级别的调用处理</span><br><span class="line">/etc/init/rcS-sulogin.conf 为单用户模式启动/sbin/sushell环境</span><br><span class="line">/etc/init/control-alt-delete.conf 控制终端下的Ctrl+Alt+Del热键操作</span><br><span class="line">/etc/init/start-ttys.conf 配置tty终端的开启数量、设备文件</span><br><span class="line">/etc/sysconfig/init 控制tty终端的开启数量、终端颜色方案</span><br><span class="line">/etc/init/tty.conf 控制tty终端的开启</span><br><span class="line">/etc/inittab 控制启动优先级</span><br></pre></td></tr></table></figure>
+<p>配置好<code>/sbin/init</code>后，我们可以在init脚本中直接调用<code>sbin/init</code>，便可完成系统的启动</p>
+
       
     </div>
 
