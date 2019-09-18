@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+<link rel="stylesheet" href="/css/main.css?v=7.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.2.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.2.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="在上一片博文中，我们知道操作系统的启动流程为：  所以启动Linux时有两种启动办法：  加载bios 的硬件信息-&amp;gt; 读取MBR –&amp;gt;执行Grub -&amp;gt;加载kernel–&amp;gt; 加载驱动–&amp;gt; init –&amp;gt; 执行bash 加载bios 的硬件信息-&amp;gt; 读取MBR –&amp;gt;执行Grub -&amp;gt;加载kernel–&amp;gt; 加载驱动–&amp;gt; init –&amp;">
+<meta name="keywords" content="Linux,operation system">
+<meta property="og:type" content="article">
+<meta property="og:title" content="定制外围Linux操作系统">
+<meta property="og:url" content="http://yoursite.com/2019/09/17/定制外围Linux操作系统/index.html">
+<meta property="og:site_name" content="周瑞松のblog">
+<meta property="og:description" content="在上一片博文中，我们知道操作系统的启动流程为：  所以启动Linux时有两种启动办法：  加载bios 的硬件信息-&amp;gt; 读取MBR –&amp;gt;执行Grub -&amp;gt;加载kernel–&amp;gt; 加载驱动–&amp;gt; init –&amp;gt; 执行bash 加载bios 的硬件信息-&amp;gt; 读取MBR –&amp;gt;执行Grub -&amp;gt;加载kernel–&amp;gt; 加载驱动–&amp;gt; init –&amp;">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190910090235.png">
+<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190918081158.png">
+<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190918093135.png">
+<meta property="og:updated_time" content="2019-09-18T01:57:56.707Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="定制外围Linux操作系统">
+<meta name="twitter:description" content="在上一片博文中，我们知道操作系统的启动流程为：  所以启动Linux时有两种启动办法：  加载bios 的硬件信息-&amp;gt; 读取MBR –&amp;gt;执行Grub -&amp;gt;加载kernel–&amp;gt; 加载驱动–&amp;gt; init –&amp;gt; 执行bash 加载bios 的硬件信息-&amp;gt; 读取MBR –&amp;gt;执行Grub -&amp;gt;加载kernel–&amp;gt; 加载驱动–&amp;gt; init –&amp;">
+<meta name="twitter:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190910090235.png">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/2019/09/17/定制外围Linux操作系统/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>定制外围Linux操作系统 | 周瑞松のblog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">周瑞松のblog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/17/定制外围Linux操作系统/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="RuisongZhou">
+      <meta itemprop="description" content="菜鸡一枚，仍需努力">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="周瑞松のblog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">定制外围Linux操作系统
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-09-17 10:15:16" itemprop="dateCreated datePublished" datetime="2019-09-17T10:15:16+08:00">2019-09-17</time>
+            </span>
+          
+
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-09-18 09:57:56" itemprop="dateModified" datetime="2019-09-18T09:57:56+08:00">2019-09-18</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">Comments: </span>
+                <a href="/2019/09/17/定制外围Linux操作系统/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/09/17/定制外围Linux操作系统/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+                 Views:  
+                <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+              </span>
+            </span>
+          
+
+          <br>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在上一片博文中，我们知道操作系统的启动流程为：</p>
+<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190910090235.png" alt></p>
+<p>所以启动Linux时有两种启动办法：</p>
+<ol>
+<li>加载bios 的硬件信息-&gt; 读取MBR –&gt;执行Grub -&gt;加载kernel–&gt; 加载驱动–&gt; init –&gt; 执行bash</li>
+<li>加载bios 的硬件信息-&gt; 读取MBR –&gt;执行Grub -&gt;加载kernel–&gt; 加载驱动–&gt; init –&gt; /sbin/init -&gt; 取得run-level信息 -&gt; /etc/rc.d/rc.sysinit -&gt; services –&gt; /etc/rc.d/rc.local –&gt; mingetty –&gt; login</li>
+</ol>
+<p>为了从简单入手，我们从手动启动init开始。</p>
+<h2 id="1-获取系统的initrd-img"><a href="#1-获取系统的initrd-img" class="headerlink" title="1. 获取系统的initrd.img"></a>1. 获取系统的initrd.img</h2><p>在上一片博文中，我们已经知道如何解压img文件，此处不在阐述。但是需要说明的是，如果我们需要启动自己的驱动文件，需要更改<code>/boot/grub/grub.conf</code>文件，添加自己的grub启动项。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">title MicroLinux-Core754		//名称</span><br><span class="line">        root (hd0,0)				//挂载硬盘</span><br><span class="line">        kernel /vmlinuz-2.6.32-754.18.2.el6.x86_64	</span><br><span class="line">        initrd /microlinux.img</span><br></pre></td></tr></table></figure>
+<p>现在我们讲讲如何制作自己的img文件。</p>
+<p>首先，我们需要写一个脚本<code>init</code>作为启动项，使得内核用该文件系统启动后能够直接获得一个<code>Bash</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/bash</span><br><span class="line">/bin/bash</span><br></pre></td></tr></table></figure>
+<p>​    为了启动我们的<code>init</code>文件，我们还需要<code>bin</code>和<code>lib64</code>文件，其中<code>bin</code>文件夹存放可执行文件，<code>lib64</code>存放应用程序所依赖的动态库。由于<code>bash</code>等这些命令需要依赖<code>/lib64</code>等目录下的一些动态链接的共享库，所以需要将依赖的库拷贝到小系统对应的目录下，用<code>ldd</code>命令查询应用程序及其依赖的动态库。完成之后，执行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find . | cpio -H newc -o | gzip &gt; /boot/microlinux.img</span><br></pre></td></tr></table></figure>
+<p>将根文件系统打包成<code>microlinux.img</code>放到<code>/boot</code>目录下。启动时系统会自动执行<code>microlinux.img</code>中的<code>init</code>(配置好grub后)</p>
+<p>此时我们重启系统，并在grub引导程序选择我们自己的启动程序后，就可以进入bash（虽然啥都没有）</p>
+<h2 id="2-挂载原有系统"><a href="#2-挂载原有系统" class="headerlink" title="2. 挂载原有系统"></a>2. 挂载原有系统</h2><p>如果想挂载原系统，需要加载一些驱动程序，比如<code>ext4</code>文件系统的驱动、<code>scsi</code>设备的相关驱动等。这些驱动程序</p>
+<p>在系统的<code>/lib/modules</code>里，我们需要将一些必要的驱动拷到我们的小系统里，并需要<code>modinfo</code>和<code>lsmod</code>命令</p>
+<p>编写<code>init</code>文件为</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/bash</span><br><span class="line"><span class="meta">#</span> mount some important things</span><br><span class="line">export PATH=/sbin:/bin:/usr/sbin:/usr/bin</span><br><span class="line"></span><br><span class="line">mknod  /dev/null c 1 3</span><br><span class="line">mknod /dev/console c 5 1</span><br><span class="line">insmod /lib/modules/kernel/drivers/scsi/scsi_transport_spi.ko</span><br><span class="line">insmod /lib/modules/kernel/drivers/message/fusion/mptbase.ko</span><br><span class="line">insmod /lib/modules/kernel/drivers/message/fusion/mptscsih.ko</span><br><span class="line">insmod /lib/modules/kernel/drivers/message/fusion/mptspi.ko</span><br><span class="line">insmod /lib/modules/kernel/lib/crc-t10dif.ko</span><br><span class="line">insmod /lib/modules/kernel/drivers/scsi/sd_mod.ko</span><br><span class="line"></span><br><span class="line">insmod /lib/modules/kernel/fs/mbcache.ko</span><br><span class="line">insmod /lib/modules/kernel/fs/jbd2/jbd2.ko</span><br><span class="line">insmod /lib/modules/kernel/fs/ext4/ext4.ko</span><br><span class="line"></span><br><span class="line">mount -t proc proc /proc &gt;/dev/null 2&gt;&amp;1</span><br><span class="line">mount -t sysfs sysfs /sys &gt;/dev/null 2&gt;&amp;1</span><br><span class="line"></span><br><span class="line">mkdir root</span><br><span class="line">mknod /dev/sda2 b 8 2</span><br><span class="line">mount -t ext4 /dev/sda2 /root/</span><br><span class="line"></span><br><span class="line">exec /bin/bash</span><br></pre></td></tr></table></figure>
+<p>这样，系统在启动时会先加载init中所写的一些ko文件，再挂载系统磁盘，然后挂载原有系统。</p>
+<h2 id="3-完成拥有管理设备能力-udev"><a href="#3-完成拥有管理设备能力-udev" class="headerlink" title="3. 完成拥有管理设备能力(udev)"></a>3. 完成拥有管理设备能力(udev)</h2><p>udevd是管理、监控主机设备的服务程序，有了udevd后可以自动加载所需的驱动模块，避免了手动挂载的麻烦。udev依赖于sysfs系统文件，udevd的规则文件在<code>/lib/udev/</code>目录下，配置文件在<code>/etc/udev/</code>目录下，同时还需要<code>/etc/nsswitch.conf</code>配置的名称服务交换，其依赖的库为<code>/lib</code>目录下以<code>libnss</code>开头的文件，将上述文件拷贝到我们的目录下，然后使用<code>/sbin/start_udev</code>命令可以启动<code>udevd</code>服务</p>
+<p>启动后，udev会自动在<code>/dev</code>目录下创建设备节点，普通linux环境/dev目录是tmpfs虚拟磁盘文件系统，设备节点可隶属于不同的用户和组（由<code>/etc/group</code>、<code>/etc/passwd</code>指派<code>uid</code>、<code>gid</code>)。</p>
+<p>这样我们的<code>init</code>文件可写为：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/bash</span><br><span class="line"><span class="meta">#</span> mount some important things</span><br><span class="line">export PATH=/sbin:/bin:/usr/sbin:/usr/bin</span><br><span class="line"></span><br><span class="line">mknod  /dev/null c 1 3</span><br><span class="line">mknod /dev/console c 5 1</span><br><span class="line"></span><br><span class="line">mount -t proc proc /proc &gt;/dev/null 2&gt;&amp;1</span><br><span class="line">mount -t sysfs sysfs /sys &gt;/dev/null 2&gt;&amp;1</span><br><span class="line"></span><br><span class="line">/sbin/start_udev</span><br><span class="line"></span><br><span class="line">mkdir root</span><br><span class="line">mknod /dev/sda2 b 8 2</span><br><span class="line">mount -t ext4 /dev/sda2 /root/</span><br><span class="line"></span><br><span class="line">exec /bin/bash</span><br></pre></td></tr></table></figure>
+<p>我们看看现在小系统里都有什么</p>
+<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190918081158.png" alt></p>
+<p>其中<code>/root</code>为创建的用户目录，<code>/proc</code>和<code>/sys</code>为系统目录，<code>/dev</code>为设备目录，<code>/var</code>存放变量，以上目录在小系统的img文件中均为空文件夹，<code>lib64</code>存放共享库文件，<code>lib</code>文件存放kernel的modules驱动目录和udevd的规则文件.</p>
+<h2 id="4-完成拥有login登录能力-多窗口"><a href="#4-完成拥有login登录能力-多窗口" class="headerlink" title="4.完成拥有login登录能力(多窗口)"></a>4.完成拥有login登录能力(多窗口)</h2><p>login有一套复杂的机制，我们不妨先实现能在bash中手动执行login创建多窗口。</p>
+<p>login的依赖很复杂，它有一套完整的认证体系，如<code>/etc/pam.d</code>的配置和<code>/lib64/security</code>的依赖（这个共享库还会依赖别的共享库，需要注意）<code>login</code>还涉及用户组管理<code>/bin/chgrp</code>、<code>/bin/chown</code>、<code>/bin/chmod</code>等，保存用户名的文件<code>/etc/passwd</code>、<code>/etc/group</code>，用户密码文件为<code>/etc/shadow</code>等等</p>
+<p>我们可以用<code>strace</code>命令去追踪<code>login</code>执行时所调用的文件，并将他们拷贝到我们的小系统里，这些文件在<code>/etc</code>,<code>/lib</code>,<code>/lib64</code>中都有分布。</p>
+<p>那怎么知道我们可以使用多窗口登入了呢，使用udevd管理设备后，我们可以在打开小系统后发现里面有一堆tty文件，意味着我们可以同时使用多个终端，但是我们发现使用ctrl+alt+Fn组合键并不能打开新的终端，这是因为快捷键驱动我们还没挂起，但是没关系，我们可以将login重定向到另一个终端，在bash中执行</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">login &gt; /dev/tty2  2&gt;/dev/tty2 &lt; /dev/tty2 &amp;</span><br></pre></td></tr></table></figure>
+<p>就可以在后台执行一个login，并重定向到tty2，现在在使用ctrl+alt+F2就可以打开tty2终端。我们使用ps命令查看进程，就可以发现一些运行的命令是在tty2下运行的。</p>
+<h2 id="5-使用-sbin-init管理的小系统原型"><a href="#5-使用-sbin-init管理的小系统原型" class="headerlink" title="5. 使用/sbin/init管理的小系统原型"></a>5. 使用/sbin/init管理的小系统原型</h2><p>在以往的环节中，我们都是手动启动设备管理，手动登入和执行bash，但是如果我们退出这个bash，系统就会死掉，所以我们需要一个可以保护系统bash和控制启动流程的程序，<code>sbin/init</code>就很好的帮我们解决了这些烦恼。</p>
+<p>执行/sbin/init后，执行顺序如下：</p>
+<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190918093135.png" alt></p>
+<p><code>/sbin/init</code>的过程大致分为三块：第一块是udevd加载驱动模块、文件系统检查和根切换，相关配置在<code>/etc/rc.sysinit</code>中；第二块是启动各项服务，相关配置在<code>/etc/rc.d/</code>目录下；第三块是登录部分，需要调用<code>/sbin/mingetty</code>和<code>/bin/login</code>等命令。将上述所涉及的命令及文件拷贝到小系统对应的目录下，并对配置进行修改。</p>
+<p>我们需要把与init启动相关的文件拷到小系统里</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">/etc/inittab 配置默认运行级别</span><br><span class="line">/etc/init/rcS.conf 加载rc.sysinit脚本，完成系统初始化任务</span><br><span class="line">/etc/init/rc.conf 兼容脚本，负责各运行级别的调用处理</span><br><span class="line">/etc/init/rcS-sulogin.conf 为单用户模式启动/sbin/sushell环境</span><br><span class="line">/etc/init/control-alt-delete.conf 控制终端下的Ctrl+Alt+Del热键操作</span><br><span class="line">/etc/init/start-ttys.conf 配置tty终端的开启数量、设备文件</span><br><span class="line">/etc/sysconfig/init 控制tty终端的开启数量、终端颜色方案</span><br><span class="line">/etc/init/tty.conf 控制tty终端的开启</span><br><span class="line">/etc/inittab 控制启动优先级</span><br></pre></td></tr></table></figure>
+<p>配置好<code>/sbin/init</code>后，我们可以在init脚本中直接调用<code>sbin/init</code>，便可完成系统的启动</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        
+          
+        
+        <div class="post-tags">
+          
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
+          
+            <a href="/tags/operation-system/" rel="tag"># operation system</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/09/09/定制自己的Linux系统/" rel="next" title="认识Linux系统的启动">
+                <i class="fa fa-chevron-left"></i> 认识Linux系统的启动
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">RuisongZhou</p>
+              <div class="site-description motion-element" itemprop="description">菜鸡一枚，仍需努力</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/RuisongZhou" title="GitHub &rarr; https://github.com/RuisongZhou" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:rhyszhou99@gmail.com" title="E-Mail &rarr; mailto:rhyszhou99@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-获取系统的initrd-img"><span class="nav-number">1.</span> <span class="nav-text">1. 获取系统的initrd.img</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-挂载原有系统"><span class="nav-number">2.</span> <span class="nav-text">2. 挂载原有系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-完成拥有管理设备能力-udev"><span class="nav-number">3.</span> <span class="nav-text">3. 完成拥有管理设备能力(udev)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-完成拥有login登录能力-多窗口"><span class="nav-number">4.</span> <span class="nav-text">4.完成拥有login登录能力(多窗口)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-使用-sbin-init管理的小系统原型"><span class="nav-number">5.</span> <span class="nav-text">5. 使用/sbin/init管理的小系统原型</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">RuisongZhou</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="Total Visitors">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="Total Views">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.2.0"></script>
+
+  <script src="/js/motion.js?v=7.2.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.2.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.2.0"></script>
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.2.0"></script>
+<script src="/js/post-details.js?v=7.2.0"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.2.0"></script>
+
+
+  
+
+  
+
+  
+
+  
+  
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://ruisong.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "http://yoursite.com/2019/09/17/定制外围Linux操作系统/";
+    this.page.identifier = "2019/09/17/定制外围Linux操作系统/";
+    this.page.title = '定制外围Linux操作系统';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://ruisong.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    window.addEventListener('load', loadComments, false);
+  
+</script>
+
+
+
+
+
+  
+    
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css">
+
+
+
+
+<script>
+  function initialDsq() {
+    window.dsqjs = new DisqusJS({
+      api: '' || 'https://disqus.com/api/',
+      apikey: 'lCbSis1lxubhduhKpyjAUTnv3vv9jo2v3AuRh5wedToSWjGvHzJ0AfdGXFLl3j2Y',
+      shortname: 'zhou_ruisong',
+      url: "http://yoursite.com/2019/09/17/定制外围Linux操作系统/",
+      identifier: "2019/09/17/定制外围Linux操作系统/",
+      title: '定制外围Linux操作系统',
+    });
+  }
+
+  function loadDsqJS() {
+    var d = document, s = d.createElement('script');
+    s.src = '//cdn.jsdelivr.net/npm/disqusjs@1/dist/disqus.js';
+    s.onload = initialDsq;
+    (d.head || d.body).appendChild(s);
+  }
+  
+  window.addEventListener('load', loadDsqJS, false);
+</script>
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
