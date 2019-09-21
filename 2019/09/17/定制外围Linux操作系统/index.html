@@ -105,7 +105,7 @@
 <meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190910090235.png">
 <meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190918081158.png">
 <meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190918093135.png">
-<meta property="og:updated_time" content="2019-09-18T01:57:56.707Z">
+<meta property="og:updated_time" content="2019-09-18T10:01:32.195Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="定制外围Linux操作系统">
 <meta name="twitter:description" content="在上一片博文中，我们知道操作系统的启动流程为：  所以启动Linux时有两种启动办法：  加载bios 的硬件信息-&amp;gt; 读取MBR –&amp;gt;执行Grub -&amp;gt;加载kernel–&amp;gt; 加载驱动–&amp;gt; init –&amp;gt; 执行bash 加载bios 的硬件信息-&amp;gt; 读取MBR –&amp;gt;执行Grub -&amp;gt;加载kernel–&amp;gt; 加载驱动–&amp;gt; init –&amp;">
@@ -396,7 +396,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-09-18 09:57:56" itemprop="dateModified" datetime="2019-09-18T09:57:56+08:00">2019-09-18</time>
+                <time title="修改时间：2019-09-18 18:01:32" itemprop="dateModified" datetime="2019-09-18T18:01:32+08:00">2019-09-18</time>
               </span>
             
           
@@ -493,7 +493,7 @@
 <h2 id="3-完成拥有管理设备能力-udev"><a href="#3-完成拥有管理设备能力-udev" class="headerlink" title="3. 完成拥有管理设备能力(udev)"></a>3. 完成拥有管理设备能力(udev)</h2><p>udevd是管理、监控主机设备的服务程序，有了udevd后可以自动加载所需的驱动模块，避免了手动挂载的麻烦。udev依赖于sysfs系统文件，udevd的规则文件在<code>/lib/udev/</code>目录下，配置文件在<code>/etc/udev/</code>目录下，同时还需要<code>/etc/nsswitch.conf</code>配置的名称服务交换，其依赖的库为<code>/lib</code>目录下以<code>libnss</code>开头的文件，将上述文件拷贝到我们的目录下，然后使用<code>/sbin/start_udev</code>命令可以启动<code>udevd</code>服务</p>
 <p>启动后，udev会自动在<code>/dev</code>目录下创建设备节点，普通linux环境/dev目录是tmpfs虚拟磁盘文件系统，设备节点可隶属于不同的用户和组（由<code>/etc/group</code>、<code>/etc/passwd</code>指派<code>uid</code>、<code>gid</code>)。</p>
 <p>这样我们的<code>init</code>文件可写为：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/bash</span><br><span class="line"><span class="meta">#</span> mount some important things</span><br><span class="line">export PATH=/sbin:/bin:/usr/sbin:/usr/bin</span><br><span class="line"></span><br><span class="line">mknod  /dev/null c 1 3</span><br><span class="line">mknod /dev/console c 5 1</span><br><span class="line"></span><br><span class="line">mount -t proc proc /proc &gt;/dev/null 2&gt;&amp;1</span><br><span class="line">mount -t sysfs sysfs /sys &gt;/dev/null 2&gt;&amp;1</span><br><span class="line"></span><br><span class="line">/sbin/start_udev</span><br><span class="line"></span><br><span class="line">mkdir root</span><br><span class="line">mknod /dev/sda2 b 8 2</span><br><span class="line">mount -t ext4 /dev/sda2 /root/</span><br><span class="line"></span><br><span class="line">exec /bin/bash</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/bash</span><br><span class="line"><span class="meta">#</span> mount some important things</span><br><span class="line">export PATH=/sbin:/bin:/usr/sbin:/usr/bin</span><br><span class="line"></span><br><span class="line">mknod  /dev/null c 1 3</span><br><span class="line">mknod /dev/console c 5 1</span><br><span class="line"></span><br><span class="line">mount -t proc proc /proc &gt;/dev/null 2&gt;&amp;1</span><br><span class="line">mount -t sysfs sysfs /sys &gt;/dev/null 2&gt;&amp;1</span><br><span class="line"></span><br><span class="line">/sbin/start_udev</span><br><span class="line"></span><br><span class="line">mkdir root</span><br><span class="line">mknod /dev/sda2 b 8 2	#这个2代表硬盘符，sda1就是 b 8 1</span><br><span class="line">mount -t ext4 /dev/sda2 /root/</span><br><span class="line"></span><br><span class="line">exec /bin/bash</span><br></pre></td></tr></table></figure>
 <p>我们看看现在小系统里都有什么</p>
 <p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190918081158.png" alt></p>
 <p>其中<code>/root</code>为创建的用户目录，<code>/proc</code>和<code>/sys</code>为系统目录，<code>/dev</code>为设备目录，<code>/var</code>存放变量，以上目录在小系统的img文件中均为空文件夹，<code>lib64</code>存放共享库文件，<code>lib</code>文件存放kernel的modules驱动目录和udevd的规则文件.</p>
@@ -508,7 +508,7 @@
 <p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190918093135.png" alt></p>
 <p><code>/sbin/init</code>的过程大致分为三块：第一块是udevd加载驱动模块、文件系统检查和根切换，相关配置在<code>/etc/rc.sysinit</code>中；第二块是启动各项服务，相关配置在<code>/etc/rc.d/</code>目录下；第三块是登录部分，需要调用<code>/sbin/mingetty</code>和<code>/bin/login</code>等命令。将上述所涉及的命令及文件拷贝到小系统对应的目录下，并对配置进行修改。</p>
 <p>我们需要把与init启动相关的文件拷到小系统里</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">/etc/inittab 配置默认运行级别</span><br><span class="line">/etc/init/rcS.conf 加载rc.sysinit脚本，完成系统初始化任务</span><br><span class="line">/etc/init/rc.conf 兼容脚本，负责各运行级别的调用处理</span><br><span class="line">/etc/init/rcS-sulogin.conf 为单用户模式启动/sbin/sushell环境</span><br><span class="line">/etc/init/control-alt-delete.conf 控制终端下的Ctrl+Alt+Del热键操作</span><br><span class="line">/etc/init/start-ttys.conf 配置tty终端的开启数量、设备文件</span><br><span class="line">/etc/sysconfig/init 控制tty终端的开启数量、终端颜色方案</span><br><span class="line">/etc/init/tty.conf 控制tty终端的开启</span><br><span class="line">/etc/inittab 控制启动优先级</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">/etc/init/rcS.conf 加载rc.sysinit脚本，完成系统初始化任务</span><br><span class="line">/etc/init/rc.conf 兼容脚本，负责各运行级别的调用处理</span><br><span class="line">/etc/init/rcS-sulogin.conf 为单用户模式启动/sbin/sushell环境</span><br><span class="line">/etc/init/control-alt-delete.conf 控制终端下的Ctrl+Alt+Del热键操作</span><br><span class="line">/etc/init/start-ttys.conf 配置tty终端的开启数量、设备文件</span><br><span class="line">/etc/sysconfig/init 控制tty终端的开启数量、终端颜色方案</span><br><span class="line">/etc/init/tty.conf 控制tty终端的开启</span><br><span class="line">/etc/inittab 控制启动优先级</span><br></pre></td></tr></table></figure>
 <p>配置好<code>/sbin/init</code>后，我们可以在init脚本中直接调用<code>sbin/init</code>，便可完成系统的启动</p>
 
       
@@ -594,6 +594,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2019/09/21/ThunderNet-论文阅读-轻量级实时监测网络/" rel="prev" title="ThunderNet 论文阅读 | 轻量级实时监测网络">
+                ThunderNet 论文阅读 | 轻量级实时监测网络 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -668,7 +672,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-count">15</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -693,7 +697,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">4</span>
+                      
+                    
+                    <span class="site-state-item-count">5</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -738,7 +744,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">14</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">16</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

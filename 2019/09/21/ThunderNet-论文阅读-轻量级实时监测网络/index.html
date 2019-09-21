@@ -94,29 +94,27 @@
 
 
 
-  <meta name="description" content="1. 特色 首次尝试用对抗学习去生成有用的副样本来提升embedding效果 对抗学习框架泛化能力强，适配很多KGE模型，不需要额外本体限制 在三个常用的数据集上显示出一致性能  2. 相关工作与模型构建近年来很多KGE方法被提出来。RESCAL（2011）首先用矩阵分解来进行embedding，并使用双线性映射作为score function，TransE首先提出基于翻译模型的embedding">
-<meta name="keywords" content="Graph Embedding,GAN">
+  <meta name="description" content="ThunderNet 论文解读首先让我们看一下object detection的论文发展  ThunderNet是2019年实现了ARM平台上的第一个实时检测器和最快的单线程速度的模型。接下来我们从以下几个方面去介绍这个模型。 网络架构ThunderNet的整体架构如下图所示。 ThunderNet使用320×320像素作为网络的输入分辨率。整体的网络结构分为两部分：Backbone部分和Dete">
+<meta name="keywords" content="CV,Objection Detection">
 <meta property="og:type" content="article">
-<meta property="og:title" content="KBGAN 论文阅读笔记">
-<meta property="og:url" content="http://yoursite.com/2019/07/02/KBGAN-论文阅读笔记/index.html">
+<meta property="og:title" content="ThunderNet 论文阅读 | 轻量级实时监测网络">
+<meta property="og:url" content="http://yoursite.com/2019/09/21/ThunderNet-论文阅读-轻量级实时监测网络/index.html">
 <meta property="og:site_name" content="周瑞松のblog">
-<meta property="og:description" content="1. 特色 首次尝试用对抗学习去生成有用的副样本来提升embedding效果 对抗学习框架泛化能力强，适配很多KGE模型，不需要额外本体限制 在三个常用的数据集上显示出一致性能  2. 相关工作与模型构建近年来很多KGE方法被提出来。RESCAL（2011）首先用矩阵分解来进行embedding，并使用双线性映射作为score function，TransE首先提出基于翻译模型的embedding">
+<meta property="og:description" content="ThunderNet 论文解读首先让我们看一下object detection的论文发展  ThunderNet是2019年实现了ARM平台上的第一个实时检测器和最快的单线程速度的模型。接下来我们从以下几个方面去介绍这个模型。 网络架构ThunderNet的整体架构如下图所示。 ThunderNet使用320×320像素作为网络的输入分辨率。整体的网络结构分为两部分：Backbone部分和Dete">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703150923.png">
-<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703162624.png">
-<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703162748.png">
-<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703172418.png">
-<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703172547.png">
-<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703172928.png">
-<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703174351.png">
-<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703173123.png">
-<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703174514.png">
-<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703174543.png">
-<meta property="og:updated_time" content="2019-07-10T12:51:58.250Z">
+<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190921182252.png">
+<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190921182813.png">
+<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190921190432.png">
+<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190921191020.png">
+<meta property="og:image" content="http://yoursite.com/Users/ruisongzhou/Library/Application%20Support/typora-user-images/image-20190921194131152.png">
+<meta property="og:image" content="http://yoursite.com/Users/ruisongzhou/Library/Application%20Support/typora-user-images/image-20190921195255115.png">
+<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190921195622.png">
+<meta property="og:image" content="http://yoursite.com/Users/ruisongzhou/Library/Application%20Support/typora-user-images/image-20190921200138716.png">
+<meta property="og:updated_time" content="2019-09-21T12:01:39.976Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="KBGAN 论文阅读笔记">
-<meta name="twitter:description" content="1. 特色 首次尝试用对抗学习去生成有用的副样本来提升embedding效果 对抗学习框架泛化能力强，适配很多KGE模型，不需要额外本体限制 在三个常用的数据集上显示出一致性能  2. 相关工作与模型构建近年来很多KGE方法被提出来。RESCAL（2011）首先用矩阵分解来进行embedding，并使用双线性映射作为score function，TransE首先提出基于翻译模型的embedding">
-<meta name="twitter:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703150923.png">
+<meta name="twitter:title" content="ThunderNet 论文阅读 | 轻量级实时监测网络">
+<meta name="twitter:description" content="ThunderNet 论文解读首先让我们看一下object detection的论文发展  ThunderNet是2019年实现了ARM平台上的第一个实时检测器和最快的单线程速度的模型。接下来我们从以下几个方面去介绍这个模型。 网络架构ThunderNet的整体架构如下图所示。 ThunderNet使用320×320像素作为网络的输入分辨率。整体的网络结构分为两部分：Backbone部分和Dete">
+<meta name="twitter:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20190921182252.png">
 
 
 
@@ -124,7 +122,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/2019/07/02/KBGAN-论文阅读笔记/">
+  <link rel="canonical" href="http://yoursite.com/2019/09/21/ThunderNet-论文阅读-轻量级实时监测网络/">
 
 
 
@@ -134,7 +132,7 @@
   };
 </script>
 
-  <title>KBGAN 论文阅读笔记 | 周瑞松のblog</title>
+  <title>ThunderNet 论文阅读 | 轻量级实时监测网络 | 周瑞松のblog</title>
   
 
 
@@ -345,7 +343,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/02/KBGAN-论文阅读笔记/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/21/ThunderNet-论文阅读-轻量级实时监测网络/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="RuisongZhou">
@@ -362,7 +360,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">KBGAN 论文阅读笔记
+          <h1 class="post-title" itemprop="name headline">ThunderNet 论文阅读 | 轻量级实时监测网络
 
               
             
@@ -388,23 +386,13 @@
                 
               
 
-              <time title="创建时间：2019-07-02 17:32:04" itemprop="dateCreated datePublished" datetime="2019-07-02T17:32:04+08:00">2019-07-02</time>
+              <time title="创建时间：2019-09-21 17:54:48 / 修改时间：20:01:39" itemprop="dateCreated datePublished" datetime="2019-09-21T17:54:48+08:00">2019-09-21</time>
             </span>
           
 
           
             
 
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-07-10 20:51:58" itemprop="dateModified" datetime="2019-07-10T20:51:58+08:00">2019-07-10</time>
-              </span>
             
           
 
@@ -417,7 +405,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Paper-Weekly/" itemprop="url" rel="index"><span itemprop="name">Paper Weekly</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/CV/" itemprop="url" rel="index"><span itemprop="name">CV</span></a></span>
 
                 
                 
@@ -435,8 +423,8 @@
                 </span>
             
                 <span class="post-meta-item-text">评论数：</span>
-                <a href="/2019/07/02/KBGAN-论文阅读笔记/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/07/02/KBGAN-论文阅读笔记/" itemprop="commentCount"></span>
+                <a href="/2019/09/21/ThunderNet-论文阅读-轻量级实时监测网络/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/09/21/ThunderNet-论文阅读-轻量级实时监测网络/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -475,40 +463,32 @@
       
 
       
-        <h2 id="1-特色"><a href="#1-特色" class="headerlink" title="1. 特色"></a>1. 特色</h2><ul>
-<li>首次尝试用对抗学习去生成有用的副样本来提升embedding效果</li>
-<li>对抗学习框架泛化能力强，适配很多KGE模型，不需要额外本体限制</li>
-<li>在三个常用的数据集上显示出一致性能</li>
-</ul>
-<h2 id="2-相关工作与模型构建"><a href="#2-相关工作与模型构建" class="headerlink" title="2. 相关工作与模型构建"></a>2. 相关工作与模型构建</h2><p>近年来很多KGE方法被提出来。RESCAL（2011）首先用矩阵分解来进行embedding，并使用双线性映射作为score function，TransE首先提出基于翻译模型的embedding方法，TransH，TransR，TransD对此进行了发展，从实体映射拓展为空间映射，DISTMULT（2015）用了对角矩阵简化了RESCAL，COMPLEX（2016）将前者带入复数域。</p>
-<p>其中有一些模型取得了很好的效果，MAINIFOLDE（2016）将三元组作为一个mainfold而不像原来那样作为point进行embed，HOLD（2016）将两个实体组合成一个三重实体的圆相关关系等等，但是这些方法用均匀采样去生成负样本。</p>
-<p>作者采用了独立于模型的框架，所有模型都可以合并入框架，具有很好的鲁棒性。本文提出的KBGAN损失函数为marginal loss function，带有softmax的KGE模型，其总架构为下：</p>
-<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703150923.png" alt></p>
-<p>论文使用 softmax 概率模型为生成器 G，通过概率分布进行采样；判别器部分 D 接收生成的负样本和 ground truth triple 并计算分数；G 通过梯度策略最小化生成的负三元组的分数，D 通过梯度下降最小化正样本和负样本的边缘损失</p>
-<p>首先本文列举了两种loss函数</p>
-<ol>
-<li><strong>Margin loss Function</strong></li>
+        <h1 id="ThunderNet-论文解读"><a href="#ThunderNet-论文解读" class="headerlink" title="ThunderNet 论文解读"></a>ThunderNet 论文解读</h1><p>首先让我们看一下object detection的论文发展</p>
+<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190921182252.png" alt></p>
+<p>ThunderNet是2019年实现了ARM平台上的第一个实时检测器和最快的单线程速度的模型。接下来我们从以下几个方面去介绍这个模型。</p>
+<h2 id="网络架构"><a href="#网络架构" class="headerlink" title="网络架构"></a>网络架构</h2><p>ThunderNet的整体架构如下图所示。 ThunderNet使用320×320像素作为网络的输入分辨率。整体的网络结构分为两部分：Backbone部分和Detection部分。网络的骨干部分为SNet，SNet是基于ShuffleNetV2进行修改得到的。 网络的检测部分，利用了压缩的RPN网络，修改自Light-Head R-CNN网络用以提高效率。 并提出Context Enhancement Module整合局部和全局特征增强网络特征表达能力。 并提出Spatial Attention Module空间注意模块，引入来自RPN的前后景信息用以优化特征分布。</p>
+<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190921182813.png" alt></p>
+<h2 id="Backbone"><a href="#Backbone" class="headerlink" title="Backbone"></a>Backbone</h2><p>​        Backbone网络提供了对照片的浅层特征抽取，能有效的提高准确率和速度。以往基于CNN的检测网络通常使用ImageNet分类网络作为backbone，然而classification和detection需要不同的property，所以ImageNet作为backbone并不是最好的。</p>
+<p>​        骨干网络需要具有两大特点，第一：大的感受野很重要。第二：浅层特征位置信息丰富，深层特征区分度更大，因此需要兼顾这两种特征。而作者认为主流的轻量级网络违法了上述原则，比如ShuffleNetV1/V2限制了感受野。ShuffleNetV2 和MobileNetV2 缺乏浅层特征，而Xception 在计算预算低下的情况下缺乏深层特征。</p>
+<p>同时，为了加快推理（前向操作）速度，作者使用320*320大小的输入图像。需要注意的是，在实践中，我们观察到输入分辨率应该与骨干网络的能力相匹配。 具有大输入的小骨干和具有小输入的大骨干都不是最佳的选择。</p>
+<p>​        因此，作者选择了ShuffleNetV2，并对其进行相应的微调，并命名为SNet。SNet49用于更快的推理，SNet535用于更好的精度，SNet146用于更好的速度/精度权衡。首先，我们用5×5深度可分离卷积替换ShuffleNetV2中的所有3×3深度可分离卷积（来自Mobilenetv1）。在实践中，5×5深度卷积提供与3×3对应物相似的运行速度，同时有效地扩大了感受野。在SNet146和SNet535中，作者删除了Conv5并在浅层特征提取阶段添加了更多通道。此设计可生成更多位置信息，而无需额外的计算成本。在SNet49中，作者将Conv5压缩为512个通道，而不是将其删除，并在浅层特征提取阶段增加通道，以便实现浅层和深层特征间更好的平衡。作者认为删除Conv5，骨干网络就无法提取足够的信息。而且要是保留1024维度的Conv5层，骨干网络就会受到有限的浅层特征的影响。上图显示了主干的整体架构。此外，下文中将Stage3和Stage4的最后输出特征图（SNet49的Conv5）表示为C4和C5。</p>
+<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190921190432.png" alt></p>
+<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190921191020.png" alt></p>
+<h2 id="Detection"><a href="#Detection" class="headerlink" title="Detection"></a>Detection</h2><p>检测部分作者用了Light-Head RCNN网络结构。虽然该网络使用轻量级的检测器，但当与上述的SNet这个更轻量级的骨干网络耦合时它仍然太重，并且会引起骨干网络和检测器之间的不平衡。 这种不平衡不仅导致冗余计算，而且增加了过度拟合的风险。上述骨干网络部分中输入分辨率不匹配也会导致类似问题。 为了解决这个问题，作者使用一个5×5的深度可分离卷积（mobilenetv1中）和1×1卷积，替换原始RPN网络中的3×3的卷积。并且在RPN网络中使用的尺度大小为{32×32,64×64,128×128,256×256,512×512}，anchor的长宽比为{1:2,3:4,1:1,4:3,2:1}。其余参数和Light-Head R-CNN中的一致。</p>
+<h3 id="Context-Enhancement-Module"><a href="#Context-Enhancement-Module" class="headerlink" title="Context Enhancement Module"></a>Context Enhancement Module</h3><p>Light-Head R-CNN网络中在骨干网络之后利用<a href="https://arxiv.org/pdf/1703.02719.pdf" target="_blank" rel="noopener">GCN:Global Convolutional Network</a>产生更小的特征图，这虽然增加了感受野但却提升了计算复杂度，所以作者在ThunderNet中摒弃了这种做法。</p>
+<p>同时，作者提出了更有效的CEM模块来增大感受野，CEM的核心思想是聚合多尺度局部信息和全局信息，以生成区分性更强的特征。CEM中合并了三个尺度的特征图：C4，C5和Cglb(在C5上应用全局平均池化得到Cglb作为全局特征信息)。</p>
+<p><img src="/Users/ruisongzhou/Library/Application Support/typora-user-images/image-20190921194131152.png" alt="image-20190921194131152"></p>
+<p>在CEM中，对每个feature map使用1×1卷积核来更改channel数，其中C4特征图上应用1×1卷积以将通道数量压缩为α×p×p = 245，C5进行上采样 + 1×1卷积以将通道数量压缩为α×p×p = 245，Cglb进行Broadcast + Cglb特征图上应用1×1卷积以将通道数量压缩为α×p×p = 245 。最后将这三个特征图加和，通过利用局部和全局信息，CEM有效地扩大了感受野，并细化了薄特征图的表示能力。与先前的FPN结构相比，CEM仅涉及两个1×1卷积和fc层，这更加计算友好。</p>
+<h3 id="Spatial-Attention-Module"><a href="#Spatial-Attention-Module" class="headerlink" title="Spatial Attention Module"></a>Spatial Attention Module</h3><p>进行Rol操作时，我们期望背景区域中的特征不被关注，且前景物体的特征被强烈关注。由于本文的检测网络利用的是轻量级骨干网络和小分辨率输入图像，因此很难学习到正确的特征分布。出于这个原因，作者设计了一个空间注意模块（SAM）, 以便在RoI扭曲空间维度之前显式地重新加权特征图，引导网络学习到正确的前景背景特征分布。SAM的关键思想是使用来自RPN学习到的知识来细化特征图的特征分布。因为训练RPN网络时，网络就是以前景目标作为监督来训练的。 因此，RPN网络可以用于区分前景特征和背景特征。</p>
+<p><img src="/Users/ruisongzhou/Library/Application Support/typora-user-images/image-20190921195255115.png" alt="image-20190921195255115"></p>
+<h2 id="论文效果"><a href="#论文效果" class="headerlink" title="论文效果"></a>论文效果</h2><ol>
+<li>速度对比</li>
 </ol>
-<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703162624.png" alt></p>
+<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190921195622.png" alt></p>
 <ol>
-<li><strong>Log-softmax loss function</strong></li>
+<li>效果对比</li>
 </ol>
-<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703162748.png" alt></p>
-<p>其次分析了<strong>均匀负采样的缺陷</strong>：等概率替换会使容易区分的负样本对学习的贡献较小，会让模型学到一些简单的特征，而不是尽可能去理解语义，对此作者认为使用 log 损失函数从替换实体得到的所有负样本中筛选出更有用的负样本很有必要。</p>
-<p>受GAN的启发，作者使用基于softmax概率的KGE来产生高质量的负样本，使用margin loss损失函数。之所以使用softmax，是因为他能很好的表示离散GAN中“从概率分布中采样”过程，这样提升判别器的效果就能产生很多优秀的负样本。</p>
-<p>假设生成器得到的负样本的概率分布为：$p_G(h′,r,t′|h,r,t)$，得分函数为$f_D(h,r,t)$，那么loss可以写成：</p>
-<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703172418.png" alt></p>
-<p>生成器的目标是最大化负距离的期望为：<img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703172547.png" alt></p>
-<p>由于 RG 是一个离散采样步骤，所以得不到梯度，本文借鉴了其他论文提到的梯度策略理论获取梯度进行优化。</p>
-<p>这一部分论文把这个过程对标到强化学习，认为生成器是 agent，判别器是 environment， $(h, r, t)$ 是 state，负样本概率分布 PG 是 policy，$(h’, r, t’)$ 是 action，$-f_D(h’, r, t’)$ 是 reward，认为是 one-step RL 是在每个 epoch，actions 不会影响 state，但每个 action 后会重新从一个不相关的 state 开始；<br><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703172928.png" alt></p>
-<p>为减小算法方差而不引入新参数，作者从 reward 减掉一个任意数，这个任意数仅依赖于state，不影响梯度的分布。作者将$-f<em>D(h’, r, t’)$ 替换为<script type="math/tex">-f_D(h’, r, t’)-b(h,r,t)</script> ，b是一个常量，其中$$b=\sum</em>{(h,r,t)∈T}\mathbb{E}_{(h′,r,t′)∼p_G(h′,r,t′|h,r,t)}[−f_D(h′,r,t′)]$$ ，为了便于计算，b可以近似的表示为临近几个生成负样本的rewads的均值。</p>
-<p>概率分布的计算使用以下公式，$f_G(h, r, t$) 为生成器的 score function：</p>
-<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703174351.png" alt></p>
-<p><strong>算法伪代码如下：</strong></p>
-<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703173123.png" alt></p>
-<h2 id="试验结果："><a href="#试验结果：" class="headerlink" title="试验结果："></a>试验结果：</h2><p>论文选用的数据集有 FB15K-237, WN18, WN18RR，结果发现使用 DISMULT 或 COMPLEX 作为生成器都不会对性能有较大影响，且 TransD, TransE 在 KBGAN 中很明显优于它们的 baseline。</p>
-<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703174514.png" alt></p>
-<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20190703174543.png" alt></p>
+<p><img src="/Users/ruisongzhou/Library/Application Support/typora-user-images/image-20190921200138716.png" alt="image-20190921200138716"></p>
 
       
     </div>
@@ -568,9 +548,9 @@
         
         <div class="post-tags">
           
-            <a href="/tags/Graph-Embedding/" rel="tag"># Graph Embedding</a>
+            <a href="/tags/CV/" rel="tag"># CV</a>
           
-            <a href="/tags/GAN/" rel="tag"># GAN</a>
+            <a href="/tags/Objection-Detection/" rel="tag"># Objection Detection</a>
           
         </div>
       
@@ -583,8 +563,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/07/02/经典Graph-Embedding-方法/" rel="next" title="经典Graph Embedding 方法">
-                <i class="fa fa-chevron-left"></i> 经典Graph Embedding 方法
+              <a href="/2019/09/17/定制外围Linux操作系统/" rel="next" title="定制外围Linux操作系统">
+                <i class="fa fa-chevron-left"></i> 定制外围Linux操作系统
               </a>
             
           </div>
@@ -592,10 +572,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/07/05/ERNIE-Enhanced-Language-Representation-with-Informative-Entities论文阅读笔记/" rel="prev" title="ERNIE: Enhanced Language Representation with Informative Entities论文阅读笔记">
-                ERNIE: Enhanced Language Representation with Informative Entities论文阅读笔记 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -811,7 +787,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-特色"><span class="nav-number">1.</span> <span class="nav-text">1. 特色</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-相关工作与模型构建"><span class="nav-number">2.</span> <span class="nav-text">2. 相关工作与模型构建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#试验结果："><span class="nav-number">3.</span> <span class="nav-text">试验结果：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ThunderNet-论文解读"><span class="nav-number">1.</span> <span class="nav-text">ThunderNet 论文解读</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#网络架构"><span class="nav-number">1.1.</span> <span class="nav-text">网络架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Backbone"><span class="nav-number">1.2.</span> <span class="nav-text">Backbone</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Detection"><span class="nav-number">1.3.</span> <span class="nav-text">Detection</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Context-Enhancement-Module"><span class="nav-number">1.3.1.</span> <span class="nav-text">Context Enhancement Module</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spatial-Attention-Module"><span class="nav-number">1.3.2.</span> <span class="nav-text">Spatial Attention Module</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#论文效果"><span class="nav-number">1.4.</span> <span class="nav-text">论文效果</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -1001,9 +977,9 @@
 
 <script>
   var disqus_config = function() {
-    this.page.url = "http://yoursite.com/2019/07/02/KBGAN-论文阅读笔记/";
-    this.page.identifier = "2019/07/02/KBGAN-论文阅读笔记/";
-    this.page.title = 'KBGAN 论文阅读笔记';
+    this.page.url = "http://yoursite.com/2019/09/21/ThunderNet-论文阅读-轻量级实时监测网络/";
+    this.page.identifier = "2019/09/21/ThunderNet-论文阅读-轻量级实时监测网络/";
+    this.page.title = 'ThunderNet 论文阅读 | 轻量级实时监测网络';
     };
   function loadComments() {
     var d = document, s = d.createElement('script');
