@@ -95,7 +95,7 @@
 
 
   <meta name="description" content="论文地址：https://arxiv.org/pdf/1905.07129 github地址：https://github.com/thunlp/ERNIE 1. Abstract自然语言表征模型最近受到非常多的关注，很多研究者将其视为 NLP 最重要的研究方向之一。例如在大规模语料库上预训练的 BERT，它可以从纯文本中很好地捕捉丰富的语义模式，经过微调后可以持续改善不同 NLP 任务的性能。因">
-<meta name="keywords" content="NLP,知识图谱,BERT">
+<meta name="keywords" content="知识图谱,NLP,BERT">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ERNIE: Enhanced Language Representation with Informative Entities论文阅读笔记">
 <meta property="og:url" content="http://yoursite.com/2019/07/05/ERNIE-Enhanced-Language-Representation-with-Informative-Entities论文阅读笔记/index.html">
@@ -606,9 +606,9 @@ p\left(e_{j} | w_{i}\right)=\frac{\exp \left( \text { linear }\left(\boldsymbol{
         
         <div class="post-tags">
           
-            <a href="/tags/NLP/" rel="tag"># NLP</a>
-          
             <a href="/tags/知识图谱/" rel="tag"># 知识图谱</a>
+          
+            <a href="/tags/NLP/" rel="tag"># NLP</a>
           
             <a href="/tags/BERT/" rel="tag"># BERT</a>
           
@@ -1128,6 +1128,32 @@ p\left(e_{j} | w_{i}\right)=\frac{\exp \left( \text { linear }\left(\boldsymbol{
 
 
   
+<script>
+if ($('body').find('div.pdf').length) {
+  $.ajax({
+    type: 'GET',
+    url: '//cdn.jsdelivr.net/npm/pdfobject@2/pdfobject.min.js',
+    dataType: 'script',
+    cache: true,
+    success: function() {
+      $('body').find('div.pdf').each(function(i, o) {
+        PDFObject.embed($(o).attr('target'), $(o), {
+          pdfOpenParams: {
+            navpanes: 0,
+            toolbar: 0,
+            statusbar: 0,
+            pagemode: 'thumbs',
+            view: 'FitH'
+          },
+          PDFJS_URL: '/lib/pdf/web/viewer.html',
+          height: $(o).attr('height') || '900px'
+        });
+      });
+    },
+  });
+}
+</script>
+
 
   
 

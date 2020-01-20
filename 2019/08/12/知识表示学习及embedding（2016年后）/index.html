@@ -95,7 +95,7 @@
 
 
   <meta name="description" content="本文旨在介绍TransD模型提出后，近年来新的基于结构的知识表示模型。 本文介绍模型论文：  TranSparse, AAAI2016, Knowledge graph completion with adaptive sparse transfer matrix TransG, arXiv2015, A Generative Mixture Model for Knowledge Graph E">
-<meta name="keywords" content="NLP,Graph Embedding,知识图谱">
+<meta name="keywords" content="知识图谱,NLP,Graph Embedding">
 <meta property="og:type" content="article">
 <meta property="og:title" content="知识表示学习及embedding（2015年后）">
 <meta property="og:url" content="http://yoursite.com/2019/08/12/知识表示学习及embedding（2016年后）/index.html">
@@ -632,11 +632,11 @@ L=-\log \sigma\left(\gamma-d_{r}(\mathbf{h}, \mathbf{t})\right)-\sum_{i=1}^{n} p
         
         <div class="post-tags">
           
+            <a href="/tags/知识图谱/" rel="tag"># 知识图谱</a>
+          
             <a href="/tags/NLP/" rel="tag"># NLP</a>
           
             <a href="/tags/Graph-Embedding/" rel="tag"># Graph Embedding</a>
-          
-            <a href="/tags/知识图谱/" rel="tag"># 知识图谱</a>
           
         </div>
       
@@ -1154,6 +1154,32 @@ L=-\log \sigma\left(\gamma-d_{r}(\mathbf{h}, \mathbf{t})\right)-\sum_{i=1}^{n} p
 
 
   
+<script>
+if ($('body').find('div.pdf').length) {
+  $.ajax({
+    type: 'GET',
+    url: '//cdn.jsdelivr.net/npm/pdfobject@2/pdfobject.min.js',
+    dataType: 'script',
+    cache: true,
+    success: function() {
+      $('body').find('div.pdf').each(function(i, o) {
+        PDFObject.embed($(o).attr('target'), $(o), {
+          pdfOpenParams: {
+            navpanes: 0,
+            toolbar: 0,
+            statusbar: 0,
+            pagemode: 'thumbs',
+            view: 'FitH'
+          },
+          PDFJS_URL: '/lib/pdf/web/viewer.html',
+          height: $(o).attr('height') || '900px'
+        });
+      });
+    },
+  });
+}
+</script>
+
 
   
 
