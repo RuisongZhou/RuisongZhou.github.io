@@ -94,16 +94,21 @@
 
 
 
-  <meta name="description" content="菜鸡一枚，仍需努力">
-<meta property="og:type" content="website">
-<meta property="og:title" content="周瑞松のblog">
-<meta property="og:url" content="http://yoursite.com/archives/2020/01/index.html">
+  <meta name="description" content="场景图和视觉关系主要用于理解图像，可以作为caption、text2image、retrival的基础。基本思路是先从纯视觉的detection方法从image中选出proposal和对应的label，再根据这些信息构建scene graph 梳理一下近期看过的scene graph generation论文 1. Graph R-CNN for Scene Graph Generation​">
+<meta name="keywords" content="detection,graph">
+<meta property="og:type" content="article">
+<meta property="og:title" content="scene graph and visual relation初探">
+<meta property="og:url" content="http://yoursite.com/2020/01/27/scene-graph初探/index.html">
 <meta property="og:site_name" content="周瑞松のblog">
-<meta property="og:description" content="菜鸡一枚，仍需努力">
+<meta property="og:description" content="场景图和视觉关系主要用于理解图像，可以作为caption、text2image、retrival的基础。基本思路是先从纯视觉的detection方法从image中选出proposal和对应的label，再根据这些信息构建scene graph 梳理一下近期看过的scene graph generation论文 1. Graph R-CNN for Scene Graph Generation​">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20200127165234.png">
+<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20200127170321.png">
+<meta property="og:updated_time" content="2020-01-27T09:06:56.013Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="周瑞松のblog">
-<meta name="twitter:description" content="菜鸡一枚，仍需努力">
+<meta name="twitter:title" content="scene graph and visual relation初探">
+<meta name="twitter:description" content="场景图和视觉关系主要用于理解图像，可以作为caption、text2image、retrival的基础。基本思路是先从纯视觉的detection方法从image中选出proposal和对应的label，再根据这些信息构建scene graph 梳理一下近期看过的scene graph generation论文 1. Graph R-CNN for Scene Graph Generation​">
+<meta name="twitter:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20200127165234.png">
 
 
 
@@ -111,7 +116,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/archives/2020/01/">
+  <link rel="canonical" href="http://yoursite.com/2020/01/27/scene-graph初探/">
 
 
 
@@ -121,7 +126,7 @@
   };
 </script>
 
-  <title>归档 | 周瑞松のblog</title>
+  <title>scene graph and visual relation初探 | 周瑞松のblog</title>
   
 
 
@@ -169,7 +174,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -271,7 +276,7 @@
         
         
           
-          <li class="menu-item menu-item-archives menu-item-active">
+          <li class="menu-item menu-item-archives">
 
     
     
@@ -312,139 +317,269 @@
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
 
-      
-      <span class="archive-page-counter">
-        
-        
-        
-          
-        
-        嗯..! 目前共计 17 篇日志。 继续努力。
-      </span>
-      
-
-      
-
-        
-        
-        
-
-        
-          
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2020">2020</h1>
-          </div>
-        
-        
-
-        
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/27/scene-graph初探/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="RuisongZhou">
+      <meta itemprop="description" content="菜鸡一枚，仍需努力">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="周瑞松のblog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-          <a class="post-title-link" href="/2020/01/27/scene-graph初探/" itemprop="url">
-            
-              <span itemprop="name">scene graph and visual relation初探</span>
-            
-          </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">scene graph and visual relation初探
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2020-01-27T16:39:55+08:00" content="2020-01-27">
-          01-27
-        </time>
-      </div>
+              
+            
+          </h1>
+        
 
-    </header>
-  </article>
+        <div class="post-meta">
 
+          
+          
+          
 
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-01-27 16:39:55 / 修改时间：17:06:56" itemprop="dateCreated datePublished" datetime="2020-01-27T16:39:55+08:00">2020-01-27</time>
+            </span>
+          
+
+          
+            
+
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/CV/" itemprop="url" rel="index"><span itemprop="name">CV</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2020/01/27/scene-graph初探/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/01/27/scene-graph初探/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+                 阅读次数： 
+                <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+              </span>
+            </span>
+          
+
+          <br>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2020/01/20/BBR算法评估/" itemprop="url">
-            
-              <span itemprop="name">BBR算法评估</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2020-01-20T11:10:41+08:00" content="2020-01-20">
-          01-20
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
+      
+        <p>场景图和视觉关系主要用于理解图像，可以作为caption、text2image、retrival的基础。基本思路是先从纯视觉的detection方法从image中选出proposal和对应的label，再根据这些信息构建scene graph</p>
+<p>梳理一下近期看过的scene graph generation论文</p>
+<h2 id="1-Graph-R-CNN-for-Scene-Graph-Generation"><a href="#1-Graph-R-CNN-for-Scene-Graph-Generation" class="headerlink" title="1. Graph R-CNN for Scene Graph Generation"></a>1. Graph R-CNN for Scene Graph Generation</h2><p>​        此领域目前的SOTA模型，ECCV 2018投稿。本文模型包括一个Relation proposal network（RePN）,能够高效的解决物体间两两的联系随着物体数量以平方的形式增长的问题，本文还提出了一个attention graph convolutional network（aGCN），能够高效抓取物体和relation之间的相互联系。最后一点贡献是提出了一个结果衡量方式，这个衡量方式相比于现有的衡量标准更加全面，更加实际。最后作者一句话概括说自己的模型在实验中无论是用现有的衡量标准，还是新提出来的衡量标准，都取得了state-of-the-art的结果。</p>
+<p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20200127165234.png" alt></p>
+<p>​        给定image，提出proposal，然后假定各proposal之间都有关系，之后用RePN筛选relation，使graph变稀疏。最后再通过一个图卷机网络整合信息，并且更新object node和relationship edge的标签。</p>
+<p>​        将一个image表示为I，V表示一组nodes，每一个node对应I中识别出来的一个object的区域，E表示边的集合，O，R表示object和relation，则可以表示为$P(S=(V, E, O, R) | I)$，本文将分解成三个部分：</p>
+<script type="math/tex; mode=display">
+P(\mathcal{S} | \boldsymbol{I})=\overbrace{P(\boldsymbol{V} | \boldsymbol{I})}^{\text {Object Region }} \underbrace{P(\boldsymbol{E} | \boldsymbol{V}, \boldsymbol{I})}_{\text {Relationship } \atop \text { Proposal }} \overbrace{P(\boldsymbol{R}, \boldsymbol{O} | \boldsymbol{V}, \boldsymbol{E}, \boldsymbol{I})}^{\text {Graph Labeling }}</script><p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20200127170321.png" alt></p>
+<p>论文地址：<a href="https://arxiv.org/pdf/1808.00191.pdf" target="_blank" rel="noopener">https://arxiv.org/pdf/1808.00191.pdf</a></p>
+
+      
     </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+      <div>
+        <div id="reward-container">
+  <div></div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/wechatpay.png" alt="RuisongZhou 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/alipay.png" alt="RuisongZhou 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        
+          
+        
+        <div class="post-tags">
+          
+            <a href="/tags/detection/" rel="tag"># detection</a>
+          
+            <a href="/tags/graph/" rel="tag"># graph</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/01/20/BBR算法评估/" rel="next" title="BBR算法评估">
+                <i class="fa fa-chevron-left"></i> BBR算法评估
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+  </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -464,8 +599,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -620,6 +764,23 @@
       </div>
 
       
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Graph-R-CNN-for-Scene-Graph-Generation"><span class="nav-number">1.</span> <span class="nav-text">1. Graph R-CNN for Scene Graph Generation</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
 
       
 
@@ -770,6 +931,10 @@
 
 
   
+  <script src="/js/scrollspy.js?v=7.2.0"></script>
+<script src="/js/post-details.js?v=7.2.0"></script>
+
+
 
   
 
@@ -797,9 +962,28 @@
 </script>
 
 
+<script>
+  var disqus_config = function() {
+    this.page.url = "http://yoursite.com/2020/01/27/scene-graph初探/";
+    this.page.identifier = "2020/01/27/scene-graph初探/";
+    this.page.title = 'scene graph and visual relation初探';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://ruisong.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    window.addEventListener('load', loadComments, false);
+  
+</script>
 
 
 
+
+
+  
 
 
   
@@ -817,6 +1001,46 @@
   
   
 
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
+        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
+      }
+    });
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      document.getElementById(all[i].inputID + '-Frame').parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
   
 
 

@@ -943,7 +943,7 @@ pre .javascript .function {
   position: relative;
   overflow: auto;
   width: 100%;
-  height: 500px;
+  height: 900px;
 }
 .btn {
   display: inline-block;
@@ -1825,7 +1825,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ffd9de;
+  background: #3328ff;
 }
 .feed-link,
 .chat {
