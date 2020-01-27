@@ -104,8 +104,8 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20200127165234.png">
 <meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20200127170321.png">
-<meta property="og:image" content="http://yoursite.com/Users/ruisongzhou/Library/Application%20Support/typora-user-images/image-20200127174041451.png">
-<meta property="og:updated_time" content="2020-01-27T09:51:58.473Z">
+<meta property="og:image" content="https://zrspic.oss-cn-beijing.aliyuncs.com/20200127175353.png">
+<meta property="og:updated_time" content="2020-01-27T09:53:58.501Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="scene graph and visual relation初探">
 <meta name="twitter:description" content="场景图和视觉关系主要用于理解图像，可以作为caption、text2image、retrival的基础。基本思路是先从纯视觉的detection方法从image中选出proposal和对应的label，再根据这些信息构建scene graph 梳理一下近期看过的scene graph generation论文 1. Graph R-CNN for Scene Graph Generation​">
@@ -381,7 +381,7 @@
                 
               
 
-              <time title="创建时间：2020-01-27 16:39:55 / 修改时间：17:51:58" itemprop="dateCreated datePublished" datetime="2020-01-27T16:39:55+08:00">2020-01-27</time>
+              <time title="创建时间：2020-01-27 16:39:55 / 修改时间：17:53:58" itemprop="dateCreated datePublished" datetime="2020-01-27T16:39:55+08:00">2020-01-27</time>
             </span>
           
 
@@ -467,7 +467,7 @@
 <script type="math/tex; mode=display">
 P(\mathcal{S} | \boldsymbol{I})=\overbrace{P(\boldsymbol{V} | \boldsymbol{I})}^{\text {Object Region }} \underbrace{P(\boldsymbol{E} | \boldsymbol{V}, \boldsymbol{I})}_{\text {Relationship } \atop \text { Proposal }} \overbrace{P(\boldsymbol{R}, \boldsymbol{O} | \boldsymbol{V}, \boldsymbol{E}, \boldsymbol{I})}^{\text {Graph Labeling }}</script><p><img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20200127170321.png" alt></p>
 <p>论文地址：<a href="https://arxiv.org/pdf/1808.00191.pdf" target="_blank" rel="noopener">https://arxiv.org/pdf/1808.00191.pdf</a></p>
-<h2 id="2-Neural-Motifs-Scene-Graph-Parsing-with-Global-Context"><a href="#2-Neural-Motifs-Scene-Graph-Parsing-with-Global-Context" class="headerlink" title="2. Neural Motifs: Scene Graph Parsing with Global Context"></a>2. Neural Motifs: Scene Graph Parsing with Global Context</h2><p> <img src="/Users/ruisongzhou/Library/Application Support/typora-user-images/image-20200127174041451.png" alt="image-20200127174041451"></p>
+<h2 id="2-Neural-Motifs-Scene-Graph-Parsing-with-Global-Context"><a href="#2-Neural-Motifs-Scene-Graph-Parsing-with-Global-Context" class="headerlink" title="2. Neural Motifs: Scene Graph Parsing with Global Context"></a>2. Neural Motifs: Scene Graph Parsing with Global Context</h2><p> <img src="https://zrspic.oss-cn-beijing.aliyuncs.com/20200127175353.png" alt></p>
 <p>文中的方法先将图片做proposal，依次通过一个双向LSTM，得到object context（c），并作为全局信息传递，c再输入LSTM解码得到label。将c和label同时输入一个双向LSTM得到edge context（d），并作为全局信息传递，d的全连接根据motif有不同的bias，得出可能的关系预测。</p>
 <script type="math/tex; mode=display">
 \mathbf{C}=\operatorname{biLSTM}\left(\left[\mathbf{f}_{i} ; \mathbf{W}_{1} \mathbf{l}_{i}\right]_{i=1, \ldots, n}\right)</script><script type="math/tex; mode=display">
