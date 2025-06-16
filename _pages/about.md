@@ -69,6 +69,7 @@ My research interest includes log-structured storage systems and heterogeneous S
   In *IEEE 18th International Symposium on Biomedical Imaging* (ISBI 2021)
 
 # 🎖 Honors and Awards
+- *2024* Huawei Scholarship
 - *2024* 3rd Prize at 2nd Massive Storage-College Student Information Storage Technology Competition
 - *2023* Outstanding Student Cadre of HUST
 - *2022* 2nd Prize at 1st Massive Storage-College Student Information Storage Technology Competition
