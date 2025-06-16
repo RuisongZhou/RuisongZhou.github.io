@@ -17,18 +17,19 @@ redirect_from:
 
 <span class='anchor' id='about-me'></span>
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. Suspendisse condimentum, libero vel tempus mattis, risus risus vulputate libero, elementum fermentum mi neque vel nisl. Maecenas facilisis maximus dignissim. Curabitur mattis vulputate dui, tincidunt varius libero luctus eu. Mauris mauris nulla, scelerisque eget massa id, tincidunt congue felis. Sed convallis tempor ipsum rhoncus viverra. Pellentesque nulla orci, accumsan volutpat fringilla vitae, maximus sit amet tortor. Aliquam ultricies odio ut volutpat scelerisque. Donec nisl nisl, porttitor vitae pharetra quis, fringilla sed mi. Fusce pretium dolor ut aliquam consequat. Cras volutpat, tellus accumsan mattis molestie, nisl lacus tempus massa, nec malesuada tortor leo vel quam. Aliquam vel ex consectetur, vehicula leo nec, efficitur eros. Donec convallis non urna quis feugiat.
+I am a PhD student at Wuhan National Laboratory for Optoelectronics (WNLO), Huazhong University of Science and Technology (HUST) starting in September 2021, supervised by <a href="https://dblp.uni-trier.de/pid/78/2949-1.html">Ke Zhou</a>. 
+Before that, I obtained the B.E degree in Electronic Information Engineering from HUST in 2021.
 
-My research interest includes neural machine translation and computer vision. I have published more than 100 papers at the top international AI conferences with total <a href='https://scholar.google.com/citations?user=DhtAFkwAAAAJ'>google scholar citations <strong><span id='total_cit'>260000+</span></strong></a> (You can also use google scholar badge <a href='https://scholar.google.com/citations?user=DhtAFkwAAAAJ'><img src="https://img.shields.io/endpoint?url={{ url | url_encode }}&logo=Google%20Scholar&labelColor=f6f6f6&color=9cf&style=flat&label=citations"></a>).
+My research interest includes log-structured storage systems and heterogeneous SSD architecture, particularly fully utilizing the advantages of heterogeneous devices in storage systems to maintain cost-effectiveness.
 
-
+<!-- 
 # 🔥 News
 - *2022.02*: &nbsp;🎉🎉 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
-- *2022.02*: &nbsp;🎉🎉 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
+- *2022.02*: &nbsp;🎉🎉 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet.  -->
 
 # 📝 Publications 
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">CVPR 2016</div><img src='images/500x300.png' alt="sym" width="100%"></div></div>
+<!-- <div class='paper-box'><div class='paper-box-image'><div><div class="badge">CVPR 2016</div><img src='images/500x300.png' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
 [Deep Residual Learning for Image Recognition](https://openaccess.thecvf.com/content_cvpr_2016/papers/He_Deep_Residual_Learning_CVPR_2016_paper.pdf)
@@ -38,21 +39,45 @@ My research interest includes neural machine translation and computer vision. I 
 [**Project**](https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=DhtAFkwAAAAJ&citation_for_view=DhtAFkwAAAAJ:ALROH1vI_8AC) <strong><span class='show_paper_citations' data='DhtAFkwAAAAJ:ALROH1vI_8AC'></span></strong>
 - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
 </div>
-</div>
+</div> -->
+- **ADAPT: Dynamic Grouping and Cross-Group Aggregation for GC-Efficient Log-Structured Storage in SSD Arrays.**
+  [[Paper](https://ruisongzhou.github.io)]
 
-- [Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet](https://github.com), A, B, C, **CVPR 2020**
+  **Ruisong Zhou**, Peng Wang, Chunhua Li, Ke Zhou, and Hui Li. 
+  
+  In *Proceedings of the 54th International Conference on Parallel Processing* (ICPP' 25)
+  
+- **HyperDB: a Novel Key Value Store for Reducing Background Traffic in Heterogeneous SSD Storage**
+  [[Paper](https://dl.acm.org/doi/pdf/10.1145/3673038.3673153)]
+  
+  **Ruisong Zhou**, Yuzhan Zhang, Chunhua Li, Ke Zhou, Peng Wang, Gong Zhang, Ji Zhang, Guangyu Zhang 
+  
+  In *Proceedings of the 53rd International Conference on Parallel Processing* (ICPP' 24)
+
+- **Efficient human pose estimation by maximizing fusion and high-level spatial attention**
+  [[Paper](https://ieeexplore.ieee.org/abstract/document/9666981)]
+  
+  Zhiyuan Ren, Yaohai Zhou, Yizhe Chen, **Ruisong Zhou**, Yayu Gao
+  
+  In *2021 16th IEEE international conference on automatic face and gesture recognition* (FG 2021)
+
+- **Multi-Modal Active Learning for Automatic Liver Fibrosis Diagnosis based on Ultrasound Shear Wave Elastography**
+  [[Paper](https://ieeexplore.ieee.org/abstract/document/9434170)]
+  
+  Lufei Gao, **Ruisong Zhou**, Changfeng Dong, Cheng Feng, Zhen Li, Xiang Wan, Li Liu
+  
+  In *IEEE 18th International Symposium on Biomedical Imaging* (ISBI 2021)
 
 # 🎖 Honors and Awards
-- *2021.10* Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
-- *2021.09* Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
+- *2024* 3rd Prize at 2nd Massive Storage-College Student Information Storage Technology Competition
+- *2023* Outstanding Student Cadre of HUST
+- *2022* 2nd Prize at 1st Massive Storage-College Student Information Storage Technology Competition
+- *2021* Gold Award at China International College Students' Innovation Competition 2021.
 
-# 📖 Educations
-- *2019.06 - 2022.04 (now)*, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
-- *2015.09 - 2019.06*, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
-
-# 💬 Invited Talks
+<!-- # 💬 Invited Talks
 - *2021.06*, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
-- *2021.03*, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet.  \| [\[video\]](https://github.com/)
+- *2021.03*, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet.  \| [\[video\]](https://github.com/) -->
 
 # 💻 Internships
-- *2019.05 - 2020.02*, [Lorem](https://github.com/), China.
+- *2021.06 - 2021.09*, Research intern in Tencent TEG, Shenzhen, China.
+- *2022.04 - 2024.09*, Research intern in Huawei Storage Product Line, Chengdu, China.
