@@ -79,5 +79,6 @@ My research interest includes log-structured storage systems and heterogeneous S
 - *2021.03*, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet.  \| [\[video\]](https://github.com/) -->
 
 # 💻 Internships
-- *2021.06 - 2021.09*, Research intern in Tencent TEG, Shenzhen, China.
+
 - *2022.04 - 2024.09*, Research intern in Huawei Storage Product Line, Chengdu, China.
+- *2021.06 - 2021.09*, Research intern in Tencent TEG, Shenzhen, China.
