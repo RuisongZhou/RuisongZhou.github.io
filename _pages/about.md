@@ -41,7 +41,7 @@ My research interest includes log-structured storage systems and heterogeneous S
 </div>
 </div> -->
 - **ADAPT: Dynamic Grouping and Cross-Group Aggregation for GC-Efficient Log-Structured Storage in SSD Arrays.**
-  [[Paper](https://ruisongzhou.github.io)]
+  [[Paper](https://linklings.s3.amazonaws.com/organizations/icpp/icpp2025/submissions/stype103/KFfaR-pap191s2-file1.pdf)]
 
   **Ruisong Zhou**, Peng Wang, Chunhua Li, Ke Zhou, and Hui Li. 
   
